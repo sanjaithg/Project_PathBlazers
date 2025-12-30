@@ -1,0 +1,11 @@
+Visualization Manager:
+  Displays:
+    - Global Options:
+        Fixed Frame: "odom"
+    - RobotModel:
+        Description Topic: "robot_description"
+    - TF:
+        Enabled: True
+    - Odometry:
+        Topic: "/odom"
+        Color: Yellow
