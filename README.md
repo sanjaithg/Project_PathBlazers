@@ -6,8 +6,7 @@ A ROS2 project for robot navigation and reinforcement learning using TD3 (Twin D
 
 This repository contains ROS2 packages for:
 - **bots**: Robot simulation and TD3 reinforcement learning training
-- **navigator**: Robot navigation and odometry visualization
-- Odometry path visualization tool for ROS2 Jazzy
+- **navigator**: Robot navigation and odometry visualization tools
 
 ## Prerequisites
 
@@ -24,6 +23,9 @@ To clone this repository into your ROS2 workspace:
 
 **Option 1: Clone into a custom `src2` directory:**
 ```bash
+# Create the src2 directory if it doesn't exist
+mkdir -p ~/ros2_ws/src2
+
 # Navigate to your ROS2 workspace
 cd ~/ros2_ws/src2
 
@@ -53,7 +55,10 @@ cd Project_PathBlazers
 1. **Install Python dependencies:**
    ```bash
    # Navigate to the src directory within the cloned repository
+   # If you cloned into src2:
    cd ~/ros2_ws/src2/Project_PathBlazers/src
+   # If you cloned into src:
+   # cd ~/ros2_ws/src/Project_PathBlazers/src
    
    # Install dependencies from requirements.txt
    pip install -r requirements.txt
@@ -91,8 +96,11 @@ Run the odometry visualizer to track and visualize robot paths:
 source /opt/ros/jazzy/setup.bash
 source ~/ros2_ws/install/setup.bash
 
-# Run the visualizer
+# Run the visualizer (adjust path based on where you cloned)
+# If you cloned into src2:
 python3 ~/ros2_ws/src2/Project_PathBlazers/odom_visualizer_ros2_jazzy.py
+# If you cloned into src:
+# python3 ~/ros2_ws/src/Project_PathBlazers/odom_visualizer_ros2_jazzy.py
 ```
 
 ### Launch Robot Simulation
