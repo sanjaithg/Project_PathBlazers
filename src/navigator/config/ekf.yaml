@@ -1,0 +1,53 @@
+ekf_filter_node:
+  ros__parameters:
+    frequency: 50.0
+    sensor_timeout: 0.5
+    two_d_mode: true                 # true if robot is planar (locks z, roll, pitch)
+    odom_frame: "odom"
+    base_link_frame: "base_link"
+    world_frame: "odom"
+
+    # Process & initial covariances (tune later)
+    process_noise_covariance: [0.05, 0, 0,  0, 0, 0,   0, 0, 0,   0, 0, 0,   0, 0, 0]
+    initial_estimate_covariance: [1e-3, 0, 0,  0, 1e-3, 0,   0, 0, 0,   0, 0, 0,   0, 0, 0]
+
+    # -------------------------
+    # WHEEL ODOM (from encoders) - velocities ONLY
+    # -------------------------
+    odom0: "/odom"               # your wheel odom topic (nav_msgs/Odometry)
+    # Map to state vector: [x,y,z, roll,pitch,yaw, vx,vy,vz, vroll,vpitch,vyaw, ax,ay,az]
+    # Here: accept vx only (body frame). Set vy true if your robot supports lateral motion.
+    odom0_config: [false, false, false,
+                   false, false, false,
+                   true, false, false,
+                   false, false, false,
+                   false, false, false]
+    odom0_queue_size: 5
+    odom0_nodelay: false
+    odom0_differential: false
+
+    # -------------------------
+    # CAMERA IMU (IMU inside depth cam)
+    # -------------------------
+    imu0: "oak/imu/data"                 # your camera IMU topic (sensor_msgs/Imu)
+    # Accept yaw (orientation) only if IMU driver provides it with sensible covariances.
+    imu0_config: [false, false, false,
+                  false, false, false,   # orientation: set yaw true below only if driver publishes orientation reliably
+                  false, false, false,
+                  false, false, true,     # accept vyaw (angular vel around Z) from gyro
+                  true, false, false]     # accept ax (linear accel in x) - add other axes if desired
+    imu0_queue_size: 50
+    imu0_nodelay: false
+    imu0_differential: false
+
+    # -------------------------
+    # Settings to prefer IMU yaw rate (if you want IMU gyro more trusted than encoders)
+    # You can tune measurement covariances below (example values)
+    # -------------------------
+    imu0_linear_acceleration_covariance: [0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05]
+    imu0_angular_velocity_covariance: [0.0004, 0, 0, 0, 0.0004, 0, 0, 0, 0.0004]
+
+    # If your IMU publishes orientation covariance inside messages, EKF will use them.
+    publish_tf: true
+    publish_acceleration: false
+    publish_covariances: true
