@@ -20,8 +20,9 @@ This repository contains ROS2 packages for:
 
 ### Clone the Repository into Your ROS2 Workspace
 
-To clone this repository into your ROS2 workspace's `src2` directory:
+To clone this repository into your ROS2 workspace:
 
+**Option 1: Clone into a custom `src2` directory:**
 ```bash
 # Navigate to your ROS2 workspace
 cd ~/ros2_ws/src2
@@ -33,11 +34,28 @@ git clone https://github.com/sanjaithg/Project_PathBlazers.git
 cd Project_PathBlazers
 ```
 
+**Option 2: Clone into the standard `src` directory:**
+```bash
+# Navigate to your ROS2 workspace
+cd ~/ros2_ws/src
+
+# Clone the repository
+git clone https://github.com/sanjaithg/Project_PathBlazers.git
+
+# Navigate into the cloned directory
+cd Project_PathBlazers
+```
+
+> **Note:** The examples below assume you cloned into `src2`. If you used `src`, adjust the paths accordingly.
+
 ### Install Dependencies
 
 1. **Install Python dependencies:**
    ```bash
+   # Navigate to the src directory within the cloned repository
    cd ~/ros2_ws/src2/Project_PathBlazers/src
+   
+   # Install dependencies from requirements.txt
    pip install -r requirements.txt
    ```
 
