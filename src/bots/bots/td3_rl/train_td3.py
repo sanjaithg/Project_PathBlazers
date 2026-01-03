@@ -1,12 +1,28 @@
 #!/usr/bin/env python3
 import os
+import sys
+# Set environment variables to avoid threading conflicts - MUST be before any imports
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # Suppress TF warnings
+os.environ['OPENBLAS_NUM_THREADS'] = '1'  # Prevent OpenBLAS threading issues
+os.environ['OMP_NUM_THREADS'] = '1'  # Prevent OpenMP threading issues
+os.environ['MKL_NUM_THREADS'] = '1'  # Prevent MKL threading issues
+
+# Set multiprocessing start method before any other imports
+import multiprocessing
+try:
+    multiprocessing.set_start_method('spawn', force=True)
+except RuntimeError:
+    pass  # Already set
+
 import threading
 import time
-import sys # Import sys for clean exit
 
-import numpy as np
+# Initialize ROS2 FIRST before any other heavy imports
 import rclpy
+
 import torch
+import numpy as np
 import torch.nn as nn
 import torch.nn.functional as F
 from ament_index_python.packages import get_package_share_directory
@@ -87,7 +103,16 @@ class TD3(object):
         self.critic_optimizer = torch.optim.Adam(self.critic.parameters())
 
         self.max_action = max_action
-        self.writer = SummaryWriter(log_dir=os.path.join(td3_rl_path, "runs"))
+        
+        # Initialize TensorBoard writer with error handling
+        try:
+            self.writer = SummaryWriter(log_dir=os.path.join(td3_rl_path, "runs"))
+            self.use_tensorboard = True
+        except Exception as e:
+            print(f"Warning: Could not initialize TensorBoard: {e}")
+            self.writer = None
+            self.use_tensorboard = False
+        
         self.iter_count = 0
 
     def get_action(self, state):
@@ -183,9 +208,10 @@ class TD3(object):
             av_loss += loss
         self.iter_count += 1
         # Write new values for tensorboard
-        self.writer.add_scalar("loss", av_loss / iterations, self.iter_count)
-        self.writer.add_scalar("Av. Q", av_Q / iterations, self.iter_count)
-        self.writer.add_scalar("Max. Q", max_Q, self.iter_count)
+        if self.use_tensorboard and self.writer is not None:
+            self.writer.add_scalar("loss", av_loss / iterations, self.iter_count)
+            self.writer.add_scalar("Av. Q", av_Q / iterations, self.iter_count)
+            self.writer.add_scalar("Max. Q", max_Q, self.iter_count)
 
     def save(self, filename, directory):
         torch.save(self.actor.state_dict(), os.path.join(directory, f"{filename}_actor.pth"))
@@ -200,6 +226,8 @@ class TD3Trainer(Node):
     def __init__(self):
         super().__init__('td3_trainer')
         self.declare_params()
+        self._shutdown_flag = False  # Flag to signal executor thread to stop
+        self._executor_thread = None  # Store the executor thread reference
         # The executor is now saved to self.executor for later use
         self.executor = self.initialize_environment() 
         self.train_loop()
@@ -273,8 +301,16 @@ class TD3Trainer(Node):
         executor.add_node(self) # Add the TD3Trainer node itself
         
         # Run the executor in a separate thread so the main thread can run the RL logic
-        env_thread = threading.Thread(target=executor.spin, daemon=True)
-        env_thread.start()
+        def spin_executor():
+            try:
+                while rclpy.ok() and not self._shutdown_flag:
+                    executor.spin_once(timeout_sec=0.1)
+            except Exception as e:
+                if not self._shutdown_flag:
+                    self.get_logger().error(f"Executor error: {e}")
+        
+        self._executor_thread = threading.Thread(target=spin_executor, daemon=True)
+        self._executor_thread.start()
         
         time.sleep(5)
         torch.manual_seed(self.seed)
@@ -282,7 +318,9 @@ class TD3Trainer(Node):
         
         # --- CRITICAL CHANGES FOR MECANUM ACTION/STATE DIMENSIONS ---
         self.action_dim = 3  
-        self.state_dim = self.environment_dim + 5 
+        # State: 20 LIDAR rays + 9 robot states (distance, sin(theta), cos(theta), 
+        #        vx, vy, omega, front_danger, left_danger, right_danger)
+        self.state_dim = self.environment_dim + 9
         self.max_action = 1 
         # -----------------------------------------------------------
 
@@ -344,8 +382,9 @@ class TD3Trainer(Node):
                         
                         # LOGGING EVALUATION TO TENSORBOARD 
                         avg_reward_eval, avg_col_eval = self.evaluate(network=self.network, epoch=epoch, eval_episodes=self.eval_ep)
-                        self.network.writer.add_scalar("Evaluation/Avg_Reward", avg_reward_eval, timestep)
-                        self.network.writer.add_scalar("Evaluation/Collision_Rate", avg_col_eval, timestep)
+                        if self.network.use_tensorboard and self.network.writer is not None:
+                            self.network.writer.add_scalar("Evaluation/Avg_Reward", avg_reward_eval, timestep)
+                            self.network.writer.add_scalar("Evaluation/Collision_Rate", avg_col_eval, timestep)
                         
                         evaluations.append(avg_reward_eval)
                         
@@ -525,14 +564,52 @@ class TD3Trainer(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = TD3Trainer()
-    # --- MODIFICATION: Shutdown the executor returned by initialize_environment ---
-    # The training thread is already running the executor's spin in the background.
-    # We now call shutdown on the executor when the main node finishes its train_loop.
-    node.executor.shutdown()
-    # -----------------------------------------------------------------------------
-    node.destroy_node()
-    rclpy.shutdown()
+    node = None
+    try:
+        node = TD3Trainer()
+    except KeyboardInterrupt:
+        pass
+    except Exception as e:
+        print(f"Error during training: {e}")
+    finally:
+        # --- MODIFICATION: Properly shutdown the executor and cleanup ---
+        if node is not None:
+            # Signal the executor thread to stop
+            node._shutdown_flag = True
+            
+            # Wait for executor thread to finish (with timeout)
+            if node._executor_thread is not None and node._executor_thread.is_alive():
+                node._executor_thread.join(timeout=2.0)
+            
+            # Remove nodes from executor before shutdown
+            try:
+                node.executor.remove_node(node.env)
+                node.executor.remove_node(node)
+            except Exception:
+                pass
+            
+            # Shutdown executor
+            try:
+                node.executor.shutdown()
+            except Exception:
+                pass
+            
+            # Destroy nodes
+            try:
+                node.env.destroy_node()
+            except Exception:
+                pass
+            try:
+                node.destroy_node()
+            except Exception:
+                pass
+        
+        # Shutdown rclpy
+        try:
+            rclpy.shutdown()
+        except Exception:
+            pass
+        # -----------------------------------------------------------------------------
 
 
 if __name__ == '__main__':
