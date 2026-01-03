@@ -1,0 +1,28 @@
+# ROS2 / Python build artifacts
+build/
+install/
+log/
+*.egg-info/
+*.pyc
+__pycache__/
+*.so
+*.db
+*.sqlite
+
+# Python env
+.venv/
+venv/
+.env
+
+# TensorBoard / training outputs
+**/runs/
+**/results/
+**/pytorch_models/
+**/events.out.tfevents.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VSCode
+.vscode/
