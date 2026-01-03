@@ -1,8 +1,0 @@
-Metadata-Version: 2.1
-Name: bots
-Version: 0.0.0
-Summary: Bots RL package with TD3 training
-Maintainer: hillman
-Maintainer-email: ed23b055@smail.iitm.ac.in
-License: TODO: License declaration
-Provides-Extra: dev

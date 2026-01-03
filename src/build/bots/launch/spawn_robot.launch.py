@@ -1,1 +1,0 @@
-/home/dark/ros2_ws/src2/Project_PathBlazers/src/bots/launch/spawn_robot.launch.py

@@ -1,8 +1,0 @@
-numpy
-setuptools
-squaternion
-tensorboard
-torch
-
-[dev]
-pytest
