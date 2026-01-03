@@ -294,6 +294,15 @@ class TD3Trainer(Node):
 
         self.env = GazeboEnv(self.environment_dim)
         
+        # Instantiate visualizer (optional, used during evaluation)
+        try:
+            from bots.td3_rl.visualizer import Visualizer
+            self.visualizer = Visualizer(td3_rl_path)
+            self.use_visualizer = True
+        except Exception:
+            self.visualizer = None
+            self.use_visualizer = False
+        
         # --- MODIFICATION: Create one MultiThreadedExecutor for both nodes ---
         executor = MultiThreadedExecutor()
         # Add environment node (for subscriptions) and trainer node (for logger/services)
@@ -381,11 +390,34 @@ class TD3Trainer(Node):
                         timesteps_since_eval %= self.eval_freq
                         
                         # LOGGING EVALUATION TO TENSORBOARD 
-                        avg_reward_eval, avg_col_eval = self.evaluate(network=self.network, epoch=epoch, eval_episodes=self.eval_ep)
+                                        avg_reward_eval, avg_col_eval = self.evaluate(network=self.network, epoch=epoch, eval_episodes=self.eval_ep)
                         if self.network.use_tensorboard and self.network.writer is not None:
                             self.network.writer.add_scalar("Evaluation/Avg_Reward", avg_reward_eval, timestep)
                             self.network.writer.add_scalar("Evaluation/Collision_Rate", avg_col_eval, timestep)
                         
+                        # If visualizer produced a video during evaluation, add a thumbnail and log path
+                        try:
+                            if self.use_visualizer and self.visualizer is not None:
+                                video_path = os.path.join(self.network.writer.log_dir, f"videos/episode_{epoch:04d}.mp4")
+                                # If video exists in visualizer.video_dir, copy or move it to the writer logdir
+                                # finalize_episode returns video path; evaluate will call finalize per episode
+                                # Add a thumbnail image to TensorBoard for quick inspection
+                                thumb = None
+                                # Attempt to find first frame
+                                vis_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'visualizations')
+                                frames = sorted([f for f in os.listdir(vis_dir) if f.startswith(f'ep')]) if os.path.isdir(vis_dir) else []
+                                if frames:
+                                    import imageio
+                                    fpath = os.path.join(vis_dir, frames[0])
+                                    img = imageio.imread(fpath)
+                                    if self.network.use_tensorboard and self.network.writer is not None:
+                                        try:
+                                            self.network.writer.add_image(f"Evaluation/Thumbnail_epoch_{epoch}", img, timestep, dataformats='HWC')
+                                        except Exception:
+                                            pass
+                        except Exception:
+                            pass
+
                         evaluations.append(avg_reward_eval)
                         
                         if self.save_model:
@@ -532,10 +564,14 @@ class TD3Trainer(Node):
     def evaluate(self, network, epoch, eval_episodes=10):
         avg_reward = 0.0
         col = 0
-        for _ in range(eval_episodes):
+        for ep_idx in range(eval_episodes):
             count = 0
             state = self.env.reset()
             done = False
+            step_idx = 0
+            # Clear any existing visual frames before evaluation episode
+            if self.use_visualizer and self.visualizer is not None:
+                self.visualizer.clear()
             while not done and count < self.max_ep:
                 action = network.get_action(np.array(state))
                 
@@ -548,10 +584,53 @@ class TD3Trainer(Node):
                 # -----------------------------------------------------
 
                 state, reward, done, _ = self.env.step(a_in)
+
+                # Save visualization frame (if possible)
+                try:
+                    if self.use_visualizer and self.visualizer is not None:
+                        # Use full_scan and odom if available
+                        scan = getattr(self.env, 'full_scan', np.array(self.env.scan_data))
+                        odom_x = float(self.env.odom_x)
+                        odom_y = float(self.env.odom_y)
+                        yaw = 0.0
+                        if getattr(self.env, 'last_odom', None) is not None:
+                            q = self.env.last_odom.pose.pose.orientation
+                            from scipy.spatial.transform import Rotation as R
+                            r = R.from_quat([q.x, q.y, q.z, q.w])
+                            euler = r.as_euler('xyz', degrees=False)
+                            yaw = float(euler[2])
+                        goal_x = float(self.env.goal_x)
+                        goal_y = float(self.env.goal_y)
+                        self.visualizer.save_frame(ep_idx+1, step_idx, scan, odom_x, odom_y, yaw, goal_x, goal_y)
+                except Exception:
+                    pass
+
                 avg_reward += reward
                 count += 1
+                step_idx += 1
                 if reward < -90:
                     col += 1
+
+            # finalize per-episode video and log
+            try:
+                if self.use_visualizer and self.visualizer is not None:
+                    vid_path = self.visualizer.finalize_episode(ep_idx+1, fps=10)
+                    if vid_path is not None and self.network.use_tensorboard and self.network.writer is not None:
+                        # add thumbnail image to tensorboard for quick checks
+                        import imageio
+                        frame = imageio.imread(vid_path) if False else None
+                        # Instead load first frame
+                        vis_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'visualizations')
+                        frames = sorted([f for f in os.listdir(vis_dir) if f.startswith(f'ep')]) if os.path.isdir(vis_dir) else []
+                        if frames:
+                            fpath = os.path.join(vis_dir, frames[0])
+                            img = imageio.imread(fpath)
+                            try:
+                                self.network.writer.add_image(f"Evaluation/Video_epoch_{epoch}_ep{ep_idx+1}", img, epoch, dataformats='HWC')
+                            except Exception:
+                                pass
+            except Exception:
+                pass
         avg_reward /= eval_episodes
         avg_col = col / eval_episodes
         self.get_logger().info("..............................................")
