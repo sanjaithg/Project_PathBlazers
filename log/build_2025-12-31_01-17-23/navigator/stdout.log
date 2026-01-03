@@ -1,0 +1,66 @@
+running egg_info
+creating ../../build/navigator/navigator.egg-info
+writing ../../build/navigator/navigator.egg-info/PKG-INFO
+writing dependency_links to ../../build/navigator/navigator.egg-info/dependency_links.txt
+writing entry points to ../../build/navigator/navigator.egg-info/entry_points.txt
+writing requirements to ../../build/navigator/navigator.egg-info/requires.txt
+writing top-level names to ../../build/navigator/navigator.egg-info/top_level.txt
+writing manifest file '../../build/navigator/navigator.egg-info/SOURCES.txt'
+reading manifest file '../../build/navigator/navigator.egg-info/SOURCES.txt'
+writing manifest file '../../build/navigator/navigator.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/dark/ros2_ws/src2/Project_PathBlazers/build/navigator/build
+creating /home/dark/ros2_ws/src2/Project_PathBlazers/build/navigator/build/lib
+creating /home/dark/ros2_ws/src2/Project_PathBlazers/build/navigator/build/lib/navigator
+copying navigator/run_all.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/build/navigator/build/lib/navigator
+copying navigator/wheel_odometry_launch.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/build/navigator/build/lib/navigator
+copying navigator/rviz_launch.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/build/navigator/build/lib/navigator
+copying navigator/move_front_wheels_old2.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/build/navigator/build/lib/navigator
+copying navigator/joy_to_vel.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/build/navigator/build/lib/navigator
+copying navigator/move_rear_wheels.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/build/navigator/build/lib/navigator
+copying navigator/start_lidar.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/build/navigator/build/lib/navigator
+copying navigator/inv_kin.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/build/navigator/build/lib/navigator
+copying navigator/move_front_wheels.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/build/navigator/build/lib/navigator
+copying navigator/move_rear_wheels_old2.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/build/navigator/build/lib/navigator
+copying navigator/__init__.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/build/navigator/build/lib/navigator
+running install
+running install_lib
+creating /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/python3.12/site-packages/navigator
+copying /home/dark/ros2_ws/src2/Project_PathBlazers/build/navigator/build/lib/navigator/run_all.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/python3.12/site-packages/navigator
+copying /home/dark/ros2_ws/src2/Project_PathBlazers/build/navigator/build/lib/navigator/wheel_odometry_launch.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/python3.12/site-packages/navigator
+copying /home/dark/ros2_ws/src2/Project_PathBlazers/build/navigator/build/lib/navigator/rviz_launch.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/python3.12/site-packages/navigator
+copying /home/dark/ros2_ws/src2/Project_PathBlazers/build/navigator/build/lib/navigator/move_front_wheels_old2.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/python3.12/site-packages/navigator
+copying /home/dark/ros2_ws/src2/Project_PathBlazers/build/navigator/build/lib/navigator/joy_to_vel.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/python3.12/site-packages/navigator
+copying /home/dark/ros2_ws/src2/Project_PathBlazers/build/navigator/build/lib/navigator/move_rear_wheels.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/python3.12/site-packages/navigator
+copying /home/dark/ros2_ws/src2/Project_PathBlazers/build/navigator/build/lib/navigator/start_lidar.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/python3.12/site-packages/navigator
+copying /home/dark/ros2_ws/src2/Project_PathBlazers/build/navigator/build/lib/navigator/inv_kin.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/python3.12/site-packages/navigator
+copying /home/dark/ros2_ws/src2/Project_PathBlazers/build/navigator/build/lib/navigator/move_front_wheels.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/python3.12/site-packages/navigator
+copying /home/dark/ros2_ws/src2/Project_PathBlazers/build/navigator/build/lib/navigator/move_rear_wheels_old2.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/python3.12/site-packages/navigator
+copying /home/dark/ros2_ws/src2/Project_PathBlazers/build/navigator/build/lib/navigator/__init__.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/python3.12/site-packages/navigator
+byte-compiling /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/python3.12/site-packages/navigator/run_all.py to run_all.cpython-312.pyc
+byte-compiling /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/python3.12/site-packages/navigator/wheel_odometry_launch.py to wheel_odometry_launch.cpython-312.pyc
+byte-compiling /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/python3.12/site-packages/navigator/rviz_launch.py to rviz_launch.cpython-312.pyc
+byte-compiling /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/python3.12/site-packages/navigator/move_front_wheels_old2.py to move_front_wheels_old2.cpython-312.pyc
+byte-compiling /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/python3.12/site-packages/navigator/joy_to_vel.py to joy_to_vel.cpython-312.pyc
+byte-compiling /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/python3.12/site-packages/navigator/move_rear_wheels.py to move_rear_wheels.cpython-312.pyc
+byte-compiling /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/python3.12/site-packages/navigator/start_lidar.py to start_lidar.cpython-312.pyc
+byte-compiling /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/python3.12/site-packages/navigator/inv_kin.py to inv_kin.cpython-312.pyc
+byte-compiling /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/python3.12/site-packages/navigator/move_front_wheels.py to move_front_wheels.cpython-312.pyc
+byte-compiling /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/python3.12/site-packages/navigator/move_rear_wheels_old2.py to move_rear_wheels_old2.cpython-312.pyc
+byte-compiling /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/python3.12/site-packages/navigator/__init__.py to __init__.cpython-312.pyc
+running install_data
+creating /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/share/ament_index
+creating /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/share/ament_index/resource_index
+creating /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/share/ament_index/resource_index/packages
+copying resource/navigator -> /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/share/ament_index/resource_index/packages
+copying package.xml -> /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/share/navigator
+running install_egg_info
+Copying ../../build/navigator/navigator.egg-info to /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/python3.12/site-packages/navigator-0.0.0-py3.12.egg-info
+running install_scripts
+Installing front script to /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/navigator
+Installing inv_kin script to /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/navigator
+Installing joy script to /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/navigator
+Installing rear script to /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/navigator
+Installing viz script to /home/dark/ros2_ws/src2/Project_PathBlazers/install/navigator/lib/navigator
+writing list of installed files to '/home/dark/ros2_ws/src2/Project_PathBlazers/build/navigator/install.log'

@@ -18,7 +18,15 @@ setup(
         (os.path.join('share', package_name, 'config'), glob('config/*')),
         (os.path.join('share', package_name, 'meshes'), glob('meshes/*')),
         (os.path.join('share', package_name, 'rviz'), glob('rviz/*')),
-        (os.path.join('share', package_name, 'world'), glob('world/*')),
+        (os.path.join('share', package_name, 'urdf'), glob('urdf/*')),
+        (os.path.join('share', package_name, 'world'),
+         [f for f in glob('world/*') if os.path.isfile(f)]),
+        (os.path.join('share', package_name, 'world', 'models', 'cardboard_box'), [
+            'world/models/cardboard_box/model.sdf',
+            'world/models/cardboard_box/model.config',
+        ]),
+        (os.path.join('share', package_name, 'world', 'models', 'cardboard_box', 'meshes'),
+         glob('world/models/cardboard_box/meshes/*')),
     ],
     install_requires=[
         'setuptools',

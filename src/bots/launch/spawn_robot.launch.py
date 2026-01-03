@@ -118,25 +118,11 @@ def generate_launch_description():
         ]
     )
 
-    robot_state_publisher_node = Node(
-        package='robot_state_publisher',
-        executable='robot_state_publisher',
-        name='robot_state_publisher',
-        output='screen',
-        parameters=[
-            {'robot_description': Command(['xacro', ' ', os.path.join(pkg_bots, 'urdf', 'mogi_bot_mecanum.urdf')]),
-             'use_sim_time': LaunchConfiguration('use_sim_time')},
-        ],
-        remappings=[
-            ('/tf', 'tf'),
-            ('/tf_static', 'tf_static')
-        ]
-    )
-
     trajectory_node = Node(
         package='mogi_trajectory_server',
         executable='mogi_trajectory_server',
-        name='mogi_trajectory_server'
+        name='mogi_trajectory_server',
+        parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')}]
     )
 
     ekf_node = Node(

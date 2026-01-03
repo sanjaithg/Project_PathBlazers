@@ -1,0 +1,24 @@
+[1.745s] Invoking command in '/home/dark/ros2_ws/src2/Project_PathBlazers/src/bots': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/bots build --build-base /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/build install --record /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/install.log --single-version-externally-managed install_data
+[2.207s] running egg_info
+[2.234s] writing ../build/bots/bots.egg-info/PKG-INFO
+[2.235s] writing dependency_links to ../build/bots/bots.egg-info/dependency_links.txt
+[2.236s] writing entry points to ../build/bots/bots.egg-info/entry_points.txt
+[2.237s] writing requirements to ../build/bots/bots.egg-info/requires.txt
+[2.238s] writing top-level names to ../build/bots/bots.egg-info/top_level.txt
+[2.299s] reading manifest file '../build/bots/bots.egg-info/SOURCES.txt'
+[2.300s] writing manifest file '../build/bots/bots.egg-info/SOURCES.txt'
+[2.301s] running build
+[2.301s] running build_py
+[2.301s] running install
+[2.311s] running install_lib
+[2.339s] running install_data
+[2.340s] copying world/world.sdf -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/world
+[2.345s] running install_egg_info
+[2.379s] removing '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/lib/python3.12/site-packages/bots-0.0.0-py3.12.egg-info' (and everything under it)
+[2.380s] Copying ../build/bots/bots.egg-info to /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/lib/python3.12/site-packages/bots-0.0.0-py3.12.egg-info
+[2.380s] running install_scripts
+[2.750s] Installing FakeOdomPublisher script to /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/lib/bots
+[2.751s] Installing test_td3 script to /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/lib/bots
+[2.755s] Installing train_td3 script to /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/lib/bots
+[2.756s] writing list of installed files to '/home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/install.log'
+[2.807s] Invoked command in '/home/dark/ros2_ws/src2/Project_PathBlazers/src/bots' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/bots build --build-base /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/build install --record /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/install.log --single-version-externally-managed install_data

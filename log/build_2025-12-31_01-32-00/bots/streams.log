@@ -1,0 +1,16 @@
+[0.695s] Invoking command in '/home/dark/ros2_ws/src2/Project_PathBlazers/src/bots': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/dark/ros2_ws/src2/Project_PathBlazers/build/bots/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dark/ros2_ws/src2/Project_PathBlazers/install/bots/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/bots build --build-base /home/dark/ros2_ws/src2/Project_PathBlazers/build/bots/build install --record /home/dark/ros2_ws/src2/Project_PathBlazers/build/bots/install.log --single-version-externally-managed install_data
+[0.904s] running egg_info
+[0.919s] writing ../../build/bots/bots.egg-info/PKG-INFO
+[0.919s] writing dependency_links to ../../build/bots/bots.egg-info/dependency_links.txt
+[0.919s] writing entry points to ../../build/bots/bots.egg-info/entry_points.txt
+[0.919s] writing requirements to ../../build/bots/bots.egg-info/requires.txt
+[0.919s] writing top-level names to ../../build/bots/bots.egg-info/top_level.txt
+[0.950s] reading manifest file '../../build/bots/bots.egg-info/SOURCES.txt'
+[0.951s] writing manifest file '../../build/bots/bots.egg-info/SOURCES.txt'
+[0.951s] running build
+[0.951s] running build_py
+[0.951s] running install
+[0.956s] running install_lib
+[0.971s] running install_data
+[0.972s] error: can't copy 'world/models': doesn't exist or not a regular file
+[0.988s] Invoked command in '/home/dark/ros2_ws/src2/Project_PathBlazers/src/bots' returned '1': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/dark/ros2_ws/src2/Project_PathBlazers/build/bots/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dark/ros2_ws/src2/Project_PathBlazers/install/bots/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/bots build --build-base /home/dark/ros2_ws/src2/Project_PathBlazers/build/bots/build install --record /home/dark/ros2_ws/src2/Project_PathBlazers/build/bots/install.log --single-version-externally-managed install_data

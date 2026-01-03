@@ -1,0 +1,68 @@
+[0.864s] Invoking command in '/home/dark/ros2_ws/src2/Project_PathBlazers/src/navigator': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/navigator build --build-base /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build install --record /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/install.log --single-version-externally-managed install_data
+[1.057s] running egg_info
+[1.057s] creating ../build/navigator/navigator.egg-info
+[1.070s] writing ../build/navigator/navigator.egg-info/PKG-INFO
+[1.070s] writing dependency_links to ../build/navigator/navigator.egg-info/dependency_links.txt
+[1.070s] writing entry points to ../build/navigator/navigator.egg-info/entry_points.txt
+[1.070s] writing requirements to ../build/navigator/navigator.egg-info/requires.txt
+[1.070s] writing top-level names to ../build/navigator/navigator.egg-info/top_level.txt
+[1.070s] writing manifest file '../build/navigator/navigator.egg-info/SOURCES.txt'
+[1.097s] reading manifest file '../build/navigator/navigator.egg-info/SOURCES.txt'
+[1.098s] writing manifest file '../build/navigator/navigator.egg-info/SOURCES.txt'
+[1.098s] running build
+[1.098s] running build_py
+[1.098s] creating /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build
+[1.098s] creating /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build/lib
+[1.098s] creating /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build/lib/navigator
+[1.098s] copying navigator/run_all.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build/lib/navigator
+[1.098s] copying navigator/wheel_odometry_launch.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build/lib/navigator
+[1.103s] copying navigator/rviz_launch.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build/lib/navigator
+[1.103s] copying navigator/move_front_wheels_old2.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build/lib/navigator
+[1.103s] copying navigator/joy_to_vel.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build/lib/navigator
+[1.103s] copying navigator/move_rear_wheels.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build/lib/navigator
+[1.103s] copying navigator/start_lidar.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build/lib/navigator
+[1.103s] copying navigator/inv_kin.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build/lib/navigator
+[1.103s] copying navigator/move_front_wheels.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build/lib/navigator
+[1.103s] copying navigator/move_rear_wheels_old2.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build/lib/navigator
+[1.103s] copying navigator/__init__.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build/lib/navigator
+[1.103s] running install
+[1.107s] running install_lib
+[1.121s] creating /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages/navigator
+[1.121s] copying /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build/lib/navigator/run_all.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages/navigator
+[1.121s] copying /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build/lib/navigator/wheel_odometry_launch.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages/navigator
+[1.121s] copying /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build/lib/navigator/rviz_launch.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages/navigator
+[1.121s] copying /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build/lib/navigator/move_front_wheels_old2.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages/navigator
+[1.121s] copying /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build/lib/navigator/joy_to_vel.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages/navigator
+[1.121s] copying /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build/lib/navigator/move_rear_wheels.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages/navigator
+[1.121s] copying /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build/lib/navigator/start_lidar.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages/navigator
+[1.122s] copying /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build/lib/navigator/inv_kin.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages/navigator
+[1.122s] copying /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build/lib/navigator/move_front_wheels.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages/navigator
+[1.122s] copying /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build/lib/navigator/move_rear_wheels_old2.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages/navigator
+[1.122s] copying /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build/lib/navigator/__init__.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages/navigator
+[1.122s] byte-compiling /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages/navigator/run_all.py to run_all.cpython-312.pyc
+[1.122s] byte-compiling /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages/navigator/wheel_odometry_launch.py to wheel_odometry_launch.cpython-312.pyc
+[1.122s] byte-compiling /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages/navigator/rviz_launch.py to rviz_launch.cpython-312.pyc
+[1.122s] byte-compiling /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages/navigator/move_front_wheels_old2.py to move_front_wheels_old2.cpython-312.pyc
+[1.123s] byte-compiling /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages/navigator/joy_to_vel.py to joy_to_vel.cpython-312.pyc
+[1.124s] byte-compiling /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages/navigator/move_rear_wheels.py to move_rear_wheels.cpython-312.pyc
+[1.124s] byte-compiling /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages/navigator/start_lidar.py to start_lidar.cpython-312.pyc
+[1.124s] byte-compiling /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages/navigator/inv_kin.py to inv_kin.cpython-312.pyc
+[1.125s] byte-compiling /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages/navigator/move_front_wheels.py to move_front_wheels.cpython-312.pyc
+[1.126s] byte-compiling /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages/navigator/move_rear_wheels_old2.py to move_rear_wheels_old2.cpython-312.pyc
+[1.127s] byte-compiling /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages/navigator/__init__.py to __init__.cpython-312.pyc
+[1.127s] running install_data
+[1.127s] creating /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/share/ament_index
+[1.127s] creating /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/share/ament_index/resource_index
+[1.127s] creating /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/share/ament_index/resource_index/packages
+[1.127s] copying resource/navigator -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/share/ament_index/resource_index/packages
+[1.127s] copying package.xml -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/share/navigator
+[1.128s] running install_egg_info
+[1.142s] Copying ../build/navigator/navigator.egg-info to /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages/navigator-0.0.0-py3.12.egg-info
+[1.142s] running install_scripts
+[1.231s] Installing front script to /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/navigator
+[1.231s] Installing inv_kin script to /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/navigator
+[1.231s] Installing joy script to /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/navigator
+[1.231s] Installing rear script to /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/navigator
+[1.231s] Installing viz script to /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/navigator
+[1.231s] writing list of installed files to '/home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/install.log'
+[1.253s] Invoked command in '/home/dark/ros2_ws/src2/Project_PathBlazers/src/navigator' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/navigator build --build-base /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build install --record /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/install.log --single-version-externally-managed install_data

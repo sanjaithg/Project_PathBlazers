@@ -1,0 +1,218 @@
+[0.078s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.078s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=16, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x7bb951df5ee0>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7bb951c9d9d0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7bb951c9d9d0>>, mixin_verb=('build',))
+[0.107s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.107s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.107s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.107s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.107s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.107s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.107s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/dark/ros2_ws/src2/Project_PathBlazers/src'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(bots) by extensions ['ignore', 'ignore_ament_install']
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(bots) by extension 'ignore'
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(bots) by extension 'ignore_ament_install'
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(bots) by extensions ['colcon_pkg']
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(bots) by extension 'colcon_pkg'
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(bots) by extensions ['colcon_meta']
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(bots) by extension 'colcon_meta'
+[0.129s] Level 1:colcon.colcon_core.package_identification:_identify(bots) by extensions ['ros']
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(bots) by extension 'ros'
+[0.131s] DEBUG:colcon.colcon_core.package_identification:Package 'bots' with type 'ros.ament_python' and name 'bots'
+[0.131s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.131s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.131s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.131s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.131s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.131s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.131s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots) by extensions ['ignore', 'ignore_ament_install']
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots) by extension 'ignore'
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots) by extension 'ignore_ament_install'
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots) by extensions ['colcon_pkg']
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots) by extension 'colcon_pkg'
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots) by extensions ['colcon_meta']
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots) by extension 'colcon_meta'
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots) by extensions ['ros']
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots) by extension 'ros'
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots) by extensions ['cmake', 'python']
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots) by extension 'cmake'
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots) by extension 'python'
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots) by extensions ['python_setup_py']
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots) by extension 'python_setup_py'
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots) by extensions ['ignore', 'ignore_ament_install']
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots) by extension 'ignore'
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots) by extension 'ignore_ament_install'
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots) by extensions ['colcon_pkg']
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots) by extension 'colcon_pkg'
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots) by extensions ['colcon_meta']
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots) by extension 'colcon_meta'
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots) by extensions ['ros']
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots) by extension 'ros'
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots) by extensions ['cmake', 'python']
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots) by extension 'cmake'
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots) by extension 'python'
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots) by extensions ['python_setup_py']
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots) by extension 'python_setup_py'
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots/__pycache__) by extensions ['ignore', 'ignore_ament_install']
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots/__pycache__) by extension 'ignore'
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots/__pycache__) by extension 'ignore_ament_install'
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots/__pycache__) by extensions ['colcon_pkg']
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots/__pycache__) by extension 'colcon_pkg'
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots/__pycache__) by extensions ['colcon_meta']
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots/__pycache__) by extension 'colcon_meta'
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots/__pycache__) by extensions ['ros']
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots/__pycache__) by extension 'ros'
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots/__pycache__) by extensions ['cmake', 'python']
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots/__pycache__) by extension 'cmake'
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots/__pycache__) by extension 'python'
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots/__pycache__) by extensions ['python_setup_py']
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(lerobots/robots/__pycache__) by extension 'python_setup_py'
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(mogi_trajectory_server) by extensions ['ignore', 'ignore_ament_install']
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(mogi_trajectory_server) by extension 'ignore'
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(mogi_trajectory_server) by extension 'ignore_ament_install'
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(mogi_trajectory_server) by extensions ['colcon_pkg']
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(mogi_trajectory_server) by extension 'colcon_pkg'
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(mogi_trajectory_server) by extensions ['colcon_meta']
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(mogi_trajectory_server) by extension 'colcon_meta'
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(mogi_trajectory_server) by extensions ['ros']
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(mogi_trajectory_server) by extension 'ros'
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(mogi_trajectory_server) by extensions ['cmake', 'python']
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(mogi_trajectory_server) by extension 'cmake'
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(mogi_trajectory_server) by extension 'python'
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(mogi_trajectory_server) by extensions ['python_setup_py']
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(mogi_trajectory_server) by extension 'python_setup_py'
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(navigator) by extensions ['ignore', 'ignore_ament_install']
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(navigator) by extension 'ignore'
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(navigator) by extension 'ignore_ament_install'
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(navigator) by extensions ['colcon_pkg']
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(navigator) by extension 'colcon_pkg'
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(navigator) by extensions ['colcon_meta']
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(navigator) by extension 'colcon_meta'
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(navigator) by extensions ['ros']
+[0.133s] Level 1:colcon.colcon_core.package_identification:_identify(navigator) by extension 'ros'
+[0.134s] DEBUG:colcon.colcon_core.package_identification:Package 'navigator' with type 'ros.ament_python' and name 'navigator'
+[0.134s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.134s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.134s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.134s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.134s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.148s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.148s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.150s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 386 installed packages in /opt/ros/jazzy
+[0.151s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.183s] Level 5:colcon.colcon_core.verb:set package 'bots' build argument 'cmake_args' from command line to 'None'
+[0.183s] Level 5:colcon.colcon_core.verb:set package 'bots' build argument 'cmake_target' from command line to 'None'
+[0.183s] Level 5:colcon.colcon_core.verb:set package 'bots' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.183s] Level 5:colcon.colcon_core.verb:set package 'bots' build argument 'cmake_clean_cache' from command line to 'False'
+[0.183s] Level 5:colcon.colcon_core.verb:set package 'bots' build argument 'cmake_clean_first' from command line to 'False'
+[0.183s] Level 5:colcon.colcon_core.verb:set package 'bots' build argument 'cmake_force_configure' from command line to 'False'
+[0.183s] Level 5:colcon.colcon_core.verb:set package 'bots' build argument 'ament_cmake_args' from command line to 'None'
+[0.183s] Level 5:colcon.colcon_core.verb:set package 'bots' build argument 'catkin_cmake_args' from command line to 'None'
+[0.183s] Level 5:colcon.colcon_core.verb:set package 'bots' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.183s] DEBUG:colcon.colcon_core.verb:Building package 'bots' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots', 'merge_install': False, 'path': '/home/dark/ros2_ws/src2/Project_PathBlazers/src/bots', 'symlink_install': False, 'test_result_base': None}
+[0.183s] Level 5:colcon.colcon_core.verb:set package 'navigator' build argument 'cmake_args' from command line to 'None'
+[0.183s] Level 5:colcon.colcon_core.verb:set package 'navigator' build argument 'cmake_target' from command line to 'None'
+[0.183s] Level 5:colcon.colcon_core.verb:set package 'navigator' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.183s] Level 5:colcon.colcon_core.verb:set package 'navigator' build argument 'cmake_clean_cache' from command line to 'False'
+[0.183s] Level 5:colcon.colcon_core.verb:set package 'navigator' build argument 'cmake_clean_first' from command line to 'False'
+[0.183s] Level 5:colcon.colcon_core.verb:set package 'navigator' build argument 'cmake_force_configure' from command line to 'False'
+[0.183s] Level 5:colcon.colcon_core.verb:set package 'navigator' build argument 'ament_cmake_args' from command line to 'None'
+[0.183s] Level 5:colcon.colcon_core.verb:set package 'navigator' build argument 'catkin_cmake_args' from command line to 'None'
+[0.183s] Level 5:colcon.colcon_core.verb:set package 'navigator' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.183s] DEBUG:colcon.colcon_core.verb:Building package 'navigator' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator', 'merge_install': False, 'path': '/home/dark/ros2_ws/src2/Project_PathBlazers/src/navigator', 'symlink_install': False, 'test_result_base': None}
+[0.184s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.184s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.184s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/dark/ros2_ws/src2/Project_PathBlazers/src/bots' with build type 'ament_python'
+[0.184s] Level 1:colcon.colcon_core.shell:create_environment_hook('bots', 'ament_prefix_path')
+[0.186s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.186s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/hook/ament_prefix_path.ps1'
+[0.187s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/hook/ament_prefix_path.dsv'
+[0.187s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/hook/ament_prefix_path.sh'
+[0.187s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.187s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.190s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/dark/ros2_ws/src2/Project_PathBlazers/src/navigator' with build type 'ament_python'
+[0.190s] Level 1:colcon.colcon_core.shell:create_environment_hook('navigator', 'ament_prefix_path')
+[0.190s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/share/navigator/hook/ament_prefix_path.ps1'
+[0.191s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/share/navigator/hook/ament_prefix_path.dsv'
+[0.191s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/share/navigator/hook/ament_prefix_path.sh'
+[0.192s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.192s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.357s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/dark/ros2_ws/src2/Project_PathBlazers/src/bots'
+[0.357s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.358s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.530s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/dark/ros2_ws/src2/Project_PathBlazers/src/navigator'
+[0.530s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.530s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.994s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/dark/ros2_ws/src2/Project_PathBlazers/src/navigator': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/navigator build --build-base /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build install --record /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/install.log --single-version-externally-managed install_data
+[1.019s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/dark/ros2_ws/src2/Project_PathBlazers/src/bots': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/bots build --build-base /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/build install --record /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/install.log --single-version-externally-managed install_data
+[1.415s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/dark/ros2_ws/src2/Project_PathBlazers/src/navigator' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/navigator build --build-base /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/build install --record /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/navigator/install.log --single-version-externally-managed install_data
+[1.418s] Level 1:colcon.colcon_core.environment:checking '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator' for CMake module files
+[1.418s] Level 1:colcon.colcon_core.environment:checking '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator' for CMake config files
+[1.419s] Level 1:colcon.colcon_core.environment:checking '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib'
+[1.419s] Level 1:colcon.colcon_core.environment:checking '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/bin'
+[1.420s] Level 1:colcon.colcon_core.environment:checking '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/pkgconfig/navigator.pc'
+[1.420s] Level 1:colcon.colcon_core.environment:checking '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/lib/python3.12/site-packages'
+[1.420s] Level 1:colcon.colcon_core.shell:create_environment_hook('navigator', 'pythonpath')
+[1.420s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/share/navigator/hook/pythonpath.ps1'
+[1.421s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/share/navigator/hook/pythonpath.dsv'
+[1.421s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/share/navigator/hook/pythonpath.sh'
+[1.422s] Level 1:colcon.colcon_core.environment:checking '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/bin'
+[1.422s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(navigator)
+[1.422s] INFO:colcon.colcon_core.shell:Creating package script '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/share/navigator/package.ps1'
+[1.422s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/share/navigator/package.dsv'
+[1.423s] INFO:colcon.colcon_core.shell:Creating package script '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/share/navigator/package.sh'
+[1.423s] INFO:colcon.colcon_core.shell:Creating package script '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/share/navigator/package.bash'
+[1.423s] INFO:colcon.colcon_core.shell:Creating package script '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/share/navigator/package.zsh'
+[1.424s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/navigator/share/colcon-core/packages/navigator)
+[1.429s] Level 1:colcon.colcon_core.environment:checking '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots' for CMake module files
+[1.429s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/dark/ros2_ws/src2/Project_PathBlazers/src/bots' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/bots build --build-base /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/build install --record /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/install.log --single-version-externally-managed install_data
+[1.430s] Level 1:colcon.colcon_core.environment:checking '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots' for CMake config files
+[1.431s] Level 1:colcon.colcon_core.environment:checking '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/lib'
+[1.431s] Level 1:colcon.colcon_core.environment:checking '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/bin'
+[1.431s] Level 1:colcon.colcon_core.environment:checking '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/lib/pkgconfig/bots.pc'
+[1.431s] Level 1:colcon.colcon_core.environment:checking '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/lib/python3.12/site-packages'
+[1.431s] Level 1:colcon.colcon_core.shell:create_environment_hook('bots', 'pythonpath')
+[1.431s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/hook/pythonpath.ps1'
+[1.432s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/hook/pythonpath.dsv'
+[1.432s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/hook/pythonpath.sh'
+[1.433s] Level 1:colcon.colcon_core.environment:checking '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/bin'
+[1.433s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(bots)
+[1.433s] INFO:colcon.colcon_core.shell:Creating package script '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/package.ps1'
+[1.433s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/package.dsv'
+[1.434s] INFO:colcon.colcon_core.shell:Creating package script '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/package.sh'
+[1.434s] INFO:colcon.colcon_core.shell:Creating package script '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/package.bash'
+[1.435s] INFO:colcon.colcon_core.shell:Creating package script '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/package.zsh'
+[1.436s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/colcon-core/packages/bots)
+[1.437s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[1.437s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[1.438s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[1.439s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[1.457s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[1.457s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[1.457s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[1.472s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[1.473s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/local_setup.ps1'
+[1.473s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/_local_setup_util_ps1.py'
+[1.474s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/setup.ps1'
+[1.475s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/local_setup.sh'
+[1.475s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/_local_setup_util_sh.py'
+[1.475s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/setup.sh'
+[1.476s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/local_setup.bash'
+[1.477s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/setup.bash'
+[1.477s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/local_setup.zsh'
+[1.477s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/setup.zsh'

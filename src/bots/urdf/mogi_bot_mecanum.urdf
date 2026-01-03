@@ -3,10 +3,10 @@
 <robot name="mogi_bot" xmlns:xacro="http://www.ros.org/wiki/xacro" xmlns:gz="http://gazebosim.org/schema">
 
   <!-- STEP 5 - Gazebo plugin -->
-  <xacro:include filename="/home/hillman/ROS2_NEW/pathblazers/src/bots/urdf/mogi_bot_mecanum.gazebo"/>
+  <xacro:include filename="mogi_bot_mecanum.gazebo"/>
 
   <!-- STEP 4 - RViz colors -->
-  <xacro:include filename="/home/hillman/ROS2_NEW/pathblazers/src/bots/urdf/materials.xacro" />
+  <xacro:include filename="materials.xacro" />
 
   <!-- STEP 1 - Robot footprint -->
   <link name="base_footprint"></link>
@@ -42,7 +42,7 @@
       <origin xyz="0 0 0" rpy=" 0 0 0"/>
       <geometry>
         <!-- <box size=".4 .2 .1"/> -->
-        <mesh filename="file:///home/hillman/ROS2_NEW/pathblazers/src/bots/meshes/mogi_bot.dae"/>
+        <mesh filename="package://bots/meshes/mogi_bot.dae"/>
       </geometry>
       <!-- <material name="orange"/> -->
     </visual>
@@ -79,7 +79,7 @@
       <origin xyz="0 0 0" rpy="1.5707 0 0"/>
       <geometry>
         <!-- <sphere radius=".1"/> -->
-        <mesh filename="file:///home/hillman/ROS2_NEW/pathblazers/src/bots/meshes/mecanum_wheel_left.STL" scale="0.002 .002 0.002"/>
+        <mesh filename="package://bots/meshes/mecanum_wheel_left.STL" scale="0.002 .002 0.002"/>
       </geometry>
       <material name="green"/>
     </visual>
@@ -115,7 +115,7 @@
       <origin xyz="0 0 0" rpy="1.5707 0 0"/>
       <geometry>
         <!-- <sphere radius=".1"/> -->
-        <mesh filename="file:///home/hillman/ROS2_NEW/pathblazers/src/bots/meshes/mecanum_wheel_right.STL" scale="0.002 .002 0.002"/>
+        <mesh filename="package://bots/meshes/mecanum_wheel_right.STL" scale="0.002 .002 0.002"/>
       </geometry>
       <material name="green"/>
     </visual>
@@ -151,7 +151,7 @@
       <origin xyz="0 0 0" rpy="1.5707 0 0"/>
       <geometry>
         <!-- <sphere radius=".1"/> -->
-        <mesh filename="file:///home/hillman/ROS2_NEW/pathblazers/src/bots/meshes/mecanum_wheel_right.STL" scale="0.002 .002 0.002"/>
+        <mesh filename="package://bots/meshes/mecanum_wheel_right.STL" scale="0.002 .002 0.002"/>
       </geometry>
       <material name="green"/>
     </visual>
@@ -187,7 +187,7 @@
       <origin xyz="0 0 0" rpy="1.5707 0 0"/>
       <geometry>
         <!-- <sphere radius=".1"/> -->
-        <mesh filename="file:///home/hillman/ROS2_NEW/pathblazers/src/bots/meshes/mecanum_wheel_left.STL" scale="0.002 .002 0.002"/>
+        <mesh filename="package://bots/meshes/mecanum_wheel_left.STL" scale="0.002 .002 0.002"/>
       </geometry>
       <material name="green"/>
     </visual>
@@ -354,7 +354,7 @@
     <visual name='scan_link_visual'>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename = "file:///home/hillman/ROS2_NEW/pathblazers/src/bots/meshes/lidar.dae"/>
+        <mesh filename = "package://bots/meshes/lidar.dae"/>
       </geometry>
     </visual>
 

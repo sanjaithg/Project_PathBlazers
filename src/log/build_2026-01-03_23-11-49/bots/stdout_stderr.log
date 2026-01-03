@@ -1,0 +1,17 @@
+running develop
+running egg_info
+writing bots.egg-info/PKG-INFO
+writing dependency_links to bots.egg-info/dependency_links.txt
+writing entry points to bots.egg-info/entry_points.txt
+writing requirements to bots.egg-info/requires.txt
+writing top-level names to bots.egg-info/top_level.txt
+reading manifest file 'bots.egg-info/SOURCES.txt'
+writing manifest file 'bots.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/lib/python3.12/site-packages/bots.egg-link (link to .)
+Installing FakeOdomPublisher script to /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/lib/bots
+Installing test_td3 script to /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/lib/bots
+Installing train_td3 script to /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/lib/bots
+
+Installed /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots
+running symlink_data

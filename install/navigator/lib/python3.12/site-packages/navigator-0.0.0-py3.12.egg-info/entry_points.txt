@@ -1,0 +1,6 @@
+[console_scripts]
+front = navigator.move_front_wheels:main
+inv_kin = navigator.inv_kin:main
+joy = navigator.joy_to_vel:main
+rear = navigator.move_rear_wheels:main
+viz = navigator.odom_vis:main

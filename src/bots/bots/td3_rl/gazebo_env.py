@@ -165,7 +165,42 @@ class GazeboEnv(Node):
             
         done = done or target or collision
         
-        robot_state = [distance, theta, action[0], action[1], action[2]]
+        # ===== ENHANCED STATE SPACE =====
+        # Add sector-based obstacle proximity for better local awareness
+        scan_array = np.array(self.full_scan)
+        
+        # Calculate danger levels in different sectors (assuming 360-degree scan)
+        scan_len = len(scan_array)
+        front_start = int(scan_len * 350 / 360)  # -10 to +10 degrees
+        front_end = int(scan_len * 10 / 360)
+        front_danger = min(np.concatenate([scan_array[front_start:], scan_array[:front_end]]))
+        
+        left_start = int(scan_len * 70 / 360)   # 70 to 110 degrees
+        left_end = int(scan_len * 110 / 360)
+        left_danger = np.min(scan_array[left_start:left_end]) if left_end > left_start else self.max_distance
+        
+        right_start = int(scan_len * 250 / 360)  # 250 to 290 degrees
+        right_end = int(scan_len * 290 / 360)
+        right_danger = np.min(scan_array[right_start:right_end]) if right_end > right_start else self.max_distance
+        
+        # Encode heading as sin/cos for circular continuity
+        sin_theta = np.sin(theta)
+        cos_theta = np.cos(theta)
+        
+        # Enhanced robot state: [distance, sin_heading, cos_heading, vx, vy, omega, 
+        #                        front_min, left_min, right_min]
+        robot_state = [
+            distance, 
+            sin_theta, 
+            cos_theta, 
+            action[0], 
+            action[1], 
+            action[2],
+            front_danger / self.max_distance,  # Normalize to [0, 1]
+            left_danger / self.max_distance,
+            right_danger / self.max_distance
+        ]
+        
         state = np.append(self.scan_data, robot_state) 
 
         reward = self.get_reward(target, collision, action, min_laser, old_distance, distance, theta)
@@ -214,7 +249,38 @@ class GazeboEnv(Node):
 
         self.last_distance = distance
         
-        robot_state = [distance, theta, 0.0, 0.0, 0.0] 
+        # ===== ENHANCED STATE SPACE (matching step function) =====
+        scan_array = np.array(self.full_scan)
+        scan_len = len(scan_array)
+        
+        # Calculate danger levels in different sectors
+        front_start = int(scan_len * 350 / 360)
+        front_end = int(scan_len * 10 / 360)
+        front_danger = min(np.concatenate([scan_array[front_start:], scan_array[:front_end]]))
+        
+        left_start = int(scan_len * 70 / 360)
+        left_end = int(scan_len * 110 / 360)
+        left_danger = np.min(scan_array[left_start:left_end]) if left_end > left_start else self.max_distance
+        
+        right_start = int(scan_len * 250 / 360)
+        right_end = int(scan_len * 290 / 360)
+        right_danger = np.min(scan_array[right_start:right_end]) if right_end > right_start else self.max_distance
+        
+        sin_theta = np.sin(theta)
+        cos_theta = np.cos(theta)
+        
+        robot_state = [
+            distance, 
+            sin_theta, 
+            cos_theta, 
+            0.0,  # vx starts at 0
+            0.0,  # vy starts at 0
+            0.0,  # omega starts at 0
+            front_danger / self.max_distance,
+            left_danger / self.max_distance,
+            right_danger / self.max_distance
+        ]
+        
         state = np.append(self.scan_data, robot_state)
         return state
         
@@ -303,26 +369,78 @@ class GazeboEnv(Node):
         return False, False, min_laser
 
     def get_reward(self, target, collision, action, min_laser, old_distance, new_distance, theta):
+        """
+        Multi-layered reward function for dynamic environment navigation.
+        
+        Components:
+        - R_progress: Reward for moving closer to goal
+        - R_obstacle: Penalize proximity to obstacles
+        - R_smoothness: Reward for smooth, consistent motion
+        - R_heading: Reward for facing toward goal
+        - R_time: Time efficiency penalty
+        - R_safety: Safety margin reward
+        """
         if target:
             return 500.0
         elif collision:
-            return -200.0
+            return -500.0
         else:
+            # ===== 1. DISTANCE PROGRESS REWARD =====
             distance_change = old_distance - new_distance
+            R_progress = distance_change * 200.0  # Reduced from 400 to balance
             
-            # STRONG progress reward - this is the MAIN incentive
-            R_progress = distance_change * 400.0 
+            # ===== 2. OBSTACLE AVOIDANCE REWARD =====
+            # Create smooth repulsive field around obstacles
+            SAFE_DISTANCE = 0.75
+            CRITICAL_DISTANCE = 0.50
             
-            # REMOVE heading reward - it encourages spinning to face goal
-            # R_heading = 0.0 
+            if min_laser < CRITICAL_DISTANCE:
+                # Near collision - heavy penalty
+                R_obstacle = -((CRITICAL_DISTANCE - min_laser) / CRITICAL_DISTANCE) ** 2 * 150.0
+            elif min_laser < SAFE_DISTANCE:
+                # In warning zone - moderate penalty
+                R_obstacle = -((SAFE_DISTANCE - min_laser) / SAFE_DISTANCE) ** 1.5 * 50.0
+            else:
+                # Safe zone - small reward for maintaining distance
+                R_obstacle = (min(min_laser, self.max_distance) / self.max_distance) * 10.0
             
-            # VERY HIGH angular penalty to STOP circling
-            penalty_angular = abs(action[2]) * 10.0 
+            # ===== 3. SMOOTHNESS REWARD =====
+            # Penalize jerky changes in velocity
+            action_arr = np.array(action)
+            action_magnitude = np.linalg.norm(action_arr)
+            if not hasattr(self, 'prev_action'):
+                self.prev_action = np.array([0.0, 0.0, 0.0])
             
-            r3 = lambda x: 1 - x if x < 1 else 0.0
-            penalty_collision = r3(min_laser) * 100.0 
+            action_change = np.linalg.norm(action_arr - self.prev_action)
+            R_smoothness = -action_change * 5.0
+            self.prev_action = action_arr.copy()
             
-            # Time penalty to encourage speed
-            R_time = -0.1
+            # ===== 4. HEADING REWARD =====
+            # Encourage facing goal direction (gentle reward)
+            R_heading = np.cos(theta) * 5.0  # cos of angle difference
+            
+            # ===== 5. TIME EFFICIENCY =====
+            # Reward forward motion, penalize idle time
+            linear_velocity = np.linalg.norm(action_arr[:2])
+            if linear_velocity > 0.2:
+                R_time = -0.05  # Slight time penalty for moving
+            else:
+                R_time = -0.2   # Higher penalty for being still
+            
+            # ===== 6. ANGULAR PENALTY =====
+            # Discourage excessive rotation (but not as harsh as before)
 
-            return R_progress - penalty_angular - penalty_collision + R_time
+            penalty_angular = abs(action[2]) * 3.0  # Reduced from 10
+            
+            # ===== COMBINE REWARDS =====
+            # Weighted combination of all components
+            total_reward = (
+                0.40 * R_progress +      # Progress is main driver
+                0.25 * R_obstacle +      # Obstacle avoidance is critical
+                0.10 * R_smoothness +    # Smooth motion preferred
+                0.10 * R_heading +       # Gentle heading guidance
+                0.10 * R_time +          # Time efficiency
+                0.05 * (-penalty_angular) # Angular restraint
+            )
+            
+            return total_reward

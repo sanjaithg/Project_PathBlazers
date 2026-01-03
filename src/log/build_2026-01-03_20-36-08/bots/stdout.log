@@ -1,0 +1,51 @@
+running develop
+running egg_info
+writing bots.egg-info/PKG-INFO
+writing dependency_links to bots.egg-info/dependency_links.txt
+writing entry points to bots.egg-info/entry_points.txt
+writing requirements to bots.egg-info/requires.txt
+writing top-level names to bots.egg-info/top_level.txt
+reading manifest file 'bots.egg-info/SOURCES.txt'
+writing manifest file 'bots.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/lib/python3.12/site-packages/bots.egg-link (link to .)
+Installing FakeOdomPublisher script to /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/lib/bots
+Installing test_td3 script to /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/lib/bots
+Installing train_td3 script to /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/lib/bots
+
+Installed /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots
+running symlink_data
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/resource/bots -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/ament_index/resource_index/packages
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/package.xml -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/launch/check_urdf.launch.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/launch
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/launch/train_td3.launch.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/launch
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/launch/spawn_robot.launch.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/launch
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/launch/my_launch_file.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/launch
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/config/ekf.yaml -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/config
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/config/td3_config.yaml -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/config
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/meshes/lidar.dae -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/meshes
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/meshes/mecanum_wheel_left.STL -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/meshes
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/meshes/mogi_bot.STL -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/meshes
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/meshes/wheel.dae -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/meshes
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/meshes/mogi_bot.blend -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/meshes
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/meshes/wheel.blend -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/meshes
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/meshes/mogi_bot.SLDPRT -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/meshes
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/meshes/mogi_bot.STEP -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/meshes
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/meshes/wheel.SLDPRT -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/meshes
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/meshes/wheel.STL -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/meshes
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/meshes/mogi_bot.dae -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/meshes
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/meshes/wheel.STEP -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/meshes
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/meshes/mecanum_wheel_right.STL -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/meshes
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/rviz/rviz.rviz -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/rviz
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/rviz/gps.rviz -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/rviz
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/rviz/urdf.rviz -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/rviz
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/urdf/mogi_bot_mecanum.urdf -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/urdf
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/urdf/mogi_bot_mecanum.gazebo -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/urdf
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/urdf/materials.xacro -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/urdf
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/world/world.sdf -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/world
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/world/world (Dynamic).sdf -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/world
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/world/world (Static 1).sdf -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/world
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/world/actors.txt -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/world
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/world/models/cardboard_box/model.sdf -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/world/models/cardboard_box
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/world/models/cardboard_box/model.config -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/world/models/cardboard_box
+symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/world/models/cardboard_box/meshes/cardboard_box.dae -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/world/models/cardboard_box/meshes

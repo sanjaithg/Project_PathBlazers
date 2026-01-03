@@ -1,0 +1,53 @@
+[2.390s] Invoking command in '/home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/build --no-deps symlink_data --force
+[3.497s] running develop
+[3.963s] running egg_info
+[3.990s] writing bots.egg-info/PKG-INFO
+[3.990s] writing dependency_links to bots.egg-info/dependency_links.txt
+[3.990s] writing entry points to bots.egg-info/entry_points.txt
+[3.991s] writing requirements to bots.egg-info/requires.txt
+[3.991s] writing top-level names to bots.egg-info/top_level.txt
+[4.057s] reading manifest file 'bots.egg-info/SOURCES.txt'
+[4.072s] writing manifest file 'bots.egg-info/SOURCES.txt'
+[4.192s] running build_ext
+[4.194s] Creating /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/lib/python3.12/site-packages/bots.egg-link (link to .)
+[4.195s] Installing FakeOdomPublisher script to /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/lib/bots
+[4.195s] Installing test_td3 script to /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/lib/bots
+[4.195s] Installing train_td3 script to /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/lib/bots
+[4.195s] 
+[4.196s] Installed /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots
+[4.196s] running symlink_data
+[4.196s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/resource/bots -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/ament_index/resource_index/packages
+[4.196s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/package.xml -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots
+[4.196s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/launch/check_urdf.launch.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/launch
+[4.197s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/launch/train_td3.launch.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/launch
+[4.199s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/launch/spawn_robot.launch.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/launch
+[4.200s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/launch/my_launch_file.py -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/launch
+[4.201s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/config/ekf.yaml -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/config
+[4.203s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/config/td3_config.yaml -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/config
+[4.204s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/meshes/lidar.dae -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/meshes
+[4.206s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/meshes/mecanum_wheel_left.STL -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/meshes
+[4.208s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/meshes/mogi_bot.STL -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/meshes
+[4.210s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/meshes/wheel.dae -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/meshes
+[4.211s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/meshes/mogi_bot.blend -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/meshes
+[4.211s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/meshes/wheel.blend -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/meshes
+[4.211s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/meshes/mogi_bot.SLDPRT -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/meshes
+[4.212s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/meshes/mogi_bot.STEP -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/meshes
+[4.212s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/meshes/wheel.SLDPRT -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/meshes
+[4.212s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/meshes/wheel.STL -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/meshes
+[4.212s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/meshes/mogi_bot.dae -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/meshes
+[4.213s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/meshes/wheel.STEP -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/meshes
+[4.213s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/meshes/mecanum_wheel_right.STL -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/meshes
+[4.213s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/rviz/rviz.rviz -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/rviz
+[4.213s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/rviz/gps.rviz -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/rviz
+[4.214s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/rviz/urdf.rviz -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/rviz
+[4.215s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/urdf/mogi_bot_mecanum.urdf -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/urdf
+[4.216s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/urdf/mogi_bot_mecanum.gazebo -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/urdf
+[4.217s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/urdf/materials.xacro -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/urdf
+[4.220s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/world/world.sdf -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/world
+[4.221s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/world/world (Dynamic).sdf -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/world
+[4.222s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/world/world (Static 1).sdf -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/world
+[4.223s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/world/actors.txt -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/world
+[4.225s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/world/models/cardboard_box/model.sdf -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/world/models/cardboard_box
+[4.226s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/world/models/cardboard_box/model.config -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/world/models/cardboard_box
+[4.228s] symbolically linking /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/world/models/cardboard_box/meshes/cardboard_box.dae -> /home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/share/bots/world/models/cardboard_box/meshes
+[4.407s] Invoked command in '/home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dark/ros2_ws/src2/Project_PathBlazers/src/install/bots/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/dark/ros2_ws/src2/Project_PathBlazers/src/build/bots/build --no-deps symlink_data --force
