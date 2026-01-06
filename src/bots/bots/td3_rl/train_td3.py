@@ -3,10 +3,11 @@ import os
 import sys
 # Set environment variables to avoid threading conflicts - MUST be before any imports
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # Suppress TF warnings
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # Suppress all TF logs
 os.environ['OPENBLAS_NUM_THREADS'] = '1'  # Prevent OpenBLAS threading issues
 os.environ['OMP_NUM_THREADS'] = '1'  # Prevent OpenMP threading issues
 os.environ['MKL_NUM_THREADS'] = '1'  # Prevent MKL threading issues
+os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE' # Allow duplicate OpenMP libs if they occur
 
 # Set multiprocessing start method before any other imports
 import multiprocessing
@@ -14,6 +15,8 @@ try:
     multiprocessing.set_start_method('spawn', force=True)
 except RuntimeError:
     pass  # Already set
+
+# from torch.utils.tensorboard import SummaryWriter
 
 import threading
 import time
@@ -29,6 +32,10 @@ except Exception:
     pass
 
 import torch
+try:
+   torch._dynamo.disable()
+except Exception:
+   pass
 import numpy as np
 import torch.nn as nn
 import torch.nn.functional as F
@@ -40,10 +47,10 @@ from bots.td3_rl.gazebo_env import GazeboEnv
 from bots.td3_rl.replay_buffer import ReplayBuffer
 
 
-from torch.utils.tensorboard import SummaryWriter
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(device)
+# Global device placeholder - will be set in initialize_environment
+device = None
+
 
 class Actor(nn.Module):
     def __init__(self, state_dim, action_dim):
@@ -111,14 +118,10 @@ class TD3(object):
 
         self.max_action = max_action
         
-        # Initialize TensorBoard writer with error handling
-        try:
-            self.writer = SummaryWriter(log_dir=os.path.join(td3_rl_path, "runs"))
-            self.use_tensorboard = True
-        except Exception as e:
-            print(f"Warning: Could not initialize TensorBoard: {e}")
-            self.writer = None
-            self.use_tensorboard = False
+        # DISABLED TensorBoard to prevent glibc crash
+        self.writer = None
+        self.use_tensorboard = False
+        print("Note: TensorBoard is disabled to prevent glibc conflicts.")
         
         self.iter_count = 0
 
@@ -282,9 +285,9 @@ class TD3Trainer(BaseNode):
         self.declare_parameter('max_ep', 150)
         self.declare_parameter('eval_ep', 10)
         self.declare_parameter('max_timesteps', 500000)
-        self.declare_parameter('expl_noise', 1.0)
-        self.declare_parameter('expl_decay_steps', 500000)
-        self.declare_parameter('expl_min', 0.1)
+        self.declare_parameter('expl_noise', 0.8)
+        self.declare_parameter('expl_decay_steps', 100000)
+        self.declare_parameter('expl_min', 0.05)
         self.declare_parameter('batch_size', 128)
         self.declare_parameter('discount', 0.99)
         self.declare_parameter('tau', 0.005)
@@ -304,7 +307,17 @@ class TD3Trainer(BaseNode):
             self.get_logger().info(f"{param}: {self.get_parameter(param).value}")
 
     def initialize_environment(self):
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        # --- THREADING SAFEGUARDS ---
+        global device
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.device = device
+        self.get_logger().info(f"Using device: {self.device}")
+        
+        # Enforce single-threaded execution for PyTorch to avoid ROS 2 conflicts
+        torch.set_num_threads(1)
+        torch.set_num_interop_threads(1)
+        # ----------------------------
+
         self.seed = self.get_parameter('seed').value
         self.eval_freq = self.get_parameter('eval_freq').value
         self.max_ep = self.get_parameter('max_ep').value
@@ -359,6 +372,17 @@ class TD3Trainer(BaseNode):
         time.sleep(5)
         torch.manual_seed(self.seed)
         np.random.seed(self.seed)
+        
+        # --- EXPLICIT CUDA INITIALIZATION ---
+        if self.device.type == 'cuda':
+             try:
+                 torch.cuda.init()
+                 # Create a dummy tensor to force initialization
+                 _ = torch.tensor([0.0], device=self.device)
+             except Exception as e:
+                 self.get_logger().warn(f"CUDA init warning: {e}")
+        # ------------------------------------
+
         
         # --- CRITICAL CHANGES FOR MECANUM ACTION/STATE DIMENSIONS ---
         self.action_dim = 3  
@@ -606,34 +630,19 @@ class TD3Trainer(BaseNode):
         return avg_reward, avg_col
 
 
-def _check_rcl_node_viable(timeout=5):
-    """Try to create a temporary rclpy node in a subprocess to detect rmw/fastdds issues.
-    Returns True if node creation succeeds, False otherwise."""
-    import subprocess, shlex
-    cmd = "python3 -c \"import rclpy; rclpy.init(); from rclpy.node import Node; n=Node('test_check'); n.destroy_node(); rclpy.shutdown(); print('OK')\""
-    try:
-        completed = subprocess.run(shlex.split(cmd), capture_output=True, timeout=timeout)
-        if completed.returncode == 0 and b'OK' in completed.stdout:
-            return True
-        return False
-    except Exception:
-        return False
+# Removed _check_rcl_node_viable as it uses subprocess/fork which can trigger glibc errors
+# when ML libraries (torch/tensorflow) are already initialized in the parent process.
 
 
 def main(args=None):
     node = None
 
-    # Check whether creating an rcl node is viable in this environment
-    if not _check_rcl_node_viable():
-        print("Warning: rcl node creation failed in subprocess. Running in NO_ROS fallback mode.")
+    # Initialize rclpy directly. Subprocess check removed to avoid glibc conflicts.
+    try:
+        rclpy.init(args=args)
+    except Exception as e:
+        print(f"Warning: rclpy.init() failed: {e}. Proceeding in NO_ROS mode.")
         os.environ['BOTS_NO_ROS'] = '1'
-    else:
-        # Initialize rclpy only when viable
-        try:
-            rclpy.init(args=args)
-        except Exception as e:
-            print(f"Warning: rclpy.init() failed: {e}. Proceeding in NO_ROS mode.")
-            os.environ['BOTS_NO_ROS'] = '1'
 
     try:
         node = TD3Trainer()

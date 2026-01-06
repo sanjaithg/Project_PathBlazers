@@ -14,7 +14,7 @@ from ros_gz_interfaces.msg import Entity
 from visualization_msgs.msg import Marker, MarkerArray
 
 GOAL_REACHED_DIST = 0.4 
-COLLISION_DIST = 0.50 
+COLLISION_DIST = 0.22 
 TIME_DELTA = 0.1
 
 
@@ -369,13 +369,67 @@ class GazeboEnv(Node):
         # No hard collision flag—use soft barrier (exponential) in reward instead.
         return False, False, min_laser
 
+    def get_barrier_reward(self, laser_ranges):
+        """
+        Calculates a Shape-Aware Reciprocal Barrier for a rectangular robot.
+        
+        Geometry:
+        - Robot Hull: 0.4m x 0.2m (Half-dims: 0.20m, 0.10m)
+        - Safe Zone:  0.9m x 0.5m (Half_dims: 0.45m, 0.25m)
+          (Derived from user specs: Front threshold 0.45m, Side threshold 0.25m)
+        
+        The barrier activates when the robot enters the Safe Zone and spikes 
+        to -2000 if it breaches the Hull (Physical Limit).
+        """
+        total_barrier = 0.0
+        num_rays = len(laser_ranges)
+        
+        # Physical limits (Hull)
+        L_half = 0.20
+        W_half = 0.10
+        
+        # Activation thresholds (Safe Zone)
+        # Front/Back braking distance: 0.20 + 0.25 = 0.45
+        # Side corridor cushion: 0.10 + 0.15 = 0.25
+        L_safe = 0.45
+        W_safe = 0.25
+        
+        angle_step = 2 * math.pi / num_rays
+        
+        for i, dist in enumerate(laser_ranges):
+            # FIX: ROS LaserScan usually starts at -pi (Back), not 0 (Front)
+            # Index 0 = -pi (Back), Index N/2 = 0 (Front)
+            angle = -math.pi + i * angle_step
+            
+            abs_cos = abs(math.cos(angle))
+            abs_sin = abs(math.sin(angle))
+
+            # 1. Calculate Physical Limit at this angle (Rectangular Hull)
+            # radius_limit = 1 / max(cos/L, sin/W)
+            # Avoid division by zero with epsilon
+            phys_limit = 1.0 / max(abs_cos / L_half, abs_sin / W_half)
+            
+            # 2. Calculate Activation Threshold at this angle (Rectangular Safe Zone)
+            safe_thresh = 1.0 / max(abs_cos / L_safe, abs_sin / W_safe)
+            
+            if dist < phys_limit:
+                return -2000.0  # Hard collision cap
+            elif dist < safe_thresh:
+                # Reciprocal penalty
+                # As dist approaches phys_limit, (dist - phys_limit) -> 0, penalty -> -inf
+                # We add small epsilon to denominator for stability
+                penalty = -1.0 / (dist - phys_limit + 1e-4)
+                total_barrier += penalty
+                
+        return total_barrier
+
     def get_reward(self, target, collision, action, min_laser, old_distance, new_distance, theta):
         """
         CBF-inspired soft barrier reward with normalized weights.
 
         Components:
         - R_progress (w1=0.40): distance improvement
-        - R_barrier (w2=0.35): exponential barrier penalty near obstacles
+        - R_barrier (w2=0.35): SHAPE-AWARE reciprocal barrier
         - R_heading (w3=0.05): cosine alignment with goal
         - R_smoothness (w4=0.05): penalize jerky actions
         - R_angular (w5=0.05): penalize excessive spinning
@@ -386,26 +440,19 @@ class GazeboEnv(Node):
         if target:
             return 500.0
 
-        # No discrete collision penalty - soft barrier will handle the punishment
-
         # ===== 1. PROGRESS =====
         distance_change = old_distance - new_distance
         R_progress = distance_change * 200.0  # same scale as before
 
-        # ===== 2. CBF-inspired EXPONENTIAL BARRIER =====
-        # Safety margin and sharpness chosen empirically
-        SAFETY_MARGIN = 0.5
-        SHARPNESS = 3.0
-        # Clamp min_laser into a positive value
-        d = float(max(min_laser, 1e-6))
-        # Barrier penalty grows exponentially as d -> 0 but clamp to avoid numerical overflow
-        try:
-            raw = math.exp(SHARPNESS * (SAFETY_MARGIN - d))
-        except OverflowError:
-            raw = float('inf')
-        # Clamp magnitude to a safe maximum to prevent numerical instability in training
-        MAX_BARRIER = 1e6
-        R_barrier = -min(raw, MAX_BARRIER)
+        # ===== 2. SHAPE-AWARE BARRIER =====
+        # Use the 20-ray scan_data for the barrier calculation
+        # This matches the dimensionality of the user's snippet
+        R_barrier = self.get_barrier_reward(self.scan_data)
+        
+        # Clamp R_barrier to the user-approved safety cap (-2000) for the final weighted sum
+        # to prevent one bad ray from destroying the epoch average if not a hard collision
+        R_barrier = max(R_barrier, -2000.0)
+
 
         # ===== 3. HEADING =====
         R_heading = math.cos(theta)
@@ -427,8 +474,13 @@ class GazeboEnv(Node):
         # Normalize / scale components to reasonable ranges
         # Progress: scale same as before
         R_progress_scaled = R_progress  # already scaled
-        # Barrier is already exponential (dominant near collision)
+        
+        # Barrier: currently R_barrier can be -2000. 
+        # We need to balance this with the 0.35 weight.
+        # If R_barrier is -2000, 0.35 * -2000 = -700. This is huge compared to +4.0 progress.
+        # This is INTENTIONAL as per user request ("dominate progress reward").
         R_barrier_scaled = R_barrier * 1.0
+        
         R_heading_scaled = R_heading * 5.0  # keep similar magnitude influence
         R_smoothness_scaled = R_smoothness * 5.0
         R_angular_scaled = R_angular * 3.0

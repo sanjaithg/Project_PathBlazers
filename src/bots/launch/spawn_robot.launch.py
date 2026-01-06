@@ -1,6 +1,6 @@
 import os
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, ExecuteProcess
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, Command
@@ -74,12 +74,6 @@ def generate_launch_description():
         name='fix_gpu_lidar_frame',
         output='screen',
         arguments=['0','0','0','0','0','0','scan_link','my_robot/base_footprint/gpu_lidar'],
-    )
-    # Launcher to run the goal visualizer script which listens on /goal_pose and
-    # publishes visualization markers to /goal_point used by RViz.
-    goal_visualizer_proc = ExecuteProcess(
-        cmd=['python3', os.path.join(pkg_bots, 'scripts', 'goal_visualizer.py')],
-        output='screen',
     )
      
     # Node to bridge /cmd_vel and /odom
@@ -179,7 +173,6 @@ def generate_launch_description():
     launchDescriptionObject.add_action(relay_camera_info_node)
     launchDescriptionObject.add_action(robot_state_publisher_node)
     launchDescriptionObject.add_action(static_tf_node)
-    launchDescriptionObject.add_action(goal_visualizer_proc)
     # launchDescriptionObject.add_action(trajectory_node)
     launchDescriptionObject.add_action(ekf_node)
     # launchDescriptionObject.add_action(trajectory_odom_topic_node)

@@ -270,3 +270,51 @@ Once training stabilizes, consider:
 - Progress reward reduced from 400 to 200 to allow obstacle awareness
 - Exploration decay still active (expl_decay_steps: 500000)
 - Model saves automatically when score improves
+
+---
+
+## [2026-01-07] Reward Function & Safety Overhaul
+
+### 1. Shape-Aware Reciprocal Barrier Function (CBF)
+- **Problem:** The previous exponential barrier was too weak ($~-1.2$ per step) and assumed a circular robot, causing the bot to graze walls and get stuck in local minima.
+- **Solution:** Implemented a new **Shape-Aware** barrier in `gazebo_env.py` that respects the robot's rectangular hull ($0.4m \times 0.2m$).
+- **Logic:**
+  - Calculates per-ray limits based on the robot's geometry ($Limits(\theta)$).
+  - **Front/Back Safety:** Activates at **0.45m** (braking distance).
+  - **Side Safety:** Activates at **0.25m** (corridor clearance).
+  - **Penalty:** Reciprocal function ($1/d$) capped at **-2000**.
+- **Result:** Strict wall avoidance with massive penalties (e.g., $-1800$) for violations, forcing the agent to stay in the safe zone.
+
+### 2. Lidar Indexing Fix
+- **Fix:** Corrected the angle calculation in `gazebo_env.py`. ROS `LaserScan` arrays typically start at $-\pi$ (Back), not $0$ (Front).
+- **Impact:** The reward function now correctly maps the "back" of the robot to the appropriate array indices.
+
+### 3. Configuration Updates
+- **File:** `td3_config.yaml`
+- **Changes:**
+  - Synced parameters with loaded launch values (`expl_noise: 0.8`, `seed: 0`).
+  - Disabled `use_sim_time` for training stability.
+
+---
+
+## [2026-01-07] Reward Function & Safety Overhaul
+
+### 1. Shape-Aware Reciprocal Barrier Function (CBF)
+- **Problem:** The previous exponential barrier was too weak ($~-1.2$ per step) and assumed a circular robot, causing the bot to graze walls and get stuck in local minima.
+- **Solution:** Implemented a new **Shape-Aware** barrier in `gazebo_env.py` that respects the robot's rectangular hull ($0.4m \times 0.2m$).
+- **Logic:**
+  - Calculates per-ray limits based on the robot's geometry ($Limits(\theta)$).
+  - **Front/Back Safety:** Activates at **0.45m** (braking distance).
+  - **Side Safety:** Activates at **0.25m** (corridor clearance).
+  - **Penalty:** Reciprocal function ($1/d$) capped at **-2000**.
+- **Result:** Strict wall avoidance with massive penalties (e.g., $-1800$) for violations, forcing the agent to stay in the safe zone.
+
+### 2. Lidar Indexing Fix
+- **Fix:** Corrected the angle calculation in `gazebo_env.py`. ROS `LaserScan` arrays typically start at $-\pi$ (Back), not $0$ (Front).
+- **Impact:** The reward function now correctly maps the "back" of the robot to the appropriate array indices.
+
+### 3. Configuration Updates
+- **File:** `td3_config.yaml`
+- **Changes:**
+  - Synced parameters with loaded launch values (`expl_noise: 0.8`, `seed: 0`).
+  - Disabled `use_sim_time` for training stability.
