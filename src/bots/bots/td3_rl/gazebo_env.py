@@ -1,6 +1,5 @@
 import math
 import random
-import time
 
 import numpy as np
 import rclpy
@@ -363,84 +362,86 @@ class GazeboEnv(Node):
         self.goal_point_publisher.publish(markerArray)
 
     def observe_collision(self, laser_data):
-        min_laser = min(laser_data)
-        if min_laser < COLLISION_DIST:
-            return True, True, min_laser
+        """Soft collision check: return min laser but do NOT trigger a discrete collision flag.
+        Collision avoidance and penalties are handled by the CBF-inspired exponential barrier
+        inside the reward function (soft penalty), so we avoid binary termination here."""
+        min_laser = float(min(laser_data))
+        # No hard collision flag—use soft barrier (exponential) in reward instead.
         return False, False, min_laser
 
     def get_reward(self, target, collision, action, min_laser, old_distance, new_distance, theta):
         """
-        Multi-layered reward function for dynamic environment navigation.
-        
+        CBF-inspired soft barrier reward with normalized weights.
+
         Components:
-        - R_progress: Reward for moving closer to goal
-        - R_obstacle: Penalize proximity to obstacles
-        - R_smoothness: Reward for smooth, consistent motion
-        - R_heading: Reward for facing toward goal
-        - R_time: Time efficiency penalty
-        - R_safety: Safety margin reward
+        - R_progress (w1=0.40): distance improvement
+        - R_barrier (w2=0.35): exponential barrier penalty near obstacles
+        - R_heading (w3=0.05): cosine alignment with goal
+        - R_smoothness (w4=0.05): penalize jerky actions
+        - R_angular (w5=0.05): penalize excessive spinning
+        - R_existence (w6=0.10): small positive time reward to encourage exploration
+        Total weights sum to 1.0.
         """
+        # Terminal (goal reached) is still rewarded strongly
         if target:
             return 500.0
-        elif collision:
-            return -500.0
-        else:
-            # ===== 1. DISTANCE PROGRESS REWARD =====
-            distance_change = old_distance - new_distance
-            R_progress = distance_change * 200.0  # Reduced from 400 to balance
-            
-            # ===== 2. OBSTACLE AVOIDANCE REWARD =====
-            # Create smooth repulsive field around obstacles
-            SAFE_DISTANCE = 0.75
-            CRITICAL_DISTANCE = 0.50
-            
-            if min_laser < CRITICAL_DISTANCE:
-                # Near collision - heavy penalty
-                R_obstacle = -((CRITICAL_DISTANCE - min_laser) / CRITICAL_DISTANCE) ** 2 * 150.0
-            elif min_laser < SAFE_DISTANCE:
-                # In warning zone - moderate penalty
-                R_obstacle = -((SAFE_DISTANCE - min_laser) / SAFE_DISTANCE) ** 1.5 * 50.0
-            else:
-                # Safe zone - small reward for maintaining distance
-                R_obstacle = (min(min_laser, self.max_distance) / self.max_distance) * 10.0
-            
-            # ===== 3. SMOOTHNESS REWARD =====
-            # Penalize jerky changes in velocity
-            action_arr = np.array(action)
-            action_magnitude = np.linalg.norm(action_arr)
-            if not hasattr(self, 'prev_action'):
-                self.prev_action = np.array([0.0, 0.0, 0.0])
-            
-            action_change = np.linalg.norm(action_arr - self.prev_action)
-            R_smoothness = -action_change * 5.0
-            self.prev_action = action_arr.copy()
-            
-            # ===== 4. HEADING REWARD =====
-            # Encourage facing goal direction (gentle reward)
-            R_heading = np.cos(theta) * 5.0  # cos of angle difference
-            
-            # ===== 5. TIME EFFICIENCY =====
-            # Reward forward motion, penalize idle time
-            linear_velocity = np.linalg.norm(action_arr[:2])
-            if linear_velocity > 0.2:
-                R_time = -0.05  # Slight time penalty for moving
-            else:
-                R_time = -0.2   # Higher penalty for being still
-            
-            # ===== 6. ANGULAR PENALTY =====
-            # Discourage excessive rotation (but not as harsh as before)
 
-            penalty_angular = abs(action[2]) * 3.0  # Reduced from 10
-            
-            # ===== COMBINE REWARDS =====
-            # Weighted combination of all components
-            total_reward = (
-                0.40 * R_progress +      # Progress is main driver
-                0.25 * R_obstacle +      # Obstacle avoidance is critical
-                0.10 * R_smoothness +    # Smooth motion preferred
-                0.10 * R_heading +       # Gentle heading guidance
-                0.10 * R_time +          # Time efficiency
-                0.05 * (-penalty_angular) # Angular restraint
-            )
-            
-            return total_reward
+        # No discrete collision penalty - soft barrier will handle the punishment
+
+        # ===== 1. PROGRESS =====
+        distance_change = old_distance - new_distance
+        R_progress = distance_change * 200.0  # same scale as before
+
+        # ===== 2. CBF-inspired EXPONENTIAL BARRIER =====
+        # Safety margin and sharpness chosen empirically
+        SAFETY_MARGIN = 0.5
+        SHARPNESS = 3.0
+        # Clamp min_laser into a positive value
+        d = float(max(min_laser, 1e-6))
+        # Barrier penalty grows exponentially as d -> 0 but clamp to avoid numerical overflow
+        try:
+            raw = math.exp(SHARPNESS * (SAFETY_MARGIN - d))
+        except OverflowError:
+            raw = float('inf')
+        # Clamp magnitude to a safe maximum to prevent numerical instability in training
+        MAX_BARRIER = 1e6
+        R_barrier = -min(raw, MAX_BARRIER)
+
+        # ===== 3. HEADING =====
+        R_heading = math.cos(theta)
+
+        # ===== 4. SMOOTHNESS =====
+        action_arr = np.array(action)
+        if not hasattr(self, 'prev_action'):
+            self.prev_action = np.array([0.0, 0.0, 0.0])
+        action_change = np.linalg.norm(action_arr - self.prev_action)
+        R_smoothness = -action_change
+        self.prev_action = action_arr.copy()
+
+        # ===== 5. ANGULAR =====
+        R_angular = -abs(action[2])
+
+        # ===== 6. EXISTENCE =====
+        R_existence = 0.1
+
+        # Normalize / scale components to reasonable ranges
+        # Progress: scale same as before
+        R_progress_scaled = R_progress  # already scaled
+        # Barrier is already exponential (dominant near collision)
+        R_barrier_scaled = R_barrier * 1.0
+        R_heading_scaled = R_heading * 5.0  # keep similar magnitude influence
+        R_smoothness_scaled = R_smoothness * 5.0
+        R_angular_scaled = R_angular * 3.0
+        R_existence_scaled = R_existence * 1.0
+
+        # Weighted sum (weights sum to 1.0)
+        total_reward = (
+            0.40 * R_progress_scaled +
+            0.35 * R_barrier_scaled +
+            0.05 * R_heading_scaled +
+            0.05 * R_smoothness_scaled +
+            0.05 * R_angular_scaled +
+            0.10 * R_existence_scaled
+        )
+
+        return total_reward

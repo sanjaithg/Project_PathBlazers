@@ -20,6 +20,13 @@ import time
 
 # Initialize ROS2 FIRST before any other heavy imports
 import rclpy
+import faulthandler
+faulthandler.enable()
+try:
+    import resource
+    resource.setrlimit(resource.RLIMIT_CORE, (resource.RLIM_INFINITY, resource.RLIM_INFINITY))
+except Exception:
+    pass
 
 import torch
 import numpy as np
@@ -222,14 +229,51 @@ class TD3(object):
         self.critic.load_state_dict(torch.load(os.path.join(directory, f"{filename}_critic.pth")))
 
 
-class TD3Trainer(Node):
+# Provide a minimal DummyNode when ROS is unavailable so the trainer can run in NO_ROS fallback mode
+ROS_AVAILABLE = os.environ.get('BOTS_NO_ROS', '0') != '1'
+
+if not ROS_AVAILABLE:
+    class DummyLogger:
+        def info(self, msg):
+            print(msg)
+        def warn(self, msg):
+            print("WARN:", msg)
+        def error(self, msg):
+            print("ERROR:", msg)
+
+    class DummyNode:
+        def __init__(self, name=None):
+            self._parameters = {}
+            self._logger = DummyLogger()
+        def declare_parameter(self, name, value=None):
+            self._parameters[name] = value
+        def get_parameter(self, name):
+            class P:
+                pass
+            p = P()
+            p.value = self._parameters.get(name)
+            return p
+        def get_logger(self):
+            return self._logger
+        def destroy_node(self):
+            pass
+
+    BaseNode = DummyNode
+else:
+    BaseNode = Node
+
+class TD3Trainer(BaseNode):
     def __init__(self):
-        super().__init__('td3_trainer')
+        # If real ROS is available, initialize Node via super(); otherwise init DummyNode
+        if ROS_AVAILABLE:
+            super().__init__('td3_trainer')
+        else:
+            BaseNode.__init__(self, 'td3_trainer')
         self.declare_params()
         self._shutdown_flag = False  # Flag to signal executor thread to stop
         self._executor_thread = None  # Store the executor thread reference
         # The executor is now saved to self.executor for later use
-        self.executor = self.initialize_environment() 
+        self.executor = self.initialize_environment()
         self.train_loop()
 
     def declare_params(self):
@@ -293,15 +337,6 @@ class TD3Trainer(Node):
         os.makedirs(self.models_path, exist_ok=True)
 
         self.env = GazeboEnv(self.environment_dim)
-        
-        # Instantiate visualizer (optional, used during evaluation)
-        try:
-            from bots.td3_rl.visualizer import Visualizer
-            self.visualizer = Visualizer(td3_rl_path)
-            self.use_visualizer = True
-        except Exception:
-            self.visualizer = None
-            self.use_visualizer = False
         
         # --- MODIFICATION: Create one MultiThreadedExecutor for both nodes ---
         executor = MultiThreadedExecutor()
@@ -390,34 +425,11 @@ class TD3Trainer(Node):
                         timesteps_since_eval %= self.eval_freq
                         
                         # LOGGING EVALUATION TO TENSORBOARD 
-                                        avg_reward_eval, avg_col_eval = self.evaluate(network=self.network, epoch=epoch, eval_episodes=self.eval_ep)
+                        avg_reward_eval, avg_col_eval = self.evaluate(network=self.network, epoch=epoch, eval_episodes=self.eval_ep)
                         if self.network.use_tensorboard and self.network.writer is not None:
                             self.network.writer.add_scalar("Evaluation/Avg_Reward", avg_reward_eval, timestep)
                             self.network.writer.add_scalar("Evaluation/Collision_Rate", avg_col_eval, timestep)
                         
-                        # If visualizer produced a video during evaluation, add a thumbnail and log path
-                        try:
-                            if self.use_visualizer and self.visualizer is not None:
-                                video_path = os.path.join(self.network.writer.log_dir, f"videos/episode_{epoch:04d}.mp4")
-                                # If video exists in visualizer.video_dir, copy or move it to the writer logdir
-                                # finalize_episode returns video path; evaluate will call finalize per episode
-                                # Add a thumbnail image to TensorBoard for quick inspection
-                                thumb = None
-                                # Attempt to find first frame
-                                vis_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'visualizations')
-                                frames = sorted([f for f in os.listdir(vis_dir) if f.startswith(f'ep')]) if os.path.isdir(vis_dir) else []
-                                if frames:
-                                    import imageio
-                                    fpath = os.path.join(vis_dir, frames[0])
-                                    img = imageio.imread(fpath)
-                                    if self.network.use_tensorboard and self.network.writer is not None:
-                                        try:
-                                            self.network.writer.add_image(f"Evaluation/Thumbnail_epoch_{epoch}", img, timestep, dataformats='HWC')
-                                        except Exception:
-                                            pass
-                        except Exception:
-                            pass
-
                         evaluations.append(avg_reward_eval)
                         
                         if self.save_model:
@@ -564,14 +576,10 @@ class TD3Trainer(Node):
     def evaluate(self, network, epoch, eval_episodes=10):
         avg_reward = 0.0
         col = 0
-        for ep_idx in range(eval_episodes):
+        for _ in range(eval_episodes):
             count = 0
             state = self.env.reset()
             done = False
-            step_idx = 0
-            # Clear any existing visual frames before evaluation episode
-            if self.use_visualizer and self.visualizer is not None:
-                self.visualizer.clear()
             while not done and count < self.max_ep:
                 action = network.get_action(np.array(state))
                 
@@ -584,53 +592,10 @@ class TD3Trainer(Node):
                 # -----------------------------------------------------
 
                 state, reward, done, _ = self.env.step(a_in)
-
-                # Save visualization frame (if possible)
-                try:
-                    if self.use_visualizer and self.visualizer is not None:
-                        # Use full_scan and odom if available
-                        scan = getattr(self.env, 'full_scan', np.array(self.env.scan_data))
-                        odom_x = float(self.env.odom_x)
-                        odom_y = float(self.env.odom_y)
-                        yaw = 0.0
-                        if getattr(self.env, 'last_odom', None) is not None:
-                            q = self.env.last_odom.pose.pose.orientation
-                            from scipy.spatial.transform import Rotation as R
-                            r = R.from_quat([q.x, q.y, q.z, q.w])
-                            euler = r.as_euler('xyz', degrees=False)
-                            yaw = float(euler[2])
-                        goal_x = float(self.env.goal_x)
-                        goal_y = float(self.env.goal_y)
-                        self.visualizer.save_frame(ep_idx+1, step_idx, scan, odom_x, odom_y, yaw, goal_x, goal_y)
-                except Exception:
-                    pass
-
                 avg_reward += reward
                 count += 1
-                step_idx += 1
                 if reward < -90:
                     col += 1
-
-            # finalize per-episode video and log
-            try:
-                if self.use_visualizer and self.visualizer is not None:
-                    vid_path = self.visualizer.finalize_episode(ep_idx+1, fps=10)
-                    if vid_path is not None and self.network.use_tensorboard and self.network.writer is not None:
-                        # add thumbnail image to tensorboard for quick checks
-                        import imageio
-                        frame = imageio.imread(vid_path) if False else None
-                        # Instead load first frame
-                        vis_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'visualizations')
-                        frames = sorted([f for f in os.listdir(vis_dir) if f.startswith(f'ep')]) if os.path.isdir(vis_dir) else []
-                        if frames:
-                            fpath = os.path.join(vis_dir, frames[0])
-                            img = imageio.imread(fpath)
-                            try:
-                                self.network.writer.add_image(f"Evaluation/Video_epoch_{epoch}_ep{ep_idx+1}", img, epoch, dataformats='HWC')
-                            except Exception:
-                                pass
-            except Exception:
-                pass
         avg_reward /= eval_episodes
         avg_col = col / eval_episodes
         self.get_logger().info("..............................................")
@@ -641,9 +606,35 @@ class TD3Trainer(Node):
         return avg_reward, avg_col
 
 
+def _check_rcl_node_viable(timeout=5):
+    """Try to create a temporary rclpy node in a subprocess to detect rmw/fastdds issues.
+    Returns True if node creation succeeds, False otherwise."""
+    import subprocess, shlex
+    cmd = "python3 -c \"import rclpy; rclpy.init(); from rclpy.node import Node; n=Node('test_check'); n.destroy_node(); rclpy.shutdown(); print('OK')\""
+    try:
+        completed = subprocess.run(shlex.split(cmd), capture_output=True, timeout=timeout)
+        if completed.returncode == 0 and b'OK' in completed.stdout:
+            return True
+        return False
+    except Exception:
+        return False
+
+
 def main(args=None):
-    rclpy.init(args=args)
     node = None
+
+    # Check whether creating an rcl node is viable in this environment
+    if not _check_rcl_node_viable():
+        print("Warning: rcl node creation failed in subprocess. Running in NO_ROS fallback mode.")
+        os.environ['BOTS_NO_ROS'] = '1'
+    else:
+        # Initialize rclpy only when viable
+        try:
+            rclpy.init(args=args)
+        except Exception as e:
+            print(f"Warning: rclpy.init() failed: {e}. Proceeding in NO_ROS mode.")
+            os.environ['BOTS_NO_ROS'] = '1'
+
     try:
         node = TD3Trainer()
     except KeyboardInterrupt:
@@ -655,24 +646,47 @@ def main(args=None):
         if node is not None:
             # Signal the executor thread to stop
             node._shutdown_flag = True
-            
-            # Wait for executor thread to finish (with timeout)
+
+            # Attempt to ask executor to shutdown (may help wake blocking calls)
+            try:
+                if hasattr(node, 'executor') and node.executor is not None:
+                    node.get_logger().info("Shutting down executor (pre-join)")
+                    try:
+                        node.executor.shutdown()
+                    except Exception as e:
+                        node.get_logger().warn(f"Executor shutdown (pre-join) raised: {e}")
+            except Exception:
+                pass
+
+            # Wait for executor thread to finish (with longer timeout)
             if node._executor_thread is not None and node._executor_thread.is_alive():
-                node._executor_thread.join(timeout=2.0)
-            
-            # Remove nodes from executor before shutdown
+                node._executor_thread.join(timeout=5.0)
+
+            # Remove nodes from executor before final cleanup
             try:
-                node.executor.remove_node(node.env)
-                node.executor.remove_node(node)
+                if hasattr(node, 'executor') and node.executor is not None:
+                    try:
+                        node.executor.remove_node(node.env)
+                    except Exception:
+                        pass
+                    try:
+                        node.executor.remove_node(node)
+                    except Exception:
+                        pass
             except Exception:
                 pass
-            
-            # Shutdown executor
+
+            # Final executor shutdown (best-effort)
             try:
-                node.executor.shutdown()
+                if hasattr(node, 'executor') and node.executor is not None:
+                    node.get_logger().info("Final executor.shutdown()")
+                    try:
+                        node.executor.shutdown()
+                    except Exception as e:
+                        node.get_logger().warn(f"Executor shutdown (final) raised: {e}")
             except Exception:
                 pass
-            
+
             # Destroy nodes
             try:
                 node.env.destroy_node()

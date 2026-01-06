@@ -34,8 +34,6 @@ setup(
         'numpy',
         'squaternion',
         'tensorboard',
-        'matplotlib',
-        'imageio',
     ],
     zip_safe=True,
     maintainer='hillman',

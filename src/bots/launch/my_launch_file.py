@@ -29,6 +29,8 @@ def generate_launch_description():
     os.environ["GZ_SIM_RESOURCE_PATH"] = os.pathsep.join(
         [path for path in resource_search_paths if path]
     )
+    os.environ["GZ_IP"] = "127.0.0.1"
+    os.environ["GZ_IP"] = "127.0.0.1"
 
 
     gazebo_launch = IncludeLaunchDescription(

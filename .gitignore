@@ -19,8 +19,6 @@ venv/
 **/results/
 **/pytorch_models/
 **/events.out.tfevents.*
-**/visualizations/
-**/videos/
 
 # OS files
 .DS_Store
