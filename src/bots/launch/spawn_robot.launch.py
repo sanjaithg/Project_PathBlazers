@@ -27,6 +27,10 @@ def generate_launch_description():
     rviz_launch_arg = DeclareLaunchArgument('rviz', default_value='true', description='Open RViz.')
     world_arg = DeclareLaunchArgument('world', default_value=os.path.join(pkg_bots, 'world', 'world.sdf'), description='Absolute path to Gazebo world file')
     model_arg = DeclareLaunchArgument('model', default_value=os.path.join(pkg_bots, 'urdf', 'mogi_bot_mecanum.urdf'), description='Absolute path to URDF file')
+    
+    use_ground_truth_arg = DeclareLaunchArgument('use_ground_truth', default_value='true', description='Use ground truth pose instead of EKF')
+    gt_noise_arg = DeclareLaunchArgument('ground_truth_noise_std', default_value='0.0', description='Standard deviation of noise for ground truth')
+    gt_topic_arg = DeclareLaunchArgument('pose_topic', default_value='/model/my_robot/odometry_with_covariance', description='Ground truth odometry topic')
 
     # Include Gazebo world launch file with absolute path argument
     world_launch = IncludeLaunchDescription(
@@ -94,8 +98,8 @@ def generate_launch_description():
             # "/scan/points@sensor_msgs/msg/PointCloud2@gz.msgs.PointCloudPacked",
             "/camera/depth_image@sensor_msgs/msg/Image@gz.msgs.Image",
             "/camera/points@sensor_msgs/msg/PointCloud2@gz.msgs.PointCloudPacked",
-            # Ground Truth Pose (GZ to ROS2 only - use '[' not '@')
-            "/model/my_robot/pose@geometry_msgs/msg/Pose[gz.msgs.Pose",
+            # Ground Truth Odometry (GZ to ROS2 only - use '[' not '@')
+            "/model/my_robot/odometry_with_covariance@nav_msgs/msg/Odometry[gz.msgs.OdometryWithCovariance",
         ],
         output="screen",
         parameters=[
@@ -165,6 +169,9 @@ def generate_launch_description():
     # launchDescriptionObject.add_action(y_arg)
     # launchDescriptionObject.add_action(yaw_arg)
     launchDescriptionObject.add_action(sim_time_arg)
+    launchDescriptionObject.add_action(use_ground_truth_arg)
+    launchDescriptionObject.add_action(gt_noise_arg)
+    launchDescriptionObject.add_action(gt_topic_arg)
     launchDescriptionObject.add_action(world_launch)
     launchDescriptionObject.add_action(rviz_node)
     launchDescriptionObject.add_action(spawn_urdf_node)

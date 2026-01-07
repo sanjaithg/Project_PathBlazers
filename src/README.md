@@ -1,53 +1,48 @@
-# Documentation Index
+# PathBlazers: TD3-based Navigation Agent
 
-## Quick Navigation
+A ROS2 project implementing TD3 (Twin Delayed DDPG) reinforcement learning for robot navigation with shape-aware obstacle avoidance.
 
-### 🚀 Getting Started (Start Here)
-**[STRATEGY_SUMMARY.md](STRATEGY_SUMMARY.md)** - Executive summary of all changes
-- What was changed
-- Why it matters
-- How to use
-- Success criteria
+## Documentation
 
-### 📖 Main Strategy Document
-**[NAVIGATION_STRATEGY.md](NAVIGATION_STRATEGY.md)** - Complete technical strategy
-- Current issues analysis
-- Multi-layered reward function details
-- State space enhancement
-- Implementation phases (3-phase progression)
-- Dynamic environment adaptation
-- Success criteria by phase
+### 1. [GETTING_STARTED.md](GETTING_STARTED.md) - **Start Here**
+Quick setup, build, and launch instructions.
+- Build the project
+- Launch training
+- Project structure overview
+- Troubleshooting
 
-### 🎓 Training Guide
-**[TRAINING_GUIDE.md](TRAINING_GUIDE.md)** - Practical how-to guide
-- Setup instructions
-- How to launch training
-- Real-time monitoring (what to watch)
-- TensorBoard setup
-- Training phases explained
-- Reward components breakdown
-- New state space (29 dimensions)
-- Troubleshooting quick links
-- Expected timings
+### 2. [BOT_WORLD_SPECS.md](BOT_WORLD_SPECS.md) - Technical Specifications
+Complete robot and environment geometry.
+- Robot dimensions (Mogi Bot Mecanum)
+- Sensor configuration (LIDAR)
+- World layout with obstacles
+- Coordinate tables and wall specifications
 
-### 📊 Before & After Comparison
-**[IMPROVEMENTS_SUMMARY.md](IMPROVEMENTS_SUMMARY.md)** - Detailed improvements
-- Reward function comparison
-- State space enhancement explained
-- Obstacle avoidance strategy
-- Smoothness & stability improvements
-- Expected training outcomes
-- Code quality improvements
-- Visual explanations & graphs
+### 3. [IMPROVEMENTS_SUMMARY.md](IMPROVEMENTS_SUMMARY.md) - Latest Changes
+Recent improvements and updates (2026-01-07).
+- Shape-aware reciprocal barrier function (CBF)
+- LIDAR indexing corrections
+- Configuration updates
+- Reward function enhancements
 
-### 🔧 Debugging & Tuning
-**[DEBUGGING_GUIDE.md](DEBUGGING_GUIDE.md)** - Troubleshooting reference
-- Issue diagnosis (5 common problems)
-- Root cause analysis
-- Solutions with code examples
-- Real-time monitoring checklist
-- Reward function tuning template
-- TensorBoard interpretation
+## Project Overview
+
+**Goal:** Train a Mecanum wheeled robot to navigate a complex indoor environment while avoiding obstacles.
+
+**Algorithm:** TD3 with shape-aware reciprocal barrier reward function
+
+**Key Components:**
+- **State Space:** 29 dimensions (LIDAR rays + goal state + sector awareness)
+- **Action Space:** 4 wheel velocities (omnidirectional)
+- **Reward:** Multi-component function with obstacle avoidance priority
+- **Environment:** Gazebo simulation with wall, furniture, and box obstacles
+
+## Expected Performance
+
+- **Phase 1 (1-50 episodes):** 60% success rate
+- **Phase 2 (51-150 episodes):** 90% success rate
+- **Phase 3 (151+ episodes):** 95%+ convergence
+- **Total Training Time:** ~2.5 hours on CPU
 - Performance optimization tips
 - Common error messages
 - Final verification checklist

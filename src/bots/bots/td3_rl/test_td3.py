@@ -58,6 +58,10 @@ class TD3Tester(Node):
         self.declare_parameter("environment_dim", 20)
         self.declare_parameter("num_goals", 10)  # Number of goals to test
         self.declare_parameter("model_path", "")  # Optional: explicit path to models folder
+        self.declare_parameter("use_ground_truth", False)
+        self.declare_parameter("pose_topic", "/model/my_robot/odometry_with_covariance")
+        self.declare_parameter("odom_topic", "/odometry/filtered")
+        self.declare_parameter("ground_truth_noise_std", 0.0)
         
         # Try to find the models directory
         models_path = self._find_models_path()
@@ -67,20 +71,30 @@ class TD3Tester(Node):
         self.file_name = self.get_parameter("file_name").value
         self.environment_dim = self.get_parameter("environment_dim").value
         self.num_goals = self.get_parameter("num_goals").value
+        self.use_ground_truth = self.get_parameter("use_ground_truth").value
+        self.pose_topic = self.get_parameter("pose_topic").value
+        self.odom_topic = self.get_parameter("odom_topic").value
+        self.ground_truth_noise_std = self.get_parameter("ground_truth_noise_std").value
         
         self.get_logger().info(f"Testing {self.num_goals} random goals")
         self.get_logger().info(f"Max steps per goal: {self.max_ep}")
         self.get_logger().info(f"Loading model: {self.file_name}")
 
         # Create environment
-        env = GazeboEnv(environment_dim=self.environment_dim)
+        env = GazeboEnv(
+            environment_dim=self.environment_dim,
+            use_ground_truth=self.use_ground_truth,
+            pose_topic=self.pose_topic,
+            odom_topic=self.odom_topic,
+            ground_truth_noise_std=self.ground_truth_noise_std
+        )
         
         executor = MultiThreadedExecutor()
         executor.add_node(env)
         env_thread = threading.Thread(target=executor.spin, daemon=True)
         env_thread.start()
 
-        state_dim = self.environment_dim + 5
+        state_dim = self.environment_dim + 9  # Match training
         action_dim = 3
 
         self.env = env

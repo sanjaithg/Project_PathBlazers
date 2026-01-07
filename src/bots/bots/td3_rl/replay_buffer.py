@@ -49,3 +49,22 @@ class ReplayBuffer(object):
     def clear(self):
         self.buffer.clear()
         self.count = 0
+
+    def save(self, filepath):
+        """Save the replay buffer to a file using pickle."""
+        import pickle
+        with open(filepath, 'wb') as f:
+            pickle.dump({
+                'buffer': list(self.buffer),
+                'count': self.count,
+                'buffer_size': self.buffer_size
+            }, f)
+
+    def load(self, filepath):
+        """Load the replay buffer from a file."""
+        import pickle
+        with open(filepath, 'rb') as f:
+            data = pickle.load(f)
+            self.buffer = deque(data['buffer'])
+            self.count = data['count']
+            self.buffer_size = data['buffer_size']

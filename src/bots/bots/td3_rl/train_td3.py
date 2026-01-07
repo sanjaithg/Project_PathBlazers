@@ -20,6 +20,7 @@ except RuntimeError:
 
 import threading
 import time
+import csv
 
 # Initialize ROS2 FIRST before any other heavy imports
 import rclpy
@@ -50,6 +51,45 @@ from bots.td3_rl.replay_buffer import ReplayBuffer
 
 # Global device placeholder - will be set in initialize_environment
 device = None
+
+
+class CSVLogger:
+    """Logs training data to a CSV file for visualization."""
+    
+    def __init__(self, filepath, fieldnames=None):
+        self.filepath = filepath
+        self.fieldnames = fieldnames or [
+            'timestep', 'episode', 'total', 'progress', 'velocity', 'barrier',
+            'heading', 'smoothness', 'angular', 'existence', 'min_laser',
+            'distance_to_goal', 'cmd_vel_x', 'cmd_vel_y', 'cmd_vel_z',
+            'pose_x', 'pose_y', 'pose_yaw', 'goal_x', 'goal_y'
+        ]
+        self.file = None
+        self.writer = None
+        self._init_file()
+    
+    def _init_file(self):
+        self.file = open(self.filepath, 'w', newline='')
+        self.writer = csv.DictWriter(self.file, fieldnames=self.fieldnames)
+        self.writer.writeheader()
+        self.file.flush()
+    
+    def log(self, timestep, episode, info_dict):
+        """Log a single timestep's data."""
+        row = {'timestep': timestep, 'episode': episode}
+        for key in self.fieldnames:
+            if key in info_dict:
+                row[key] = info_dict[key]
+            elif key not in row:
+                row[key] = 0.0
+        self.writer.writerow(row)
+        # Flush periodically for live viewing
+        if timestep % 10 == 0:
+            self.file.flush()
+    
+    def close(self):
+        if self.file:
+            self.file.close()
 
 
 class Actor(nn.Module):
@@ -86,15 +126,11 @@ class Critic(nn.Module):
         # NOTE: Using the original complex layer implementation based on user request.
 
         s1 = F.relu(self.layer_1(s))
-        s11 = torch.mm(s1, self.layer_2_s.weight.data.t())
-        s12 = torch.mm(a, self.layer_2_a.weight.data.t())
-        s1 = F.relu(s11 + s12 + self.layer_2_a.bias.data)
+        s1 = F.relu(self.layer_2_s(s1) + self.layer_2_a(a))
         q1 = self.layer_3(s1)
 
         s2 = F.relu(self.layer_4(s))
-        s21 = torch.mm(s2, self.layer_5_s.weight.data.t())
-        s22 = torch.mm(a, self.layer_5_a.weight.data.t())
-        s2 = F.relu(s21 + s22 + self.layer_5_a.bias.data)
+        s2 = F.relu(self.layer_5_s(s2) + self.layer_5_a(a))
         q2 = self.layer_6(s2)
         return q1, q2
 
@@ -224,12 +260,44 @@ class TD3(object):
             self.writer.add_scalar("Max. Q", max_Q, self.iter_count)
 
     def save(self, filename, directory):
+        """Save actor and critic weights (legacy format for evaluation)."""
         torch.save(self.actor.state_dict(), os.path.join(directory, f"{filename}_actor.pth"))
         torch.save(self.critic.state_dict(), os.path.join(directory, f"{filename}_critic.pth"))
 
     def load(self, filename, directory):
-        self.actor.load_state_dict(torch.load(os.path.join(directory, f"{filename}_actor.pth")))
-        self.critic.load_state_dict(torch.load(os.path.join(directory, f"{filename}_critic.pth")))
+        """Load actor and critic weights (legacy format)."""
+        self.actor.load_state_dict(torch.load(os.path.join(directory, f"{filename}_actor.pth"), weights_only=False))
+        self.critic.load_state_dict(torch.load(os.path.join(directory, f"{filename}_critic.pth"), weights_only=False))
+    
+    def save_checkpoint(self, filename, directory, metadata=None):
+        """Save full training checkpoint including optimizers and metadata."""
+        checkpoint = {
+            'actor': self.actor.state_dict(),
+            'actor_target': self.actor_target.state_dict(),
+            'actor_optimizer': self.actor_optimizer.state_dict(),
+            'critic': self.critic.state_dict(),
+            'critic_target': self.critic_target.state_dict(),
+            'critic_optimizer': self.critic_optimizer.state_dict(),
+            'iter_count': self.iter_count,
+            'metadata': metadata or {}
+        }
+        torch.save(checkpoint, os.path.join(directory, f"{filename}_checkpoint.pth"))
+    
+    def load_checkpoint(self, filename, directory):
+        """Load full training checkpoint. Returns metadata dict."""
+        checkpoint_path = os.path.join(directory, f"{filename}_checkpoint.pth")
+        if not os.path.exists(checkpoint_path):
+            return None
+        
+        checkpoint = torch.load(checkpoint_path, weights_only=False)
+        self.actor.load_state_dict(checkpoint['actor'])
+        self.actor_target.load_state_dict(checkpoint['actor_target'])
+        self.actor_optimizer.load_state_dict(checkpoint['actor_optimizer'])
+        self.critic.load_state_dict(checkpoint['critic'])
+        self.critic_target.load_state_dict(checkpoint['critic_target'])
+        self.critic_optimizer.load_state_dict(checkpoint['critic_optimizer'])
+        self.iter_count = checkpoint.get('iter_count', 0)
+        return checkpoint.get('metadata', {})
 
 
 # Provide a minimal DummyNode when ROS is unavailable so the trainer can run in NO_ROS fallback mode
@@ -300,6 +368,12 @@ class TD3Trainer(BaseNode):
         self.declare_parameter('load_model', False)
         self.declare_parameter('random_near_obstacle', True)
         self.declare_parameter('environment_dim', 20)
+        
+        # Ground-truth pose parameters
+        self.declare_parameter('use_ground_truth', True)
+        self.declare_parameter('pose_topic', '/model/my_robot/odometry_with_covariance')
+        self.declare_parameter('odom_topic', '/odometry/filtered')
+        self.declare_parameter('ground_truth_noise_std', 0.0)
     
     def print_parameters(self):
         self.get_logger().info("Loaded Parameters:")
@@ -339,6 +413,11 @@ class TD3Trainer(BaseNode):
         self.random_near_obstacle = self.get_parameter('random_near_obstacle').value
         self.environment_dim = self.get_parameter('environment_dim').value
         
+        self.use_ground_truth = self.get_parameter('use_ground_truth').value
+        self.pose_topic = self.get_parameter('pose_topic').value
+        self.odom_topic = self.get_parameter('odom_topic').value
+        self.ground_truth_noise_std = self.get_parameter('ground_truth_noise_std').value
+        
         self.print_parameters()
 
         # NOTE: Using a placeholder path here. Replace with your actual path if needed.
@@ -349,7 +428,13 @@ class TD3Trainer(BaseNode):
         os.makedirs(self.results_path, exist_ok=True)
         os.makedirs(self.models_path, exist_ok=True)
 
-        self.env = GazeboEnv(self.environment_dim)
+        self.env = GazeboEnv(
+            self.environment_dim,
+            use_ground_truth=self.use_ground_truth,
+            pose_topic=self.pose_topic,
+            odom_topic=self.odom_topic,
+            ground_truth_noise_std=self.ground_truth_noise_std
+        )
         
         # --- MODIFICATION: Create one MultiThreadedExecutor for both nodes ---
         executor = MultiThreadedExecutor()
@@ -395,11 +480,7 @@ class TD3Trainer(BaseNode):
         self.network = TD3(self.state_dim, self.action_dim, self.max_action)
         self.replay_buffer = ReplayBuffer(self.buffer_size, self.seed)
         
-        if self.load_model:
-            try:
-                self.network.load(self.file_name, self.models_path)
-            except:
-                self.get_logger().warn("Could not load model, initializing training with random parameters")
+        # Note: Model loading is now handled in train_loop for full checkpoint resume support
         
         return executor # Return the executor to be shut down later
 
@@ -412,6 +493,7 @@ class TD3Trainer(BaseNode):
         
         count_rand_actions = 0
         episode_timesteps = 0
+        episode_reward = 0  # Initialize to prevent error on first done check when resuming
         random_action = np.zeros(self.action_dim) 
         last_time = time.time()
         
@@ -424,6 +506,40 @@ class TD3Trainer(BaseNode):
         
         # --- Goal Stability Status ---
         goal_reached_last_step = False
+        
+        # --- INITIALIZE CSV LOGGER ---
+        csv_log_path = os.path.join(self.results_path, "training_log.csv")
+        self.csv_logger = CSVLogger(csv_log_path)
+        self.get_logger().info(f"CSV logging to: {csv_log_path}")
+        
+        # --- CHECKPOINT RESUME LOGIC ---
+        if self.load_model:
+            # Try to load full checkpoint first
+            replay_buffer_path = os.path.join(self.models_path, f"{self.file_name}_replay.pkl")
+            metadata = self.network.load_checkpoint(self.file_name, self.models_path)
+            
+            if metadata is not None:
+                timestep = metadata.get('timestep', 0)
+                episode_num = metadata.get('episode_num', 0)
+                epoch = metadata.get('epoch', 1)
+                self.expl_noise = metadata.get('expl_noise', self.expl_noise)
+                self.best_avg_reward = metadata.get('best_avg_reward', -np.inf)
+                self.total_goals_reached = metadata.get('total_goals_reached', 0)
+                self.total_collisions = metadata.get('total_collisions', 0)
+                
+                # Load replay buffer if exists
+                if os.path.exists(replay_buffer_path):
+                    self.replay_buffer.load(replay_buffer_path)
+                    self.get_logger().info(f"Loaded replay buffer with {self.replay_buffer.size()} experiences")
+                
+                self.get_logger().info(f"Resumed from checkpoint: timestep={timestep}, episode={episode_num}, epoch={epoch}")
+            else:
+                # Fallback to legacy load (just weights)
+                try:
+                    self.network.load(self.file_name, self.models_path)
+                    self.get_logger().info("Loaded model weights (legacy format). Starting from timestep 0.")
+                except Exception:
+                    self.get_logger().warn("Could not load model, initializing training with random parameters")
 
         try:
             while timestep < self.max_timesteps:
@@ -539,7 +655,10 @@ class TD3Trainer(BaseNode):
                 ]
                 # --------------------------------------------------------
                 
-                next_state, reward, done, target = self.env.step(a_in)
+                next_state, reward, done, target, step_info = self.env.step(a_in)
+                
+                # --- LOG TO CSV ---
+                self.csv_logger.log(timestep, episode_num, step_info)
                 
                 # --- GOAL STABILITY FIX: Set flag if goal was reached in this step ---
                 if target:
@@ -561,14 +680,28 @@ class TD3Trainer(BaseNode):
 
         # --- GRACEFUL SHUTDOWN AND SAVE ---
         except KeyboardInterrupt:
-            self.get_logger().info("Caught CTRL+C. Shutting down gracefully and saving model...")
+            self.get_logger().info("Caught CTRL+C. Shutting down gracefully and saving checkpoint...")
             self._stop_robot()  # Stop the robot
-            # Save the evaluations array up to the point of interruption
-            np.save(os.path.join(self.results_path, f"{self.file_name}_interrupted.npy"), evaluations)
+            
+            # Save full checkpoint
             if self.save_model:
-                self.network.save(f"{self.file_name}_interrupted", directory=self.models_path)
-                self.get_logger().info(f"Model and evaluation results saved at timestep {timestep}.")
-            # Now, exit the loop and continue to final save block
+                metadata = {
+                    'timestep': timestep,
+                    'episode_num': episode_num,
+                    'epoch': epoch,
+                    'expl_noise': self.expl_noise,
+                    'best_avg_reward': self.best_avg_reward,
+                    'total_goals_reached': self.total_goals_reached,
+                    'total_collisions': self.total_collisions
+                }
+                self.network.save_checkpoint(self.file_name, self.models_path, metadata)
+                self.replay_buffer.save(os.path.join(self.models_path, f"{self.file_name}_replay.pkl"))
+                np.save(os.path.join(self.results_path, f"{self.file_name}.npy"), evaluations)
+                self.get_logger().info(f"Full checkpoint saved at timestep {timestep}.")
+            
+            # Close CSV logger
+            if hasattr(self, 'csv_logger'):
+                self.csv_logger.close()
         # --- END GRACEFUL SHUTDOWN ---
 
         # After the training is done (either by max_timesteps or interruption), perform final save
@@ -578,10 +711,26 @@ class TD3Trainer(BaseNode):
         elif timestep >= self.max_timesteps:
             # Only save and evaluate if the max timesteps was hit
             self._stop_robot()  # Stop the robot
-            evaluations.append(self.evaluate(network=self.network, epoch=epoch, eval_episodes=self.eval_ep))
+            eval_result = self.evaluate(network=self.network, epoch=epoch, eval_episodes=self.eval_ep)
+            evaluations.append(eval_result[0] if isinstance(eval_result, tuple) else eval_result)
             if self.save_model:
-                self.network.save(self.file_name, directory=self.models_path)
+                metadata = {
+                    'timestep': timestep,
+                    'episode_num': episode_num,
+                    'epoch': epoch,
+                    'expl_noise': self.expl_noise,
+                    'best_avg_reward': self.best_avg_reward,
+                    'total_goals_reached': self.total_goals_reached,
+                    'total_collisions': self.total_collisions
+                }
+                self.network.save_checkpoint(self.file_name, self.models_path, metadata)
+                self.network.save(self.file_name, directory=self.models_path)  # Also save legacy format
+                self.replay_buffer.save(os.path.join(self.models_path, f"{self.file_name}_replay.pkl"))
                 np.save(os.path.join(self.results_path, f"{self.file_name}.npy"), evaluations)
+            
+            # Close CSV logger
+            if hasattr(self, 'csv_logger'):
+                self.csv_logger.close()
     
     def _stop_robot(self):
         """Send zero velocity command to stop the robot."""
@@ -615,7 +764,7 @@ class TD3Trainer(BaseNode):
                 ]
                 # -----------------------------------------------------
 
-                state, reward, done, _ = self.env.step(a_in)
+                state, reward, done, _, _ = self.env.step(a_in)
                 avg_reward += reward
                 count += 1
                 if reward < -90:

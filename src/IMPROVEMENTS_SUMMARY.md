@@ -1,201 +1,43 @@
-# Improvements Summary: Before vs After
+# Improvements Summary: Latest Changes
 
-## 1. Reward Function Overhaul
+## [2026-01-07] Reward Function & Safety Overhaul
 
-### BEFORE (Simple):
-```python
-R_total = distance_change * 400 - angular_penalty * 10 - collision_penalty
-```
-- ❌ Only 3 components
-- ❌ Hard penalties cause unstable learning
-- ❌ No smoothness consideration
-- ❌ Collision penalty not proportional to distance
+### 1. Shape-Aware Reciprocal Barrier Function (CBF)
+**Problem Addressed:** 
+The previous exponential barrier was too weak (~-1.2 per step) and assumed a circular robot, causing the bot to graze walls and get stuck in local minima.
 
-### AFTER (Multi-layered):
-```python
-R_total = 0.40*R_progress + 0.25*R_obstacle + 0.10*R_smoothness + 
-          0.10*R_heading + 0.10*R_time + 0.05*R_angular
-```
-- ✓ 6 complementary components
-- ✓ Weighted combination prevents oscillation
-- ✓ Smooth gradients enable better learning
-- ✓ Proportional penalties scale with danger
-- ✓ Heading guidance gentle (not aggressive)
+**Solution Implemented:** 
+A new **Shape-Aware** barrier in `gazebo_env.py` that respects the robot's rectangular hull (0.4m × 0.2m).
 
-**Key Differences:**
-- Collision penalty: -200 → -500 (clearer negative signal)
-- Progress reward: 400 → 200 (less greedy, allows obstacle awareness)
-- Angular penalty: 10 → 3 (not suppressed too hard)
-- New: Obstacle avoidance field, smoothness reward, safety margins
+**Technical Details:**
+- Calculates per-ray limits based on the robot's geometry (Limits(θ))
+- **Front/Back Safety:** Activates at **0.45m** (braking distance)
+- **Side Safety:** Activates at **0.25m** (corridor clearance)
+- **Penalty:** Reciprocal function (1/d) capped at **-2000**
+- **Result:** Strict wall avoidance with massive penalties (e.g., -1800) for violations, forcing the agent to stay in the safe zone
 
----
+### 2. Lidar Indexing Fix
+**Issue:** 
+ROS `LaserScan` arrays typically start at -π (Back), not 0 (Front), causing misalignment in reward calculations.
 
-## 2. State Space Enhancement
+**Fix Applied:** 
+Corrected the angle calculation in `gazebo_env.py` to properly map the "back" of the robot to the appropriate array indices.
 
-### BEFORE (25 dims):
-```
-[scan_0...scan_19, distance, theta, vx, vy, omega]
-                                     ↓
-                              Raw angle causes
-                              circular discontinuity
-```
-- ❌ Raw angle creates -π to π jump
-- ❌ No local obstacle awareness
-- ❌ Global LIDAR only (no sectoring)
-- ❌ Hard to learn circular relationships
+**Impact:** 
+The reward function now correctly interprets laser readings relative to robot orientation, improving obstacle detection accuracy.
 
-### AFTER (29 dims):
-```
-[scan_0...scan_19, 
- distance,         ← Goal distance
- sin(theta),       ← Circular encoding (continuous)
- cos(theta),       ← Circular encoding (continuous)
- vx, vy, omega,    ← Velocities
- front_danger,     ← Local obstacle sector
- left_danger,      ← Local obstacle sector
- right_danger]     ← Local obstacle sector
-```
-- ✓ sin/cos avoids discontinuity
-- ✓ Sector-based approach gives local context
-- ✓ NN learns local features better
-- ✓ Faster convergence (better state representation)
+### 3. Configuration Updates
+**File Modified:** `td3_config.yaml`
 
-**Why This Matters:**
-```
-Example: angle = 179° vs -181° (same direction)
-BEFORE: Network sees 360° difference (bad!)
-AFTER:  sin(179°) ≈ sin(-181°) = same (good!)
-```
+**Changes Made:**
+- Synced parameters with loaded launch values (`expl_noise: 0.8`, `seed: 0`)
+- Disabled `use_sim_time` for training stability
 
 ---
 
-## 3. Obstacle Avoidance Strategy
-
-### BEFORE:
-```python
-# Simple distance check
-if min_laser < 0.5:
-    penalty = -200
-else:
-    penalty = 0
-```
-- ❌ Binary: penalty or no penalty
-- ❌ No gradient for learning
-- ❌ Robot crashes then learns (reactive)
-
-### AFTER:
-```python
-# Smooth graduated response
-if min_laser < CRITICAL (0.5m):
-    penalty = -((CRITICAL - min) / CRITICAL)² * 150  # Exponential
-elif min_laser < SAFE (0.75m):
-    penalty = -((SAFE - min) / SAFE)^1.5 * 50       # Curved
-else:
-    reward = (min / max_dist) * 10                   # Gentle bonus
-```
-- ✓ Continuous gradient enables learning
-- ✓ Exponential penalty at critical distance
-- ✓ Warning zone before danger
-- ✓ Reward for safe distance (proactive)
-
-**Visual:**
-```
-Reward Curve:
-     +10│     ___
-        │    /   ▔▔▔
-      0 │___/
-        │
-    -50 │    \
-        │     \
-   -150 │      ▁▁▁ (exponential drop)
-        └─────────────── min_laser
-        0.0   0.5  0.75  3.5m
-```
-
----
-
-## 4. Smoothness & Stability Improvements
-
-### NEW Component: Motion Smoothness
-```python
-R_smoothness = -np.linalg.norm(action - prev_action) * 5.0
-```
-- Penalizes sudden velocity changes
-- Encourages consistent navigation
-- Reduces chattering behavior
-
-### NEW Component: Heading Guidance
-```python
-R_heading = np.cos(theta) * 5.0
-```
-- Gentle attraction to goal direction (not aggressive)
-- Weighted only 10% to prevent over-rotation
-- Uses cosine for smooth gradients
-
----
-
-## 5. Training Expected Outcomes
-
-### Episode Success Rates
-
-| Phase | Before | After | Target |
-|-------|--------|-------|--------|
-| Ep 1-10 | 25% | 40% | +60% faster |
-| Ep 11-50 | 30% | 60% | +100% improvement |
-| Ep 51-100 | 50% | 80%+ | Stable learning |
-| Ep 101-150 | 60% | 90%+ | Converged |
-
-### Expected Improvement in Episode 2:
-- **Before**: Ep2 = -629.5 (collision)
-- **After**: Ep2 = +200-300 (likely goal) ✓
-
-### Crash Recovery:
-- **Before**: 4-5 collisions in 5 episodes
-- **After**: 1-2 collisions in 5 episodes ✓
-
----
-
-## 6. Code Quality Improvements
-
-### Reward Function:
-```python
-BEFORE:
-  # Single return statement
-  return R_progress - penalty_angular - penalty_collision + R_time
-
-AFTER:
-  # Documented multi-component approach
-  # Each component has clear purpose
-  # Weights sum to 1.0 (normalized)
-  return (w1*R_progress + w2*R_obstacle + ... + w6*R_angular)
-```
-
-### State Management:
-```python
-BEFORE:
-  robot_state = [distance, theta, vx, vy, omega]
-  # 5 hardcoded values
-
-AFTER:
-  robot_state = [distance, sin(theta), cos(theta), vx, vy, omega,
-                 front_danger, left_danger, right_danger]
-  # Better organized, documented purpose
-```
-
----
-
-## 7. Implementation Checklist
-
-- [x] Multi-layered reward function implemented
-- [x] Obstacle avoidance field with smooth gradients
-- [x] Enhanced state space with sector-based awareness
-- [x] Circular angle encoding (sin/cos)
-- [x] Motion smoothness reward
-- [x] Heading guidance reward
-- [x] Neural network updated for new state size (29 dims)
-- [x] Backward compatibility maintained (same action space)
-- [x] Code syntax verified
-- [x] Ready for training!
+## Key Files Modified
+- `bots/bots/td3_rl/gazebo_env.py` - Shape-aware barrier function + LIDAR indexing
+- `td3_config.yaml` - Parameter synchronization
 
 ---
 

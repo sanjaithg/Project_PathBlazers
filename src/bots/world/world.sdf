@@ -1367,6 +1367,7 @@
       <allow_auto_disable>1</allow_auto_disable>
       <pose>0.000564 -0.000118 0 0 -0 0</pose>
     </model>
+    <!--
     <model name='bookshelf'>
       <static>1</static>
       <link name='link'>
@@ -2054,11 +2055,12 @@
         <gravity>1</gravity>
       </link>
     </model>
-    <state world_name='default'>
+    --><state world_name='default'>
       <sim_time>0 200000000</sim_time> <!-- 4045 200000000 -->
       <real_time>0 200000000</real_time> <!-- 4057 164900122 -->
       <wall_time>0 200000000</wall_time> <!-- 1608175714 312330375 -->
       <iterations>0</iterations> <!-- 4045200 -->
+      <!--
       <model name='bookshelf'>
         <pose>4.78412 -3.73836 0 0 -0 0</pose>
         <scale>1 1 1</scale>
@@ -2069,6 +2071,7 @@
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
+      -->
       <model name='box'>
         <pose>0.000564 -0.000118 0 0 -0 0</pose>
         <scale>1 1 1</scale>
@@ -2163,6 +2166,7 @@
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
+      <!--
       <model name='cardboard_box_0'>
         <pose>3.96847 0.977565 0.149 0 -0 0</pose>
         <scale>1 1 1</scale>
@@ -2213,6 +2217,7 @@
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
+      -->
       <model name='ground_plane'>
         <pose>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
@@ -2223,6 +2228,7 @@
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
+      <!--
       <model name='table'>
         <pose>-4.34248 -0.532954 -9e-06 1e-06 -1e-06 0</pose>
         <scale>1 1 1</scale>
@@ -2233,6 +2239,7 @@
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
+      -->
       <light name='sun'>
         <pose>0 0 10 0 -0 0</pose>
       </light>
