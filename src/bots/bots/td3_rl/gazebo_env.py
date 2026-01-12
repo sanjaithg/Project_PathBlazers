@@ -64,6 +64,10 @@ class GazeboEnv(Node):
         self.reset_proxy = self.create_client(Empty, "/world/default/reset")
 
     def scan_callback(self, scan):
+        # Store scan parameters for collision detection
+        self.scan_angle_min = scan.angle_min
+        self.scan_angle_increment = scan.angle_increment
+        
         # Store FULL scan data for collision detection (all 360 or more points)
         ranges = np.nan_to_num(scan.ranges, nan=self.max_distance, posinf=self.max_distance)
         self.full_scan = np.clip(ranges, 1e-6, self.max_distance)
@@ -297,9 +301,43 @@ class GazeboEnv(Node):
         self.goal_point_publisher.publish(markerArray)
 
     def observe_collision(self, laser_data):
-        min_laser = min(laser_data)
-        if min_laser < COLLISION_DIST:
-            return True, True, min_laser
+        # Detect collision using Robot Bounding Box (0.4m x 0.2m)
+        # Half-dimensions with safety margin
+        ROBOT_HALF_LEN = 0.2 + 0.05  # 0.25m
+        ROBOT_HALF_WIDTH = 0.1 + 0.05 # 0.15m
+        
+        min_laser = self.max_distance
+        
+        # Ensure we have scan parameters
+        if not hasattr(self, 'scan_angle_min') or not hasattr(self, 'scan_angle_increment'):
+             # Fallback to simple distance check if no scan received yet
+             min_laser = min(laser_data)
+             if min_laser < 0.35: # Increased safety margin
+                 return True, True, min_laser
+             return False, False, min_laser
+
+        for i, r in enumerate(laser_data):
+            if r == float('inf') or r == float('nan'):
+                continue
+                
+            min_laser = min(min_laser, r)
+            
+            if r < 0.05: # Ignore self-hits or noise
+                continue
+            
+            # Calculate point in robot frame
+            angle = self.scan_angle_min + (i * self.scan_angle_increment)
+            
+            # Wrap angle to [-pi, pi] (optional but good practice)
+            # angle = (angle + np.pi) % (2 * np.pi) - np.pi
+            
+            px = r * np.cos(angle)
+            py = r * np.sin(angle)
+            
+            if abs(px) < ROBOT_HALF_LEN and abs(py) < ROBOT_HALF_WIDTH:
+                self.get_logger().info(f"Collision detected at x={px:.2f}, y={py:.2f} (r={r:.2f})")
+                return True, True, min_laser
+
         return False, False, min_laser
 
     def get_reward(self, target, collision, action, min_laser, old_distance, new_distance, theta):

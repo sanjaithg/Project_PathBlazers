@@ -2,16 +2,12 @@
 
 <robot name="mogi_bot" xmlns:xacro="http://www.ros.org/wiki/xacro" xmlns:gz="http://gazebosim.org/schema">
 
-  <!-- STEP 5 - Gazebo plugin -->
-  <xacro:include filename="/home/hillman/ROS2_NEW/pathblazers/src/bots/urdf/mogi_bot_mecanum.gazebo"/>
+  <xacro:include filename="$(find bots)/urdf/mogi_bot_mecanum.gazebo"/>
 
-  <!-- STEP 4 - RViz colors -->
-  <xacro:include filename="/home/hillman/ROS2_NEW/pathblazers/src/bots/urdf/materials.xacro" />
+  <xacro:include filename="$(find bots)/urdf/materials.xacro" />
 
-  <!-- STEP 1 - Robot footprint -->
   <link name="base_footprint"></link>
 
-  <!-- STEP 2 - Robot chassis = base_link -->
   <joint name="base_footprint_joint" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0" />
     <parent link="base_footprint"/>
@@ -41,14 +37,11 @@
     <visual name='base_link_visual'>
       <origin xyz="0 0 0" rpy=" 0 0 0"/>
       <geometry>
-        <!-- <box size=".4 .2 .1"/> -->
-        <mesh filename="file:///home/hillman/ROS2_NEW/pathblazers/src/bots/meshes/mogi_bot.dae"/>
+        <mesh filename="package://bots/meshes/mogi_bot.dae"/>
       </geometry>
-      <!-- <material name="orange"/> -->
-    </visual>
+      </visual>
 
   </link>
-  <!-- STEP 3 - Wheels -->
   <joint type="continuous" name="front_left_wheel_joint">
     <origin xyz="0.15 0.15 0" rpy="-1.5707 0 0"/>
     <child link="front_left_wheel"/>
@@ -78,8 +71,7 @@
     <visual name='front_left_wheel_visual'>
       <origin xyz="0 0 0" rpy="1.5707 0 0"/>
       <geometry>
-        <!-- <sphere radius=".1"/> -->
-        <mesh filename="file:///home/hillman/ROS2_NEW/pathblazers/src/bots/meshes/mecanum_wheel_left.STL" scale="0.002 .002 0.002"/>
+        <mesh filename="package://bots/meshes/mecanum_wheel_left.STL" scale="0.002 .002 0.002"/>
       </geometry>
       <material name="green"/>
     </visual>
@@ -114,8 +106,7 @@
     <visual name='rear_left_wheel_visual'>
       <origin xyz="0 0 0" rpy="1.5707 0 0"/>
       <geometry>
-        <!-- <sphere radius=".1"/> -->
-        <mesh filename="file:///home/hillman/ROS2_NEW/pathblazers/src/bots/meshes/mecanum_wheel_right.STL" scale="0.002 .002 0.002"/>
+        <mesh filename="package://bots/meshes/mecanum_wheel_right.STL" scale="0.002 .002 0.002"/>
       </geometry>
       <material name="green"/>
     </visual>
@@ -150,8 +141,7 @@
     <visual name='front_right_wheel_visual'>
       <origin xyz="0 0 0" rpy="1.5707 0 0"/>
       <geometry>
-        <!-- <sphere radius=".1"/> -->
-        <mesh filename="file:///home/hillman/ROS2_NEW/pathblazers/src/bots/meshes/mecanum_wheel_right.STL" scale="0.002 .002 0.002"/>
+        <mesh filename="package://bots/meshes/mecanum_wheel_right.STL" scale="0.002 .002 0.002"/>
       </geometry>
       <material name="green"/>
     </visual>
@@ -186,15 +176,13 @@
     <visual name='rear_right_wheel_visual'>
       <origin xyz="0 0 0" rpy="1.5707 0 0"/>
       <geometry>
-        <!-- <sphere radius=".1"/> -->
-        <mesh filename="file:///home/hillman/ROS2_NEW/pathblazers/src/bots/meshes/mecanum_wheel_left.STL" scale="0.002 .002 0.002"/>
+        <mesh filename="package://bots/meshes/mecanum_wheel_left.STL" scale="0.002 .002 0.002"/>
       </geometry>
       <material name="green"/>
     </visual>
   </link>
 
 
-  <!-- STEP 6 - Gazebo frictions and colors -->
   <gazebo reference='front_left_wheel'>
     <collision>
       <surface>
@@ -253,11 +241,9 @@
     <gazebo reference="base_link">
     <mu1>0.000002</mu1>
     <mu2>0.000002</mu2>
-    <!-- <material>Gazebo/Red</material> -->
-  </gazebo>
+    </gazebo>
 
 
-  <!-- STEP 7 - Camera -->
   <joint type="fixed" name="camera_joint">
     <origin xyz="0.225 0 0.075" rpy="0 0 0"/>
     <child link="camera_link"/>
@@ -306,7 +292,6 @@
   <link name="camera_link_optical">
   </link>
 
-  <!-- STEP 8 - IMU -->
   <joint name="imu_joint" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0" />
     <parent link="base_link"/>
@@ -316,7 +301,6 @@
   <link name="imu_link">
   </link>
 
-  <!-- STEP 9 - GPS -->
   <joint name="navsat_joint" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0" />
     <parent link="base_link"/>
@@ -326,7 +310,6 @@
   <link name="navsat_link">
   </link>
 
-  <!-- STEP 10 - Lidar -->
   <joint type="fixed" name="scan_joint">
     <origin xyz="0.0 0 0.15" rpy="0 0 0"/>
     <child link="scan_link"/>
@@ -354,7 +337,7 @@
     <visual name='scan_link_visual'>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename = "file:///home/hillman/ROS2_NEW/pathblazers/src/bots/meshes/lidar.dae"/>
+        <mesh filename = "package://bots/meshes/lidar.dae"/>
       </geometry>
     </visual>
 

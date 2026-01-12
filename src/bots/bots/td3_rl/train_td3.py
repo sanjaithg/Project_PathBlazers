@@ -72,7 +72,7 @@ class Critic(nn.Module):
 # TD3 network
 class TD3(object):
     def __init__(self, state_dim, action_dim, max_action):
-        td3_rl_path = os.path.dirname(os.path.abspath(__file__))
+        td3_rl_path = "/home/hillman/ROS2_NEW/pathblazers/src/bots/bots/td3_rl"
         
         # Initialize the Actor network
         self.actor = Actor(state_dim, action_dim).to(device)
@@ -257,7 +257,7 @@ class TD3Trainer(Node):
         self.print_parameters()
 
         # NOTE: Using a placeholder path here. Replace with your actual path if needed.
-        td3_rl_path = os.path.dirname(os.path.abspath(__file__)) 
+        td3_rl_path = "/home/hillman/ROS2_NEW/pathblazers/src/bots/bots/td3_rl" 
         
         self.results_path = os.path.join(td3_rl_path, "results")
         self.models_path = os.path.join(td3_rl_path, "pytorch_models")
