@@ -1,0 +1,112 @@
+nohup: ignoring input
+[INFO] [launch]: All log files can be found below /home/dark/.ros/log/2026-01-09-00-05-29-174414-dark-Inspiron-51412
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [gazebo-1]: process started with pid [51436]
+[INFO] [create-2]: process started with pid [51437]
+[INFO] [parameter_bridge-3]: process started with pid [51439]
+[INFO] [image_bridge-4]: process started with pid [51440]
+[INFO] [relay-5]: process started with pid [51442]
+[INFO] [robot_state_publisher-6]: process started with pid [51443]
+[INFO] [static_transform_publisher-7]: process started with pid [51444]
+[INFO] [static_transform_publisher-8]: process started with pid [51445]
+[INFO] [ekf_node-9]: process started with pid [51446]
+[relay-5] [WARN] [1767897330.619791826] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[relay-5] [WARN] [1767897330.619856171] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[robot_state_publisher-6] [WARN] [1767897330.636858282] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[robot_state_publisher-6] [WARN] [1767897330.636918608] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[static_transform_publisher-8] [WARN] [1767897330.641344246] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[static_transform_publisher-8] [WARN] [1767897330.641386172] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[static_transform_publisher-8] [WARN] [1767897330.642254029] []: Old-style arguments are deprecated; see --help for new-style arguments
+[static_transform_publisher-7] [WARN] [1767897330.648530438] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[static_transform_publisher-7] [WARN] [1767897330.648575271] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[static_transform_publisher-7] [WARN] [1767897330.649456132] []: Old-style arguments are deprecated; see --help for new-style arguments
+[create-2] [WARN] [1767897330.664519397] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[create-2] [WARN] [1767897330.664590511] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[ekf_node-9] [WARN] [1767897330.682689189] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[ekf_node-9] [WARN] [1767897330.682738461] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[static_transform_publisher-7] [INFO] [1767897330.702207107] [fix_gpu_lidar_frame]: Spinning until stopped - publishing transform
+[static_transform_publisher-7] translation: ('0.000000', '0.000000', '0.000000')
+[static_transform_publisher-7] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-7] from 'scan_link' to 'my_robot/base_footprint/gpu_lidar'
+[image_bridge-4] [WARN] [1767897330.704650390] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[image_bridge-4] [WARN] [1767897330.704683686] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[parameter_bridge-3] [WARN] [1767897330.708604383] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[parameter_bridge-3] [WARN] [1767897330.708641182] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[static_transform_publisher-8] [INFO] [1767897330.728569857] [map_to_odom_tf]: Spinning until stopped - publishing transform
+[static_transform_publisher-8] translation: ('0.000000', '0.000000', '0.000000')
+[static_transform_publisher-8] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-8] from 'map' to 'odom'
+[create-2] [INFO] [1767897330.730675433] [ros_gz_sim]: Requesting list of world names.
+[robot_state_publisher-6] [INFO] [1767897330.739078154] [robot_state_publisher]: Robot initialized
+[parameter_bridge-3] [INFO] [1767897330.748672515] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1767897330.750493587] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/cmd_vel (gz.msgs.Twist) -> /cmd_vel (geometry_msgs/msg/Twist)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1767897330.754034009] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/cmd_vel (geometry_msgs/msg/Twist) -> /cmd_vel (gz.msgs.Twist)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1767897330.755236166] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/odom (gz.msgs.Odometry) -> /odom (nav_msgs/msg/Odometry)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1767897330.758986242] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/odom (nav_msgs/msg/Odometry) -> /odom (gz.msgs.Odometry)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1767897330.762146837] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/joint_states (gz.msgs.Model) -> /joint_states (sensor_msgs/msg/JointState)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1767897330.765162699] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/joint_states (sensor_msgs/msg/JointState) -> /joint_states (gz.msgs.Model)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1767897330.768030337] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/camera/camera_info (gz.msgs.CameraInfo) -> /camera/camera_info (sensor_msgs/msg/CameraInfo)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1767897330.770103209] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/camera/camera_info (sensor_msgs/msg/CameraInfo) -> /camera/camera_info (gz.msgs.CameraInfo)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1767897330.771489087] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/imu (gz.msgs.IMU) -> /imu (sensor_msgs/msg/Imu)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1767897330.773471257] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/imu (sensor_msgs/msg/Imu) -> /imu (gz.msgs.IMU)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1767897330.775272579] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/scan (gz.msgs.LaserScan) -> /scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1767897330.777143512] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/scan (sensor_msgs/msg/LaserScan) -> /scan (gz.msgs.LaserScan)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1767897330.780919685] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/camera/depth_image (gz.msgs.Image) -> /camera/depth_image (sensor_msgs/msg/Image)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1767897330.782867419] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/camera/depth_image (sensor_msgs/msg/Image) -> /camera/depth_image (gz.msgs.Image)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1767897330.785305539] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/camera/points (gz.msgs.PointCloudPacked) -> /camera/points (sensor_msgs/msg/PointCloud2)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1767897330.787405060] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/camera/points (sensor_msgs/msg/PointCloud2) -> /camera/points (gz.msgs.PointCloudPacked)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1767897330.789278328] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/my_robot/odometry_with_covariance (gz.msgs.OdometryWithCovariance) -> /model/my_robot/odometry_with_covariance (nav_msgs/msg/Odometry)] (Lazy 0)
+[ekf_node-9] [INFO] [1767897330.791419655] [ekf_filter_node]: Detected a initial_estimate_covariance parameter with length 15. Assuming diagonal values specified.
+[create-2] [INFO] [1767897330.944515665] [ros_gz_sim]: Waiting messages on topic [robot_description].
+[create-2] [INFO] [1767897330.957128822] [ros_gz_sim]: Entity creation successful.
+[INFO] [create-2]: process has finished cleanly [pid 51437]
+[gazebo-1] [1;31m[GUI] [Err] [BaseStorage.hh:975] [0m[1;31mAnother item already exists with name: [0m[1;31mbox::Wall_9[0m[1;31m[0m
+[gazebo-1] Stack trace (most recent call last) in thread 51808:
+[gazebo-1] #23   Object "[0xffffffffffffffff]", at 0xffffffffffffffff, in 
+[gazebo-1] #22   Object "/lib/x86_64-linux-gnu/libc.so.6", at 0x7c923cd29c3b, in 
+[gazebo-1] #21   Object "/lib/x86_64-linux-gnu/libc.so.6", at 0x7c923cc9caa3, in 
+[gazebo-1] #20   Object "/lib/x86_64-linux-gnu/libQt5Core.so.5", at 0x7c92354db673, in 
+[gazebo-1] #19   Object "/lib/x86_64-linux-gnu/libQt5Core.so.5", at 0x7c92354da36a, in QThread::exec()
+[gazebo-1] #18   Object "/lib/x86_64-linux-gnu/libQt5Core.so.5", at 0x7c92356d6a7a, in QEventLoop::exec(QFlags<QEventLoop::ProcessEventsFlag>)
+[gazebo-1] #17   Object "/lib/x86_64-linux-gnu/libQt5Core.so.5", at 0x7c9235735278, in QEventDispatcherGlib::processEvents(QFlags<QEventLoop::ProcessEventsFlag>)
+[gazebo-1] #16   Object "/lib/x86_64-linux-gnu/libglib-2.0.so.0", at 0x7c9236913a62, in g_main_context_iteration
+[gazebo-1] #15   Object "/lib/x86_64-linux-gnu/libglib-2.0.so.0", at 0x7c9236973736, in 
+[gazebo-1] #14   Object "/lib/x86_64-linux-gnu/libglib-2.0.so.0", at 0x7c92369145c4, in 
+[gazebo-1] #13   Object "/lib/x86_64-linux-gnu/libQt5Core.so.5", at 0x7c9235735c0e, in 
+[gazebo-1] #12   Object "/lib/x86_64-linux-gnu/libQt5Core.so.5", at 0x7c92356db94a, in QCoreApplicationPrivate::sendPostedEvents(QObject*, int, QThreadData*)
+[gazebo-1] #11   Object "/lib/x86_64-linux-gnu/libQt5Core.so.5", at 0x7c92356d8117, in QCoreApplication::notifyInternal2(QObject*, QEvent*)
+[gazebo-1] #10   Object "/lib/x86_64-linux-gnu/libQt5Widgets.so.5", at 0x7c9234d6bd44, in QApplicationPrivate::notify_helper(QObject*, QEvent*)
+[gazebo-1] #9    Object "/lib/x86_64-linux-gnu/libQt5Core.so.5", at 0x7c9235706342, in QObject::event(QEvent*)
+[gazebo-1] #8    Object "/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libMinimalScene.so", at 0x7c9219423dab, in gz::gui::plugins::RenderThread::RenderNext(gz::gui::plugins::RenderSync*)
+[gazebo-1] #7    Object "/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libMinimalScene.so", at 0x7c9219437546, in gz::gui::plugins::RenderThreadRhiOpenGL::RenderNext(gz::gui::plugins::RenderSync*)
+[gazebo-1] #6    Object "/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libMinimalScene.so", at 0x7c9219428307, in gz::gui::plugins::GzRenderer::Render(gz::gui::plugins::RenderSync*, gz::gui::plugins::RenderThreadRhi&)
+[gazebo-1] #5    Object "/lib/x86_64-linux-gnu/libQt5Core.so.5", at 0x7c92356d8117, in QCoreApplication::notifyInternal2(QObject*, QEvent*)
+[gazebo-1] #4    Object "/lib/x86_64-linux-gnu/libQt5Widgets.so.5", at 0x7c9234d6bd34, in QApplicationPrivate::notify_helper(QObject*, QEvent*)
+[gazebo-1] #3    Object "/lib/x86_64-linux-gnu/libQt5Core.so.5", at 0x7c92356d7e81, in QCoreApplicationPrivate::sendThroughObjectEventFilters(QObject*, QEvent*)
+[gazebo-1] #2    Object "/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libGzSceneManager.so", at 0x7c920c1e4dc8, in gz::sim::v8::GzSceneManager::eventFilter(QObject*, QEvent*)
+[gazebo-1] #1    Object "/opt/ros/jazzy/opt/gz_sim_vendor/lib/libgz-sim8-rendering.so.8", at 0x7c920c1446b9, in gz::sim::v8::RenderUtil::Update()
+[gazebo-1] #0    Object "/opt/ros/jazzy/opt/gz_sim_vendor/lib/libgz-sim8-rendering.so.8", at 0x7c920c17ff59, in gz::sim::v8::SceneManager::CreateLink(unsigned long, sdf::v14::Link const&, unsigned long)
+[gazebo-1] Segmentation fault (Address not mapped to object [(nil)])
+[INFO] [gazebo-1]: process has finished cleanly [pid 51436]
+[INFO] [launch]: process[gazebo-1] was required: shutting down launched system
+[INFO] [ekf_node-9]: sending signal 'SIGINT' to process[ekf_node-9]
+[INFO] [static_transform_publisher-8]: sending signal 'SIGINT' to process[static_transform_publisher-8]
+[INFO] [static_transform_publisher-7]: sending signal 'SIGINT' to process[static_transform_publisher-7]
+[INFO] [robot_state_publisher-6]: sending signal 'SIGINT' to process[robot_state_publisher-6]
+[INFO] [relay-5]: sending signal 'SIGINT' to process[relay-5]
+[INFO] [image_bridge-4]: sending signal 'SIGINT' to process[image_bridge-4]
+[INFO] [parameter_bridge-3]: sending signal 'SIGINT' to process[parameter_bridge-3]
+[ekf_node-9] [INFO] [1767897338.107177348] [rclcpp]: signal_handler(signum=2)
+[static_transform_publisher-8] [INFO] [1767897338.109121834] [rclcpp]: signal_handler(signum=2)
+[static_transform_publisher-7] [INFO] [1767897338.111159388] [rclcpp]: signal_handler(signum=2)
+[robot_state_publisher-6] [INFO] [1767897338.114594038] [rclcpp]: signal_handler(signum=2)
+[relay-5] [INFO] [1767897338.118087420] [rclcpp]: signal_handler(signum=2)
+[image_bridge-4] [INFO] [1767897338.120774000] [rclcpp]: signal_handler(signum=2)
+[parameter_bridge-3] [INFO] [1767897338.124119444] [rclcpp]: signal_handler(signum=2)
+[INFO] [static_transform_publisher-8]: process has finished cleanly [pid 51445]
+[INFO] [static_transform_publisher-7]: process has finished cleanly [pid 51444]
+[INFO] [relay-5]: process has finished cleanly [pid 51442]
+[INFO] [parameter_bridge-3]: process has finished cleanly [pid 51439]
+[INFO] [robot_state_publisher-6]: process has finished cleanly [pid 51443]
+[INFO] [ekf_node-9]: process has finished cleanly [pid 51446]
+[INFO] [image_bridge-4]: process has finished cleanly [pid 51440]

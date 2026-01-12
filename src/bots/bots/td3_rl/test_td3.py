@@ -22,11 +22,14 @@ class Actor(nn.Module):
         self.layer_1 = nn.Linear(state_dim, 800)
         self.layer_2 = nn.Linear(800, 600)
         self.layer_3 = nn.Linear(600, action_dim)
+        
+        self.ln1 = nn.LayerNorm(800)
+        self.ln2 = nn.LayerNorm(600)
         self.tanh = nn.Tanh()
 
     def forward(self, s):
-        s = F.relu(self.layer_1(s))
-        s = F.relu(self.layer_2(s))
+        s = F.relu(self.ln1(self.layer_1(s)))
+        s = F.relu(self.ln2(self.layer_2(s)))
         a = self.tanh(self.layer_3(s))
         return a
 
@@ -94,7 +97,7 @@ class TD3Tester(Node):
         env_thread = threading.Thread(target=executor.spin, daemon=True)
         env_thread.start()
 
-        state_dim = self.environment_dim + 9  # Match training
+        state_dim = self.environment_dim + 14  # Match training (20 + 2 + 3 + 3 + 6)
         action_dim = 3
 
         self.env = env

@@ -1,0 +1,81 @@
+nohup: ignoring input
+[INFO] [launch]: All log files can be found below /home/dark/.ros/log/2026-01-10-17-13-13-071356-dark-Inspiron-27816
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [gazebo-1]: process started with pid [27841]
+[INFO] [create-2]: process started with pid [27842]
+[INFO] [parameter_bridge-3]: process started with pid [27843]
+[INFO] [image_bridge-4]: process started with pid [27845]
+[INFO] [relay-5]: process started with pid [27846]
+[INFO] [robot_state_publisher-6]: process started with pid [27847]
+[INFO] [static_transform_publisher-7]: process started with pid [27849]
+[INFO] [static_transform_publisher-8]: process started with pid [27850]
+[INFO] [ekf_node-9]: process started with pid [27851]
+[static_transform_publisher-8] [WARN] [1768045393.535336169] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[static_transform_publisher-8] [WARN] [1768045393.535350418] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[static_transform_publisher-7] [WARN] [1768045393.535528992] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[static_transform_publisher-7] [WARN] [1768045393.535546120] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[relay-5] [WARN] [1768045393.535618368] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[relay-5] [WARN] [1768045393.535632875] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[robot_state_publisher-6] [WARN] [1768045393.535814738] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[robot_state_publisher-6] [WARN] [1768045393.535829154] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[static_transform_publisher-8] [WARN] [1768045393.535878148] []: Old-style arguments are deprecated; see --help for new-style arguments
+[static_transform_publisher-7] [WARN] [1768045393.536144273] []: Old-style arguments are deprecated; see --help for new-style arguments
+[ekf_node-9] [WARN] [1768045393.536431441] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[ekf_node-9] [WARN] [1768045393.536439926] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[create-2] [WARN] [1768045393.565866661] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[create-2] [WARN] [1768045393.565944303] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[static_transform_publisher-7] [INFO] [1768045393.591140391] [fix_gpu_lidar_frame]: Spinning until stopped - publishing transform
+[static_transform_publisher-7] translation: ('0.000000', '0.000000', '0.000000')
+[static_transform_publisher-7] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-7] from 'scan_link' to 'my_robot/base_footprint/gpu_lidar'
+[static_transform_publisher-8] [INFO] [1768045393.591216847] [map_to_odom_tf]: Spinning until stopped - publishing transform
+[static_transform_publisher-8] translation: ('0.000000', '0.000000', '0.000000')
+[static_transform_publisher-8] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-8] from 'map' to 'odom'
+[robot_state_publisher-6] [INFO] [1768045393.605160154] [robot_state_publisher]: Robot initialized
+[create-2] [INFO] [1768045393.605210995] [ros_gz_sim]: Requesting list of world names.
+[image_bridge-4] [WARN] [1768045393.606649626] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[image_bridge-4] [WARN] [1768045393.606662551] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[ekf_node-9] [INFO] [1768045393.616149634] [ekf_filter_node]: Detected a initial_estimate_covariance parameter with length 15. Assuming diagonal values specified.
+[parameter_bridge-3] [WARN] [1768045393.616722897] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[parameter_bridge-3] [WARN] [1768045393.616741119] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[parameter_bridge-3] [INFO] [1768045393.631919496] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1768045393.633399105] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/cmd_vel (gz.msgs.Twist) -> /cmd_vel (geometry_msgs/msg/Twist)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1768045393.636475809] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/cmd_vel (geometry_msgs/msg/Twist) -> /cmd_vel (gz.msgs.Twist)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1768045393.637673454] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/odom (gz.msgs.Odometry) -> /odom (nav_msgs/msg/Odometry)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1768045393.639362620] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/odom (nav_msgs/msg/Odometry) -> /odom (gz.msgs.Odometry)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1768045393.639810647] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/joint_states (gz.msgs.Model) -> /joint_states (sensor_msgs/msg/JointState)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1768045393.641425181] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/joint_states (sensor_msgs/msg/JointState) -> /joint_states (gz.msgs.Model)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1768045393.642231853] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/camera/camera_info (gz.msgs.CameraInfo) -> /camera/camera_info (sensor_msgs/msg/CameraInfo)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1768045393.643748441] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/camera/camera_info (sensor_msgs/msg/CameraInfo) -> /camera/camera_info (gz.msgs.CameraInfo)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1768045393.644824910] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/imu (gz.msgs.IMU) -> /imu (sensor_msgs/msg/Imu)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1768045393.645465476] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/imu (sensor_msgs/msg/Imu) -> /imu (gz.msgs.IMU)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1768045393.646270813] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/scan (gz.msgs.LaserScan) -> /scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1768045393.647138431] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/scan (sensor_msgs/msg/LaserScan) -> /scan (gz.msgs.LaserScan)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1768045393.647865117] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/camera/depth_image (gz.msgs.Image) -> /camera/depth_image (sensor_msgs/msg/Image)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1768045393.648652570] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/camera/depth_image (sensor_msgs/msg/Image) -> /camera/depth_image (gz.msgs.Image)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1768045393.649483401] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/camera/points (gz.msgs.PointCloudPacked) -> /camera/points (sensor_msgs/msg/PointCloud2)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1768045393.650484532] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/camera/points (sensor_msgs/msg/PointCloud2) -> /camera/points (gz.msgs.PointCloudPacked)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1768045393.651352986] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/my_robot/odometry_with_covariance (gz.msgs.OdometryWithCovariance) -> /model/my_robot/odometry_with_covariance (nav_msgs/msg/Odometry)] (Lazy 0)
+[create-2] [INFO] [1768045394.200674306] [ros_gz_sim]: Waiting messages on topic [robot_description].
+[create-2] [INFO] [1768045394.213860965] [ros_gz_sim]: Entity creation successful.
+[INFO] [create-2]: process has finished cleanly [pid 27842]
+[parameter_bridge-3] [INFO] [1768045422.108955336] [ros_gz_bridge]: Passing message from ROS geometry_msgs/msg/Twist to Gazebo gz.msgs.Twist (showing msg only once per type)
+[ERROR] [gazebo-1]: process has died [pid 27841, exit code -15, cmd 'ruby $(which gz) sim /home/dark/ros2_ws/src2/Project_PathBlazers/install/bots/share/bots/world/world.sdf -r -v -v1 -s --force-version 8'].
+[INFO] [launch]: process[gazebo-1] was required: shutting down launched system
+[parameter_bridge-3] [INFO] [1768046416.730540401] [rclcpp]: signal_handler(signum=15)
+[image_bridge-4] [INFO] [1768046416.730544770] [rclcpp]: signal_handler(signum=15)
+[INFO] [ekf_node-9]: sending signal 'SIGINT' to process[ekf_node-9]
+[INFO] [static_transform_publisher-8]: sending signal 'SIGINT' to process[static_transform_publisher-8]
+[INFO] [static_transform_publisher-7]: sending signal 'SIGINT' to process[static_transform_publisher-7]
+[INFO] [robot_state_publisher-6]: sending signal 'SIGINT' to process[robot_state_publisher-6]
+[INFO] [relay-5]: sending signal 'SIGINT' to process[relay-5]
+[INFO] [image_bridge-4]: sending signal 'SIGINT' to process[image_bridge-4]
+[INFO] [parameter_bridge-3]: sending signal 'SIGINT' to process[parameter_bridge-3]
+[ekf_node-9] [INFO] [1768046416.753694656] [rclcpp]: signal_handler(signum=2)
+[static_transform_publisher-8] [INFO] [1768046416.757961664] [rclcpp]: signal_handler(signum=2)
+[static_transform_publisher-7] [INFO] [1768046416.761305380] [rclcpp]: signal_handler(signum=2)
+[robot_state_publisher-6] [INFO] [1768046416.764490708] [rclcpp]: signal_handler(signum=2)
+[relay-5] [INFO] [1768046416.769937890] [rclcpp]: signal_handler(signum=2)
+[image_bridge-4] [INFO] [1768046416.773022297] [rclcpp]: signal_handler(signum=2)
+[parameter_bridge-3] [INFO] [1768046416.777097120] [rclcpp]: signal_handler(signum=2)

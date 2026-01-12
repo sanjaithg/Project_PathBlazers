@@ -1,0 +1,321 @@
+[INFO] [launch]: All log files can be found below /home/dark/.ros/log/2026-01-12-16-46-34-249074-dark-Inspiron-40850
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [gazebo-1]: process started with pid [40854]
+[INFO] [rviz2-2]: process started with pid [40855]
+[INFO] [create-3]: process started with pid [40857]
+[INFO] [parameter_bridge-4]: process started with pid [40858]
+[INFO] [image_bridge-5]: process started with pid [40860]
+[INFO] [relay-6]: process started with pid [40861]
+[INFO] [robot_state_publisher-7]: process started with pid [40862]
+[INFO] [static_transform_publisher-8]: process started with pid [40863]
+[INFO] [static_transform_publisher-9]: process started with pid [40870]
+[INFO] [ekf_node-10]: process started with pid [40871]
+[relay-6] [WARN] [1768216594.841545192] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[relay-6] [WARN] [1768216594.841617567] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[robot_state_publisher-7] [WARN] [1768216594.842876097] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[robot_state_publisher-7] [WARN] [1768216594.842928304] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[static_transform_publisher-8] [WARN] [1768216594.844308323] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[static_transform_publisher-8] [WARN] [1768216594.844361124] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[static_transform_publisher-8] [WARN] [1768216594.845452605] []: Old-style arguments are deprecated; see --help for new-style arguments
+[create-3] [WARN] [1768216594.889960986] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[create-3] [WARN] [1768216594.891163223] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[static_transform_publisher-9] [WARN] [1768216594.906483706] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[static_transform_publisher-9] [WARN] [1768216594.906533903] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[static_transform_publisher-9] [WARN] [1768216594.907389230] []: Old-style arguments are deprecated; see --help for new-style arguments
+[ekf_node-10] [WARN] [1768216594.907710764] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[ekf_node-10] [WARN] [1768216594.907744462] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[image_bridge-5] [WARN] [1768216594.929991212] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[image_bridge-5] [WARN] [1768216594.930059542] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[parameter_bridge-4] [WARN] [1768216594.950826183] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[parameter_bridge-4] [WARN] [1768216594.952822994] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[rviz2-2] [WARN] [1768216595.074814185] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[rviz2-2] [WARN] [1768216595.074832596] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[create-3] [INFO] [1768216595.501495884] [ros_gz_sim]: Requesting list of world names.
+[ekf_node-10] [INFO] [1768216595.515856687] [ekf_filter_node]: Detected a initial_estimate_covariance parameter with length 15. Assuming diagonal values specified.
+[robot_state_publisher-7] [INFO] [1768216595.676918611] [robot_state_publisher]: Robot initialized
+[create-3] [INFO] [1768216595.749555520] [ros_gz_sim]: Waiting messages on topic [robot_description].
+[create-3] [INFO] [1768216595.944955342] [ros_gz_sim]: Entity creation successful.
+[static_transform_publisher-8] [INFO] [1768216596.051647167] [fix_gpu_lidar_frame]: Spinning until stopped - publishing transform
+[static_transform_publisher-8] translation: ('0.000000', '0.000000', '0.000000')
+[static_transform_publisher-8] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-8] from 'scan_link' to 'my_robot/base_footprint/gpu_lidar'
+[parameter_bridge-4] [INFO] [1768216596.070842422] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1768216596.074117066] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/cmd_vel (gz.msgs.Twist) -> /cmd_vel (geometry_msgs/msg/Twist)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1768216596.080253363] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/cmd_vel (geometry_msgs/msg/Twist) -> /cmd_vel (gz.msgs.Twist)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1768216596.083328268] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/odom (gz.msgs.Odometry) -> /odom (nav_msgs/msg/Odometry)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1768216596.088688117] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/odom (nav_msgs/msg/Odometry) -> /odom (gz.msgs.Odometry)] (Lazy 0)
+[INFO] [create-3]: process has finished cleanly [pid 40857]
+[parameter_bridge-4] [INFO] [1768216596.092027792] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/joint_states (gz.msgs.Model) -> /joint_states (sensor_msgs/msg/JointState)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1768216596.096070106] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/joint_states (sensor_msgs/msg/JointState) -> /joint_states (gz.msgs.Model)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1768216596.097364995] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/camera/camera_info (gz.msgs.CameraInfo) -> /camera/camera_info (sensor_msgs/msg/CameraInfo)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1768216596.098826246] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/camera/camera_info (sensor_msgs/msg/CameraInfo) -> /camera/camera_info (gz.msgs.CameraInfo)] (Lazy 0)
+[rviz2-2] [INFO] [1768216596.099518210] [rviz2]: Stereo is NOT SUPPORTED
+[rviz2-2] [INFO] [1768216596.099642663] [rviz2]: OpenGl version: 4.6 (GLSL 4.6)
+[parameter_bridge-4] [INFO] [1768216596.100359417] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/imu (gz.msgs.IMU) -> /imu (sensor_msgs/msg/Imu)] (Lazy 0)
+[rviz2-2] [INFO] [1768216596.121958248] [rviz2]: Stereo is NOT SUPPORTED
+[parameter_bridge-4] [INFO] [1768216596.199938122] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/imu (sensor_msgs/msg/Imu) -> /imu (gz.msgs.IMU)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1768216596.202085240] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/scan (gz.msgs.LaserScan) -> /scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1768216596.203724625] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/scan (sensor_msgs/msg/LaserScan) -> /scan (gz.msgs.LaserScan)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1768216596.205722786] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/camera/depth_image (gz.msgs.Image) -> /camera/depth_image (sensor_msgs/msg/Image)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1768216596.208460247] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/camera/depth_image (sensor_msgs/msg/Image) -> /camera/depth_image (gz.msgs.Image)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1768216596.210638366] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/camera/points (gz.msgs.PointCloudPacked) -> /camera/points (sensor_msgs/msg/PointCloud2)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1768216596.213702959] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/camera/points (sensor_msgs/msg/PointCloud2) -> /camera/points (gz.msgs.PointCloudPacked)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1768216596.216184659] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/my_robot/odometry_with_covariance (gz.msgs.OdometryWithCovariance) -> /model/my_robot/odometry_with_covariance (nav_msgs/msg/Odometry)] (Lazy 0)
+[static_transform_publisher-9] [INFO] [1768216596.382417510] [map_to_odom_tf]: Spinning until stopped - publishing transform
+[static_transform_publisher-9] translation: ('0.000000', '0.000000', '0.000000')
+[static_transform_publisher-9] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-9] from 'map' to 'odom'
+[rviz2-2] [INFO] [1768216596.676045424] [rviz]: Subscribing to: /scan/points
+[rviz2-2] 
+[rviz2-2] [INFO] [1768216596.679327712] [rviz]: Subscribing to: /scan/points
+[rviz2-2] 
+[rviz2-2] [INFO] [1768216596.785192751] [rviz]: Subscribing to: /scan/points
+[rviz2-2] 
+[rviz2-2] [INFO] [1768216596.912845722] [rviz2]: Stereo is NOT SUPPORTED
+[rviz2-2] [INFO] [1768216609.335497365] [rviz]: Message Filter dropping message: frame 'my_robot/base_footprint/gpu_lidar' at time 0.008 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[WARN] [1768216617.169490381] [rcl]: ROS_LOCALHOST_ONLY is deprecated but still honored if it is enabled. Use ROS_AUTOMATIC_DISCOVERY_RANGE and ROS_STATIC_PEERS instead.
+[WARN] [1768216617.169659245] [rcl]: 'localhost_only' is enabled, 'automatic_discovery_range' and 'static_peers' will be ignored.
+[INFO] [1768216617.416295887] [td3_trainer]: Using device: cpu
+[INFO] [1768216617.416933363] [td3_trainer]: Loaded Parameters:
+[INFO] [1768216617.417405337] [td3_trainer]: use_sim_time: False
+[INFO] [1768216617.418927217] [td3_trainer]: start_type_description_service: True
+[INFO] [1768216617.419642648] [td3_trainer]: seed: 0
+[INFO] [1768216617.420148888] [td3_trainer]: eval_freq: 500
+[INFO] [1768216617.420628579] [td3_trainer]: max_ep: 150
+[INFO] [1768216617.421090533] [td3_trainer]: eval_ep: 10
+[INFO] [1768216617.421909589] [td3_trainer]: max_timesteps: 500000
+[INFO] [1768216617.423465618] [td3_trainer]: expl_noise: 0.8
+[INFO] [1768216617.424605598] [td3_trainer]: expl_decay_steps: 100000
+[INFO] [1768216617.425479129] [td3_trainer]: expl_min: 0.05
+[INFO] [1768216617.426696222] [td3_trainer]: batch_size: 128
+[INFO] [1768216617.427634790] [td3_trainer]: discount: 0.99
+[INFO] [1768216617.429038867] [td3_trainer]: tau: 0.005
+[INFO] [1768216617.431477078] [td3_trainer]: policy_noise: 0.2
+[INFO] [1768216617.433309778] [td3_trainer]: noise_clip: 0.5
+[INFO] [1768216617.434846122] [td3_trainer]: policy_freq: 2
+[INFO] [1768216617.436286238] [td3_trainer]: buffer_size: 1000000
+[INFO] [1768216617.437071610] [td3_trainer]: file_name: TD3_Mecanum
+[INFO] [1768216617.437780396] [td3_trainer]: save_model: True
+[INFO] [1768216617.438409706] [td3_trainer]: load_model: True
+[INFO] [1768216617.439106247] [td3_trainer]: random_near_obstacle: True
+[INFO] [1768216617.440035075] [td3_trainer]: environment_dim: 20
+[INFO] [1768216617.441316893] [td3_trainer]: use_ground_truth: True
+[INFO] [1768216617.442317158] [td3_trainer]: pose_topic: /model/my_robot/odometry_with_covariance
+[INFO] [1768216617.443334882] [td3_trainer]: odom_topic: /odometry/filtered
+[INFO] [1768216617.444525781] [td3_trainer]: ground_truth_noise_std: 0.0
+[INFO] [1768216617.478487537] [gazebo_env]: Using ground-truth pose (/model/my_robot/odometry_with_covariance) with noise=0.0
+[INFO] [1768216619.237114568] [gazebo_env]: CB
+[INFO] [1768216619.245742247] [gazebo_env]: CB
+[INFO] [1768216619.278208969] [gazebo_env]: CB
+[INFO] [1768216619.286155131] [gazebo_env]: CB
+[INFO] [1768216619.293778971] [gazebo_env]: CB
+[INFO] [1768216619.307889959] [gazebo_env]: CB
+[INFO] [1768216619.312857754] [gazebo_env]: CB
+[INFO] [1768216619.322498977] [gazebo_env]: CB
+[INFO] [1768216619.339370145] [gazebo_env]: CB
+[INFO] [1768216619.370504137] [gazebo_env]: CB
+[INFO] [1768216619.386640084] [gazebo_env]: CB
+[INFO] [1768216619.395895864] [gazebo_env]: CB
+[INFO] [1768216619.461905711] [gazebo_env]: CB
+[INFO] [1768216619.473219514] [gazebo_env]: CB
+[INFO] [1768216619.480701200] [gazebo_env]: CB
+[INFO] [1768216619.500605415] [gazebo_env]: CB
+[INFO] [1768216619.508456219] [gazebo_env]: CB
+[INFO] [1768216619.516751786] [gazebo_env]: CB
+[INFO] [1768216619.523813197] [gazebo_env]: CB
+[INFO] [1768216619.545677748] [gazebo_env]: CB
+[INFO] [1768216619.562270022] [gazebo_env]: CB
+[INFO] [1768216619.575431469] [gazebo_env]: CB
+[INFO] [1768216619.582627597] [gazebo_env]: CB
+[INFO] [1768216619.588239215] [gazebo_env]: CB
+[INFO] [1768216619.610075950] [gazebo_env]: CB
+[INFO] [1768216619.615157550] [gazebo_env]: CB
+[INFO] [1768216619.677819409] [gazebo_env]: CB
+[INFO] [1768216619.687820358] [gazebo_env]: CB
+[INFO] [1768216619.696348372] [gazebo_env]: CB
+[INFO] [1768216619.708539922] [gazebo_env]: CB
+[INFO] [1768216619.739713533] [gazebo_env]: CB
+[INFO] [1768216619.767344607] [gazebo_env]: CB
+[INFO] [1768216619.778641979] [gazebo_env]: CB
+[INFO] [1768216619.792307843] [gazebo_env]: CB
+[INFO] [1768216619.813633001] [gazebo_env]: CB
+[INFO] [1768216619.835490619] [gazebo_env]: CB
+[INFO] [1768216619.883276934] [gazebo_env]: CB
+[INFO] [1768216619.895890027] [gazebo_env]: CB
+[INFO] [1768216619.926530022] [gazebo_env]: CB
+[INFO] [1768216619.951230857] [gazebo_env]: CB
+[INFO] [1768216619.969805079] [gazebo_env]: CB
+[INFO] [1768216619.998033685] [gazebo_env]: CB
+[INFO] [1768216620.008305325] [gazebo_env]: CB
+[INFO] [1768216620.037590119] [gazebo_env]: CB
+[INFO] [1768216620.051174807] [gazebo_env]: CB
+[INFO] [1768216620.068934636] [gazebo_env]: CB
+[INFO] [1768216620.098339746] [gazebo_env]: CB
+[INFO] [1768216620.115327134] [gazebo_env]: CB
+[INFO] [1768216620.149421362] [gazebo_env]: CB
+[INFO] [1768216620.159625388] [gazebo_env]: CB
+[INFO] [1768216620.180966836] [gazebo_env]: CB
+[INFO] [1768216620.214211386] [gazebo_env]: CB
+[INFO] [1768216620.233267023] [gazebo_env]: CB
+[INFO] [1768216620.253212285] [gazebo_env]: CB
+[INFO] [1768216620.280961290] [gazebo_env]: CB
+[INFO] [1768216620.307476045] [gazebo_env]: CB
+[INFO] [1768216620.331373713] [gazebo_env]: CB
+[INFO] [1768216620.340289230] [gazebo_env]: CB
+[INFO] [1768216620.358325200] [gazebo_env]: CB
+[INFO] [1768216620.381188261] [gazebo_env]: CB
+[INFO] [1768216620.409282742] [gazebo_env]: CB
+[INFO] [1768216620.419812556] [gazebo_env]: CB
+[INFO] [1768216620.440104654] [gazebo_env]: CB
+[INFO] [1768216620.462417175] [gazebo_env]: CB
+[INFO] [1768216620.489448546] [gazebo_env]: CB
+[INFO] [1768216620.508245167] [gazebo_env]: CB
+[INFO] [1768216620.523700268] [gazebo_env]: CB
+[INFO] [1768216620.559493053] [gazebo_env]: CB
+[INFO] [1768216620.574921317] [gazebo_env]: CB
+[INFO] [1768216620.596253516] [gazebo_env]: CB
+[INFO] [1768216620.617919151] [gazebo_env]: CB
+[INFO] [1768216620.631208186] [gazebo_env]: CB
+[INFO] [1768216620.652854033] [gazebo_env]: CB
+[INFO] [1768216620.673792838] [gazebo_env]: CB
+[INFO] [1768216620.711181559] [gazebo_env]: CB
+[INFO] [1768216620.729404311] [gazebo_env]: CB
+[INFO] [1768216620.734587297] [gazebo_env]: CB
+[INFO] [1768216620.768552071] [gazebo_env]: CB
+[INFO] [1768216620.781024932] [gazebo_env]: CB
+[INFO] [1768216620.820709335] [gazebo_env]: CB
+[INFO] [1768216620.853043410] [gazebo_env]: CB
+[INFO] [1768216620.860221696] [gazebo_env]: CB
+[INFO] [1768216620.874976707] [gazebo_env]: CB
+[INFO] [1768216620.892565100] [gazebo_env]: CB
+[INFO] [1768216620.923100950] [gazebo_env]: CB
+[INFO] [1768216620.950897196] [gazebo_env]: CB
+[INFO] [1768216620.971399879] [gazebo_env]: CB
+[INFO] [1768216620.989411184] [gazebo_env]: CB
+[INFO] [1768216621.008188011] [gazebo_env]: CB
+[INFO] [1768216621.041172375] [gazebo_env]: CB
+[INFO] [1768216621.055104269] [gazebo_env]: CB
+[INFO] [1768216621.085940928] [gazebo_env]: CB
+[INFO] [1768216621.105772909] [gazebo_env]: CB
+[INFO] [1768216621.138182889] [gazebo_env]: CB
+[INFO] [1768216621.162973210] [gazebo_env]: CB
+[INFO] [1768216621.184474925] [gazebo_env]: CB
+[INFO] [1768216621.214362760] [gazebo_env]: CB
+[INFO] [1768216621.237030676] [gazebo_env]: CB
+[INFO] [1768216621.258624616] [gazebo_env]: CB
+[INFO] [1768216621.301082801] [gazebo_env]: CB
+[INFO] [1768216621.319743965] [gazebo_env]: CB
+[INFO] [1768216621.339373300] [gazebo_env]: CB
+[INFO] [1768216621.354790622] [gazebo_env]: CB
+[INFO] [1768216621.378042953] [gazebo_env]: CB
+[INFO] [1768216621.409796070] [gazebo_env]: CB
+[INFO] [1768216621.432230946] [gazebo_env]: CB
+[INFO] [1768216621.451008007] [gazebo_env]: CB
+[INFO] [1768216621.488821476] [gazebo_env]: CB
+[INFO] [1768216621.503591098] [gazebo_env]: CB
+[INFO] [1768216621.524031974] [gazebo_env]: CB
+[INFO] [1768216621.546751717] [gazebo_env]: CB
+[INFO] [1768216621.562594548] [gazebo_env]: CB
+[INFO] [1768216621.587012829] [gazebo_env]: CB
+[INFO] [1768216621.617357367] [gazebo_env]: CB
+[INFO] [1768216621.640380949] [gazebo_env]: CB
+[INFO] [1768216621.660694988] [gazebo_env]: CB
+[INFO] [1768216621.680476228] [gazebo_env]: CB
+[INFO] [1768216621.703992848] [gazebo_env]: CB
+[INFO] [1768216621.722827095] [gazebo_env]: CB
+[INFO] [1768216621.787160539] [gazebo_env]: CB
+[INFO] [1768216621.792880180] [gazebo_env]: CB
+[INFO] [1768216621.799089205] [gazebo_env]: CB
+[INFO] [1768216621.817156954] [gazebo_env]: CB
+[INFO] [1768216621.831980502] [gazebo_env]: CB
+[INFO] [1768216621.860225231] [gazebo_env]: CB
+[INFO] [1768216621.875587971] [gazebo_env]: CB
+[INFO] [1768216621.892431402] [gazebo_env]: CB
+[INFO] [1768216621.928381296] [gazebo_env]: CB
+[INFO] [1768216621.933589447] [gazebo_env]: CB
+[INFO] [1768216621.955343713] [gazebo_env]: CB
+[INFO] [1768216621.977014340] [gazebo_env]: CB
+[INFO] [1768216622.063464987] [gazebo_env]: CB
+[INFO] [1768216622.078385131] [gazebo_env]: CB
+[INFO] [1768216622.093434526] [gazebo_env]: CB
+[INFO] [1768216622.099405595] [gazebo_env]: CB
+[INFO] [1768216622.102909892] [gazebo_env]: CB
+[INFO] [1768216622.109512604] [gazebo_env]: CB
+[INFO] [1768216622.132109992] [gazebo_env]: CB
+[INFO] [1768216622.138464573] [gazebo_env]: CB
+[INFO] [1768216622.161886698] [gazebo_env]: CB
+[INFO] [1768216622.200372348] [gazebo_env]: CB
+[INFO] [1768216622.205690164] [gazebo_env]: CB
+[INFO] [1768216622.243627748] [gazebo_env]: CB
+[INFO] [1768216622.252279775] [gazebo_env]: CB
+[INFO] [1768216622.266424517] [gazebo_env]: CB
+[INFO] [1768216622.293230148] [gazebo_env]: CB
+[INFO] [1768216622.307206485] [gazebo_env]: CB
+[INFO] [1768216622.332474330] [gazebo_env]: CB
+[INFO] [1768216622.348142599] [gazebo_env]: CB
+[INFO] [1768216622.372660858] [gazebo_env]: CB
+[INFO] [1768216622.399252177] [gazebo_env]: CB
+[INFO] [1768216622.412388464] [gazebo_env]: CB
+[INFO] [1768216622.438522770] [gazebo_env]: CB
+[INFO] [1768216622.457301155] [gazebo_env]: CB
+[INFO] [1768216622.481398390] [gazebo_env]: CB
+[INFO] [1768216622.504978790] [gazebo_env]: CB
+[INFO] [1768216622.520207770] [gazebo_env]: CB
+[INFO] [1768216622.547047460] [gazebo_env]: CB
+[INFO] [1768216622.581051817] [gazebo_env]: CB
+[INFO] [1768216622.605478111] [gazebo_env]: CB
+[INFO] [1768216622.616160911] [gazebo_env]: CB
+[INFO] [1768216622.660560987] [gazebo_env]: CB
+[INFO] [1768216622.676031092] [gazebo_env]: CB
+[INFO] [1768216622.684819455] [gazebo_env]: CB
+[INFO] [1768216622.694669449] [gazebo_env]: CB
+[INFO] [1768216622.724003037] [gazebo_env]: CB
+[INFO] [1768216622.735359578] [gazebo_env]: CB
+[INFO] [1768216622.783913355] [gazebo_env]: CB
+[INFO] [1768216622.834639725] [gazebo_env]: CB
+[INFO] [1768216622.842186045] [gazebo_env]: CB
+[INFO] [1768216622.847414094] [gazebo_env]: CB
+[INFO] [1768216622.877596705] [gazebo_env]: CB
+[INFO] [1768216622.906532759] [gazebo_env]: CB
+[INFO] [1768216622.921852368] [gazebo_env]: CB
+[INFO] [1768216622.971890752] [gazebo_env]: CB
+[INFO] [1768216622.982723822] [gazebo_env]: CB
+[INFO] [1768216622.997997972] [td3_trainer]: CSV logging to: /home/dark/ros2_ws/src2/Project_PathBlazers/install/bots/lib/python3.12/site-packages/bots/td3_rl/results/training_log.csv
+[INFO] [1768216622.999620624] [gazebo_env]: CB
+[INFO] [1768216623.028789216] [gazebo_env]: CB
+[INFO] [1768216623.057458823] [gazebo_env]: CB
+[INFO] [1768216623.065520384] [gazebo_env]: CB
+[INFO] [1768216623.091717196] [gazebo_env]: CB
+[INFO] [1768216623.101761539] [gazebo_env]: CB
+[INFO] [1768216623.116035937] [gazebo_env]: CB
+[INFO] [1768216623.129490610] [gazebo_env]: CB
+[INFO] [1768216623.140500459] [gazebo_env]: CB
+[INFO] [1768216623.170660291] [gazebo_env]: CB
+[INFO] [1768216623.200898775] [gazebo_env]: CB
+[INFO] [1768216623.229719371] [gazebo_env]: CB
+[INFO] [1768216623.241856778] [gazebo_env]: CB
+[INFO] [1768216623.250245795] [gazebo_env]: CB
+[INFO] [1768216623.259934652] [gazebo_env]: CB
+[INFO] [1768216623.305404356] [gazebo_env]: CB
+[INFO] [1768216623.322221100] [gazebo_env]: CB
+[INFO] [1768216623.382326488] [gazebo_env]: CB
+[INFO] [1768216623.390449046] [gazebo_env]: CB
+[INFO] [1768216623.400364050] [gazebo_env]: CB
+[INFO] [1768216623.419613128] [gazebo_env]: CB
+[INFO] [1768216623.425791516] [td3_trainer]: Loaded replay buffer with 500 experiences
+[INFO] [1768216623.431794962] [gazebo_env]: CB
+[INFO] [1768216623.436278838] [td3_trainer]: Resumed from checkpoint: timestep=500, episode=4, epoch=1
+[INFO] [1768216623.445235036] [gazebo_env]: CB
+[INFO] [1768216623.447568854] [td3_trainer]: 500 timesteps. Last 100 timesteps finished in 0.45 seconds
+[INFO] [1768216623.462116853] [gazebo_env]: Collision. Keeping goal (Persistence).
+[INFO] [1768216623.464906594] [gazebo_env]: CB
+[INFO] [1768216623.465895947] [gazebo_env]: [TELEPORT] Moving my_robot to (1.94, 0.92, yaw=0.31)
+[INFO] [1768216623.570448836] [gazebo_env]: [TELEPORT] Success: True
+[INFO] [1768216623.875231460] [td3_trainer]: Ep 4 | Reward: 0.0 | Outcome: TIMEOUT | Goals: 0 | Collisions: 0 | Avg(10): 0.0 | Noise: 0.795
+[parameter_bridge-4] [INFO] [1768216623.883460685] [ros_gz_bridge]: Passing message from ROS geometry_msgs/msg/Twist to Gazebo gz.msgs.Twist (showing msg only once per type)
+[WARN] [1768216624.986447894] [gazebo_env]: [STEP] Pose update TIMEOUT! Physics likely stuck.
+[INFO] [1768216624.988732997] [gazebo_env]: [DEBUG] GT Pose: x=1.00, y=1.00, yaw=-0.00
+[WARN] [1768216626.105807894] [gazebo_env]: [STEP] Pose update TIMEOUT! Physics likely stuck.
+[WARN] [1768216627.229113920] [gazebo_env]: [STEP] Pose update TIMEOUT! Physics likely stuck.
+[WARN] [1768216628.352123486] [gazebo_env]: [STEP] Pose update TIMEOUT! Physics likely stuck.
+[WARN] [1768216629.467742596] [gazebo_env]: [STEP] Pose update TIMEOUT! Physics likely stuck.

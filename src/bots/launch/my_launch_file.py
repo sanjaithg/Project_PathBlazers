@@ -43,7 +43,7 @@ def generate_launch_description():
             LaunchConfiguration('world')
         ]),
         #TextSubstitution(text=' -r -v -v1 --render-engine ogre --render-engine-gui-api-backend opengl')],
-        TextSubstitution(text=' -r -v -v1')],
+        TextSubstitution(text=' -r -v -v1 -s')],
         'on_exit_shutdown': 'true'}.items()
     )
 

@@ -15,13 +15,15 @@ def generate_launch_description():
     return LaunchDescription([
         DeclareLaunchArgument('gui', default_value='true', description='Launch Gazebo with GUI'),
         DeclareLaunchArgument('rviz', default_value='true', description='Launch RViz'),
+        DeclareLaunchArgument('world', default_value=os.path.join(bots_path, 'world', 'world_simplified.sdf'), description='Gazebo world file'),
         
         # Start Gazebo and spawn robot
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(PathJoinSubstitution([bots_path, 'launch', 'spawn_robot.launch.py'])),
             launch_arguments={
                 'gui': LaunchConfiguration('gui'), 
-                'rviz': LaunchConfiguration('rviz')
+                'rviz': LaunchConfiguration('rviz'),
+                'world': LaunchConfiguration('world')
             }.items(),
         ),
     ])

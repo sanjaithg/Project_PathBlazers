@@ -1,0 +1,907 @@
+[2026-01-09 00:20:33] --- Monitor Agent Started ---
+[2026-01-09 00:20:33] Watching CSV: /home/dark/ros2_ws/src2/Project_PathBlazers/install/bots/lib/python3.12/site-packages/bots/td3_rl/results/training_log.csv
+[2026-01-09 00:20:33] [RUNNING] Timestep: 1210 | Ep: 9 | Rew: -5.4 | PoseVar: 1.5831 | Status: OK / OK
+[2026-01-09 00:21:03] [RUNNING] Timestep: 1340 | Ep: 9 | Rew: -6.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:21:33] [RUNNING] Timestep: 1490 | Ep: 10 | Rew: -4.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:22:03] [RUNNING] Timestep: 1490 | Ep: 10 | Rew: -4.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:22:33] [RUNNING] Timestep: 1490 | Ep: 10 | Rew: -4.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:23:03] [RUNNING] Timestep: 1490 | Ep: 10 | Rew: -4.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:23:33] [RUNNING] Timestep: 1490 | Ep: 10 | Rew: -4.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:24:03] [RUNNING] Timestep: 1490 | Ep: 10 | Rew: -4.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:24:33] [RUNNING] Timestep: 1490 | Ep: 10 | Rew: -4.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:25:03] [RUNNING] Timestep: 1640 | Ep: 11 | Rew: -67.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:25:33] [RUNNING] Timestep: 1790 | Ep: 12 | Rew: -4.5 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:26:03] [RUNNING] Timestep: 1990 | Ep: 14 | Rew: -29.4 | PoseVar: 4.2956 | Status: OK / OK
+[2026-01-09 00:26:33] [RUNNING] Timestep: 2090 | Ep: 14 | Rew: -37.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:27:03] [RUNNING] Timestep: 2090 | Ep: 14 | Rew: -37.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:27:33] [RUNNING] Timestep: 2090 | Ep: 14 | Rew: -37.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:28:03] [RUNNING] Timestep: 2090 | Ep: 14 | Rew: -37.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:28:33] [RUNNING] Timestep: 2090 | Ep: 14 | Rew: -37.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:29:03] [RUNNING] Timestep: 2110 | Ep: 15 | Rew: -28.8 | PoseVar: 4.0020 | Status: OK / OK
+[2026-01-09 00:29:33] [RUNNING] Timestep: 2240 | Ep: 15 | Rew: 4.5 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:30:03] [RUNNING] Timestep: 2390 | Ep: 16 | Rew: -41.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:30:33] [RUNNING] Timestep: 2540 | Ep: 17 | Rew: -32.5 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:31:03] [RUNNING] Timestep: 2540 | Ep: 17 | Rew: -32.5 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:31:33] [RUNNING] Timestep: 2540 | Ep: 17 | Rew: -32.5 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:32:03] [RUNNING] Timestep: 2540 | Ep: 17 | Rew: -32.5 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:32:33] [RUNNING] Timestep: 2540 | Ep: 17 | Rew: -32.5 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:33:03] [RUNNING] Timestep: 2540 | Ep: 17 | Rew: -32.5 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:33:33] [RUNNING] Timestep: 2550 | Ep: 18 | Rew: -32.2 | PoseVar: 1.3704 | Status: OK / OK
+[2026-01-09 00:34:03] [RUNNING] Timestep: 2690 | Ep: 18 | Rew: 3.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:34:34] [RUNNING] Timestep: 2840 | Ep: 19 | Rew: -2.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:35:04] [RUNNING] Timestep: 2990 | Ep: 20 | Rew: 3.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:35:34] [RUNNING] Timestep: 2990 | Ep: 20 | Rew: 3.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:36:04] [RUNNING] Timestep: 2990 | Ep: 20 | Rew: 3.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:36:34] [RUNNING] Timestep: 2990 | Ep: 20 | Rew: 3.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:37:04] [RUNNING] Timestep: 2990 | Ep: 20 | Rew: 3.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:37:34] [RUNNING] Timestep: 2990 | Ep: 20 | Rew: 3.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:38:04] [RUNNING] Timestep: 2990 | Ep: 20 | Rew: 3.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:38:34] [RUNNING] Timestep: 3140 | Ep: 21 | Rew: -5.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:39:04] [RUNNING] Timestep: 3290 | Ep: 22 | Rew: -4.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:39:34] [RUNNING] Timestep: 3420 | Ep: 23 | Rew: -4.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:40:04] [RUNNING] Timestep: 3540 | Ep: 24 | Rew: -4.6 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:40:34] [RUNNING] Timestep: 3590 | Ep: 24 | Rew: -3.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:41:04] [RUNNING] Timestep: 3590 | Ep: 24 | Rew: -3.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:41:34] [RUNNING] Timestep: 3590 | Ep: 24 | Rew: -3.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:42:04] [RUNNING] Timestep: 3590 | Ep: 24 | Rew: -3.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:42:34] [RUNNING] Timestep: 3590 | Ep: 24 | Rew: -3.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:43:04] [RUNNING] Timestep: 3590 | Ep: 24 | Rew: -3.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:43:34] [RUNNING] Timestep: 3660 | Ep: 25 | Rew: -5.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:44:05] [RUNNING] Timestep: 3740 | Ep: 25 | Rew: -4.8 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:44:35] [RUNNING] Timestep: 3890 | Ep: 26 | Rew: -2.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:45:05] [RUNNING] Timestep: 4040 | Ep: 27 | Rew: 4.5 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:45:35] [RUNNING] Timestep: 4040 | Ep: 27 | Rew: 4.5 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:46:05] [RUNNING] Timestep: 4040 | Ep: 27 | Rew: 4.5 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:46:35] [RUNNING] Timestep: 4040 | Ep: 27 | Rew: 4.5 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:47:05] [RUNNING] Timestep: 4040 | Ep: 27 | Rew: 4.5 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:47:35] [RUNNING] Timestep: 4040 | Ep: 27 | Rew: 4.5 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:48:05] [RUNNING] Timestep: 4040 | Ep: 27 | Rew: 4.5 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:48:35] [RUNNING] Timestep: 4190 | Ep: 28 | Rew: -5.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:49:05] [RUNNING] Timestep: 4320 | Ep: 29 | Rew: -35.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:49:35] [RUNNING] Timestep: 4430 | Ep: 30 | Rew: 1.6 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:50:05] [RUNNING] Timestep: 4490 | Ep: 30 | Rew: 1.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:50:35] [RUNNING] Timestep: 4490 | Ep: 30 | Rew: 1.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:51:05] [RUNNING] Timestep: 4490 | Ep: 30 | Rew: 1.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:51:35] [RUNNING] Timestep: 4490 | Ep: 30 | Rew: 1.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:52:05] [RUNNING] Timestep: 4490 | Ep: 30 | Rew: 1.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:52:36] [RUNNING] Timestep: 4520 | Ep: 31 | Rew: -14.2 | PoseVar: 2.6771 | Status: OK / OK
+[2026-01-09 00:53:06] [RUNNING] Timestep: 4690 | Ep: 32 | Rew: -34.3 | PoseVar: 2.8629 | Status: OK / OK
+[2026-01-09 00:53:36] [RUNNING] Timestep: 4860 | Ep: 33 | Rew: -4.5 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:54:06] [RUNNING] Timestep: 5020 | Ep: 34 | Rew: -0.6 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:54:36] [RUNNING] Timestep: 5090 | Ep: 34 | Rew: -0.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:55:06] [RUNNING] Timestep: 5090 | Ep: 34 | Rew: -0.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:55:36] [RUNNING] Timestep: 5090 | Ep: 34 | Rew: -0.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:56:06] [RUNNING] Timestep: 5090 | Ep: 34 | Rew: -0.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:56:36] [RUNNING] Timestep: 5090 | Ep: 34 | Rew: -0.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:57:06] [RUNNING] Timestep: 5090 | Ep: 34 | Rew: -0.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:57:36] [RUNNING] Timestep: 5240 | Ep: 35 | Rew: 5.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:58:06] [RUNNING] Timestep: 5390 | Ep: 36 | Rew: -3.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:58:36] [RUNNING] Timestep: 5540 | Ep: 37 | Rew: -30.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:59:06] [RUNNING] Timestep: 5540 | Ep: 37 | Rew: -30.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 00:59:36] [RUNNING] Timestep: 5540 | Ep: 37 | Rew: -30.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:00:06] [RUNNING] Timestep: 5540 | Ep: 37 | Rew: -30.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:00:36] [RUNNING] Timestep: 5540 | Ep: 37 | Rew: -30.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:01:06] [RUNNING] Timestep: 5540 | Ep: 37 | Rew: -30.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:01:36] [RUNNING] Timestep: 5620 | Ep: 38 | Rew: 5.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:02:06] [RUNNING] Timestep: 5800 | Ep: 39 | Rew: -37.6 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:02:36] [RUNNING] Timestep: 5970 | Ep: 40 | Rew: -4.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:03:06] [RUNNING] Timestep: 5990 | Ep: 40 | Rew: -4.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:03:36] [RUNNING] Timestep: 5990 | Ep: 40 | Rew: -4.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:04:06] [RUNNING] Timestep: 5990 | Ep: 40 | Rew: -4.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:04:36] [RUNNING] Timestep: 5990 | Ep: 40 | Rew: -4.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:05:07] [RUNNING] Timestep: 5990 | Ep: 40 | Rew: -4.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:05:37] [RUNNING] Timestep: 5990 | Ep: 40 | Rew: -4.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:06:07] [RUNNING] Timestep: 6160 | Ep: 42 | Rew: -23.9 | PoseVar: 3.6781 | Status: OK / OK
+[2026-01-09 01:06:37] [RUNNING] Timestep: 6320 | Ep: 43 | Rew: -3.3 | PoseVar: 1.3368 | Status: OK / OK
+[2026-01-09 01:07:07] [RUNNING] Timestep: 6490 | Ep: 44 | Rew: 1.0 | PoseVar: 0.9184 | Status: OK / OK
+[2026-01-09 01:07:37] [RUNNING] Timestep: 6590 | Ep: 44 | Rew: 1.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:08:07] [RUNNING] Timestep: 6590 | Ep: 44 | Rew: 1.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:08:37] [RUNNING] Timestep: 6590 | Ep: 44 | Rew: 1.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:09:07] [RUNNING] Timestep: 6590 | Ep: 44 | Rew: 1.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:09:37] [RUNNING] Timestep: 6590 | Ep: 44 | Rew: 1.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:10:07] [RUNNING] Timestep: 6590 | Ep: 44 | Rew: 1.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:10:37] [RUNNING] Timestep: 6740 | Ep: 45 | Rew: 1.6 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:11:07] [RUNNING] Timestep: 6890 | Ep: 46 | Rew: -38.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:11:37] [RUNNING] Timestep: 7040 | Ep: 47 | Rew: -4.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:12:07] [RUNNING] Timestep: 7040 | Ep: 47 | Rew: -4.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:12:37] [RUNNING] Timestep: 7040 | Ep: 47 | Rew: -4.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:13:07] [RUNNING] Timestep: 7040 | Ep: 47 | Rew: -4.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:13:38] [RUNNING] Timestep: 7040 | Ep: 47 | Rew: -4.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:14:08] [RUNNING] Timestep: 7040 | Ep: 47 | Rew: -4.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:14:38] [RUNNING] Timestep: 7180 | Ep: 48 | Rew: 1.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:15:08] [RUNNING] Timestep: 7340 | Ep: 49 | Rew: -68.5 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:15:38] [RUNNING] Timestep: 7490 | Ep: 50 | Rew: 3.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:16:08] [RUNNING] Timestep: 7490 | Ep: 50 | Rew: 3.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:16:38] [RUNNING] Timestep: 7490 | Ep: 50 | Rew: 3.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:17:08] [RUNNING] Timestep: 7490 | Ep: 50 | Rew: 3.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:17:38] [RUNNING] Timestep: 7490 | Ep: 50 | Rew: 3.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:18:08] [RUNNING] Timestep: 7490 | Ep: 50 | Rew: 3.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:18:38] [RUNNING] Timestep: 7560 | Ep: 52 | Rew: -3.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:19:08] [RUNNING] Timestep: 7730 | Ep: 53 | Rew: 5.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:19:38] [RUNNING] Timestep: 7910 | Ep: 54 | Rew: -94.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:20:08] [RUNNING] Timestep: 8100 | Ep: 55 | Rew: 3.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:20:38] [RUNNING] Timestep: 8100 | Ep: 55 | Rew: 3.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:21:08] [RUNNING] Timestep: 8100 | Ep: 55 | Rew: 3.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:21:38] [RUNNING] Timestep: 8100 | Ep: 55 | Rew: 3.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:22:08] [RUNNING] Timestep: 8100 | Ep: 55 | Rew: 3.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:22:38] [RUNNING] Timestep: 8100 | Ep: 55 | Rew: 3.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:23:09] [RUNNING] Timestep: 8110 | Ep: 56 | Rew: 4.5 | PoseVar: 0.3880 | Status: OK / OK
+[2026-01-09 01:23:39] [RUNNING] Timestep: 8270 | Ep: 57 | Rew: -11.8 | PoseVar: 5.7173 | Status: OK / OK
+[2026-01-09 01:24:09] [RUNNING] Timestep: 8400 | Ep: 57 | Rew: -35.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:24:39] [RUNNING] Timestep: 8550 | Ep: 58 | Rew: -37.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:25:09] [RUNNING] Timestep: 8550 | Ep: 58 | Rew: -37.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:25:39] [RUNNING] Timestep: 8550 | Ep: 58 | Rew: -37.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:26:09] [RUNNING] Timestep: 8550 | Ep: 58 | Rew: -37.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:26:39] [RUNNING] Timestep: 8550 | Ep: 58 | Rew: -37.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:27:09] [RUNNING] Timestep: 8550 | Ep: 58 | Rew: -37.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:27:39] [RUNNING] Timestep: 8700 | Ep: 59 | Rew: -35.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:28:09] [RUNNING] Timestep: 8850 | Ep: 60 | Rew: -34.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:28:39] [RUNNING] Timestep: 9000 | Ep: 61 | Rew: 5.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:29:09] [RUNNING] Timestep: 9000 | Ep: 61 | Rew: 5.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:29:39] [RUNNING] Timestep: 9000 | Ep: 61 | Rew: 5.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:30:09] [RUNNING] Timestep: 9000 | Ep: 61 | Rew: 5.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:30:39] [RUNNING] Timestep: 9000 | Ep: 61 | Rew: 5.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:31:09] [RUNNING] Timestep: 9000 | Ep: 61 | Rew: 5.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:31:39] [RUNNING] Timestep: 9070 | Ep: 62 | Rew: 2.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:32:09] [RUNNING] Timestep: 9240 | Ep: 63 | Rew: -34.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:32:40] [RUNNING] Timestep: 9400 | Ep: 64 | Rew: 1.8 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:33:10] [RUNNING] Timestep: 9570 | Ep: 65 | Rew: -4.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:33:40] [RUNNING] Timestep: 9600 | Ep: 65 | Rew: -4.6 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:34:10] [RUNNING] Timestep: 9600 | Ep: 65 | Rew: -4.6 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:34:40] [RUNNING] Timestep: 9600 | Ep: 65 | Rew: -4.6 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:35:10] [RUNNING] Timestep: 9600 | Ep: 65 | Rew: -4.6 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:35:40] [RUNNING] Timestep: 9600 | Ep: 65 | Rew: -4.6 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:36:10] [RUNNING] Timestep: 9600 | Ep: 65 | Rew: -4.6 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:36:40] [RUNNING] Timestep: 9750 | Ep: 66 | Rew: 2.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:37:10] [RUNNING] Timestep: 9900 | Ep: 67 | Rew: 4.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:37:41] [RUNNING] Timestep: 10050 | Ep: 68 | Rew: -0.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:38:11] [RUNNING] Timestep: 10050 | Ep: 68 | Rew: -0.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:38:41] [RUNNING] Timestep: 10050 | Ep: 68 | Rew: -0.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:39:11] [RUNNING] Timestep: 10050 | Ep: 68 | Rew: -0.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:39:41] [RUNNING] Timestep: 10050 | Ep: 68 | Rew: -0.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:40:11] [RUNNING] Timestep: 10050 | Ep: 68 | Rew: -0.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:40:41] [RUNNING] Timestep: 10050 | Ep: 68 | Rew: -0.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:41:11] [RUNNING] Timestep: 10200 | Ep: 69 | Rew: -0.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:41:41] [RUNNING] Timestep: 10350 | Ep: 70 | Rew: 4.5 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:42:11] [RUNNING] Timestep: 10500 | Ep: 71 | Rew: -12.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:42:41] [RUNNING] Timestep: 10500 | Ep: 71 | Rew: -12.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:43:11] [RUNNING] Timestep: 10500 | Ep: 71 | Rew: -12.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:43:41] [RUNNING] Timestep: 10500 | Ep: 71 | Rew: -12.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:44:11] [RUNNING] Timestep: 10500 | Ep: 71 | Rew: -12.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:44:42] [RUNNING] Timestep: 10500 | Ep: 71 | Rew: -12.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:45:12] [RUNNING] Timestep: 10610 | Ep: 72 | Rew: -3.5 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:45:42] [RUNNING] Timestep: 10770 | Ep: 73 | Rew: -3.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:46:12] [RUNNING] Timestep: 10910 | Ep: 74 | Rew: -107.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:46:42] [RUNNING] Timestep: 11060 | Ep: 75 | Rew: -21.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:47:12] [RUNNING] Timestep: 11100 | Ep: 75 | Rew: -22.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:47:42] [RUNNING] Timestep: 11100 | Ep: 75 | Rew: -22.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:48:12] [RUNNING] Timestep: 11100 | Ep: 75 | Rew: -22.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:48:42] [RUNNING] Timestep: 11100 | Ep: 75 | Rew: -22.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:49:13] [RUNNING] Timestep: 11100 | Ep: 75 | Rew: -22.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:49:43] [RUNNING] Timestep: 11100 | Ep: 75 | Rew: -22.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:50:13] [RUNNING] Timestep: 11250 | Ep: 76 | Rew: -40.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:50:43] [RUNNING] Timestep: 11400 | Ep: 77 | Rew: -42.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:51:13] [RUNNING] Timestep: 11550 | Ep: 78 | Rew: -61.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:51:43] [RUNNING] Timestep: 11550 | Ep: 78 | Rew: -61.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:52:13] [RUNNING] Timestep: 11550 | Ep: 78 | Rew: -61.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:52:43] [RUNNING] Timestep: 11550 | Ep: 78 | Rew: -61.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:53:13] [RUNNING] Timestep: 11550 | Ep: 78 | Rew: -61.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:53:43] [RUNNING] Timestep: 11550 | Ep: 78 | Rew: -61.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:54:13] [RUNNING] Timestep: 11600 | Ep: 79 | Rew: 4.8 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:54:43] [RUNNING] Timestep: 11750 | Ep: 80 | Rew: -106.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:55:14] [RUNNING] Timestep: 11900 | Ep: 81 | Rew: -37.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:55:44] [RUNNING] Timestep: 12000 | Ep: 81 | Rew: -36.8 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:56:14] [RUNNING] Timestep: 12000 | Ep: 81 | Rew: -36.8 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:56:44] [RUNNING] Timestep: 12000 | Ep: 81 | Rew: -36.8 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:57:14] [RUNNING] Timestep: 12000 | Ep: 81 | Rew: -36.8 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:57:44] [RUNNING] Timestep: 12000 | Ep: 81 | Rew: -36.8 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:58:14] [RUNNING] Timestep: 12000 | Ep: 81 | Rew: -36.8 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:58:44] [RUNNING] Timestep: 12150 | Ep: 82 | Rew: 1.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:59:14] [RUNNING] Timestep: 12300 | Ep: 83 | Rew: 6.5 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 01:59:44] [RUNNING] Timestep: 12430 | Ep: 84 | Rew: -102.8 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 02:00:15] [RUNNING] Timestep: 12580 | Ep: 85 | Rew: -4.5 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 02:00:45] [RUNNING] Timestep: 12600 | Ep: 85 | Rew: -4.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 02:01:15] [RUNNING] Timestep: 12600 | Ep: 85 | Rew: -4.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 02:01:45] [RUNNING] Timestep: 12600 | Ep: 85 | Rew: -4.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 02:02:15] [RUNNING] Timestep: 12600 | Ep: 85 | Rew: -4.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 02:02:45] [RUNNING] Timestep: 12600 | Ep: 85 | Rew: -4.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 02:03:15] [RUNNING] Timestep: 12600 | Ep: 85 | Rew: -4.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 02:03:45] [RUNNING] Timestep: 12750 | Ep: 86 | Rew: 0.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 02:04:16] [RUNNING] Timestep: 12900 | Ep: 87 | Rew: -34.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 02:04:46] [RUNNING] Timestep: 13050 | Ep: 88 | Rew: 1.6 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 02:05:16] [RUNNING] Timestep: 13050 | Ep: 88 | Rew: 1.6 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 02:05:46] [RUNNING] Timestep: 13050 | Ep: 88 | Rew: 1.6 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 02:06:16] [RUNNING] Timestep: 13050 | Ep: 88 | Rew: 1.6 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 02:06:46] [RUNNING] Timestep: 13050 | Ep: 88 | Rew: 1.6 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 02:07:16] [RUNNING] Timestep: 13050 | Ep: 88 | Rew: 1.6 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 02:07:46] [RUNNING] Timestep: 13100 | Ep: 89 | Rew: -30.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 02:08:17] [RUNNING] Timestep: 13250 | Ep: 90 | Rew: -1.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 02:08:47] [RUNNING] Timestep: 13400 | Ep: 91 | Rew: -37.6 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 02:09:17] [RUNNING] Timestep: 13500 | Ep: 91 | Rew: -35.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 02:09:47] [RUNNING] Timestep: 13500 | Ep: 91 | Rew: -35.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 02:10:17] [RUNNING] Timestep: 13500 | Ep: 91 | Rew: -35.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 02:10:47] [RUNNING] Timestep: 13500 | Ep: 91 | Rew: -35.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 02:11:17] [RUNNING] Timestep: 13500 | Ep: 91 | Rew: -35.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 02:11:48] [RUNNING] Timestep: 13500 | Ep: 91 | Rew: -35.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 02:12:18] [RUNNING] Timestep: 13610 | Ep: 92 | Rew: -2.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 02:12:48] [RUNNING] Timestep: 13750 | Ep: 93 | Rew: 3.5 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 13:35:14] --- Monitor Agent Started ---
+[2026-01-09 13:35:14] Watching CSV: /home/dark/ros2_ws/src2/Project_PathBlazers/install/bots/lib/python3.12/site-packages/bots/td3_rl/results/training_log.csv
+[2026-01-09 13:35:14] [RUNNING] Timestep: 13800 | Ep: 93 | Rew: 3.8 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 13:35:44] [RUNNING] Timestep: 130 | Ep: 3 | Rew: -23.2 | PoseVar: 1.2051 | Status: OK / OK
+[2026-01-09 13:36:14] [RUNNING] Timestep: 300 | Ep: 6 | Rew: -37.9 | PoseVar: 1.8039 | Status: OK / OK
+[2026-01-09 13:36:44] [RUNNING] Timestep: 450 | Ep: 9 | Rew: -4.9 | PoseVar: 2.0287 | Status: OK / OK
+[2026-01-09 13:37:14] [RUNNING] Timestep: 500 | Ep: 10 | Rew: -30.8 | PoseVar: 2.1099 | Status: OK / OK
+[2026-01-09 13:37:44] [RUNNING] Timestep: 500 | Ep: 10 | Rew: -30.8 | PoseVar: 2.1099 | Status: OK / OK
+[2026-01-09 13:38:14] [RUNNING] Timestep: 630 | Ep: 15 | Rew: 53.5 | PoseVar: 1.1014 | Status: OK / OK
+[2026-01-09 13:38:44] [RUNNING] Timestep: 790 | Ep: 18 | Rew: -54.3 | PoseVar: 4.0193 | Status: OK / OK
+[2026-01-09 13:39:14] [RUNNING] Timestep: 970 | Ep: 21 | Rew: -3.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 13:39:44] [RUNNING] Timestep: 1020 | Ep: 22 | Rew: 0.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 13:40:15] [RUNNING] Timestep: 1020 | Ep: 22 | Rew: 0.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 13:40:45] [RUNNING] Timestep: 1120 | Ep: 24 | Rew: -11.4 | PoseVar: 0.7426 | Status: OK / OK
+[2026-01-09 13:41:15] [RUNNING] Timestep: 1300 | Ep: 29 | Rew: -14.2 | PoseVar: 3.2091 | Status: OK / OK
+[2026-01-09 13:41:45] [RUNNING] Timestep: 1480 | Ep: 32 | Rew: -13.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 13:42:15] [RUNNING] Timestep: 1530 | Ep: 33 | Rew: 2.2 | PoseVar: 0.4063 | Status: OK / OK
+[2026-01-09 13:42:45] [RUNNING] Timestep: 1530 | Ep: 33 | Rew: 2.2 | PoseVar: 0.4063 | Status: OK / OK
+[2026-01-09 13:43:15] [RUNNING] Timestep: 1680 | Ep: 36 | Rew: 0.3 | PoseVar: 2.8429 | Status: OK / OK
+[2026-01-09 13:43:45] [RUNNING] Timestep: 1880 | Ep: 40 | Rew: 2.1 | PoseVar: 2.4184 | Status: OK / OK
+[2026-01-09 13:44:15] [RUNNING] Timestep: 2040 | Ep: 43 | Rew: -38.9 | PoseVar: 0.8075 | Status: OK / OK
+[2026-01-09 13:44:45] [RUNNING] Timestep: 2040 | Ep: 43 | Rew: -38.9 | PoseVar: 0.8075 | Status: OK / OK
+[2026-01-09 13:45:15] [RUNNING] Timestep: 2140 | Ep: 45 | Rew: -29.1 | PoseVar: 2.6141 | Status: OK / OK
+[2026-01-09 13:45:45] [RUNNING] Timestep: 2290 | Ep: 49 | Rew: 1.8 | PoseVar: 3.8249 | Status: OK / OK
+[2026-01-09 13:46:15] [RUNNING] Timestep: 2450 | Ep: 53 | Rew: -1.3 | PoseVar: 0.5114 | Status: OK / OK
+[2026-01-09 13:46:45] [RUNNING] Timestep: 2500 | Ep: 54 | Rew: -98.1 | PoseVar: 1.0597 | Status: OK / OK
+[2026-01-09 13:47:15] [RUNNING] Timestep: 2500 | Ep: 54 | Rew: -98.1 | PoseVar: 1.0597 | Status: OK / OK
+[2026-01-09 13:47:45] [RUNNING] Timestep: 2650 | Ep: 57 | Rew: -0.8 | PoseVar: 2.4167 | Status: OK / OK
+[2026-01-09 13:48:15] [RUNNING] Timestep: 2820 | Ep: 61 | Rew: -3.4 | PoseVar: 1.9792 | Status: OK / OK
+[2026-01-09 13:48:45] [RUNNING] Timestep: 3010 | Ep: 64 | Rew: -33.5 | PoseVar: 1.1071 | Status: OK / OK
+[2026-01-09 13:49:15] [RUNNING] Timestep: 3010 | Ep: 64 | Rew: -33.5 | PoseVar: 1.1071 | Status: OK / OK
+[2026-01-09 13:49:45] [RUNNING] Timestep: 3050 | Ep: 65 | Rew: -66.4 | PoseVar: 3.7221 | Status: OK / OK
+[2026-01-09 13:50:15] [RUNNING] Timestep: 3210 | Ep: 68 | Rew: -94.0 | PoseVar: 2.9255 | Status: OK / OK
+[2026-01-09 13:50:45] [RUNNING] Timestep: 3410 | Ep: 72 | Rew: -0.8 | PoseVar: 4.1103 | Status: OK / OK
+[2026-01-09 13:51:15] [RUNNING] Timestep: 3520 | Ep: 75 | Rew: 0.6 | PoseVar: 1.2850 | Status: OK / OK
+[2026-01-09 13:51:45] [RUNNING] Timestep: 3520 | Ep: 75 | Rew: 0.6 | PoseVar: 1.2850 | Status: OK / OK
+[2026-01-09 13:52:15] [RUNNING] Timestep: 3650 | Ep: 80 | Rew: 3.2 | PoseVar: 1.7422 | Status: OK / OK
+[2026-01-09 13:52:45] [RUNNING] Timestep: 3810 | Ep: 84 | Rew: 1.9 | PoseVar: 2.8024 | Status: OK / OK
+[2026-01-09 13:53:15] [RUNNING] Timestep: 3980 | Ep: 87 | Rew: -8.4 | PoseVar: 1.9335 | Status: OK / OK
+[2026-01-09 13:53:45] [RUNNING] Timestep: 4030 | Ep: 89 | Rew: -7.8 | PoseVar: 0.7093 | Status: OK / OK
+[2026-01-09 13:54:15] [RUNNING] Timestep: 4030 | Ep: 89 | Rew: -7.8 | PoseVar: 0.7093 | Status: OK / OK
+[2026-01-09 13:54:45] [RUNNING] Timestep: 4180 | Ep: 92 | Rew: -0.7 | PoseVar: 1.3585 | Status: OK / OK
+[2026-01-09 13:55:15] [RUNNING] Timestep: 4340 | Ep: 95 | Rew: -63.0 | PoseVar: 1.8025 | Status: OK / OK
+[2026-01-09 13:55:45] [RUNNING] Timestep: 4490 | Ep: 98 | Rew: -57.9 | PoseVar: 1.1022 | Status: OK / OK
+[2026-01-09 13:56:15] [RUNNING] Timestep: 4540 | Ep: 99 | Rew: -39.5 | PoseVar: 1.2969 | Status: OK / OK
+[2026-01-09 13:56:45] [RUNNING] Timestep: 4560 | Ep: 100 | Rew: -31.4 | PoseVar: 2.6634 | Status: OK / OK
+[2026-01-09 13:57:15] [RUNNING] Timestep: 4720 | Ep: 103 | Rew: 3.0 | PoseVar: 0.6933 | Status: OK / OK
+[2026-01-09 13:57:46] [RUNNING] Timestep: 4890 | Ep: 107 | Rew: -0.2 | PoseVar: 0.6787 | Status: OK / OK
+[2026-01-09 13:58:16] [RUNNING] Timestep: 5000 | Ep: 109 | Rew: 1.3 | PoseVar: 2.1558 | Status: OK / OK
+[2026-01-09 13:58:46] [RUNNING] Timestep: 5000 | Ep: 109 | Rew: 1.3 | PoseVar: 2.1558 | Status: OK / OK
+[2026-01-09 13:59:16] [RUNNING] Timestep: 5110 | Ep: 112 | Rew: -83.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 13:59:46] [RUNNING] Timestep: 5270 | Ep: 116 | Rew: -31.3 | PoseVar: 1.6760 | Status: OK / OK
+[2026-01-09 14:00:16] [RUNNING] Timestep: 5440 | Ep: 119 | Rew: -54.2 | PoseVar: 1.2603 | Status: OK / OK
+[2026-01-09 14:00:46] [RUNNING] Timestep: 5510 | Ep: 120 | Rew: -19.7 | PoseVar: 0.9646 | Status: OK / OK
+[2026-01-09 14:01:16] [RUNNING] Timestep: 5510 | Ep: 120 | Rew: -19.7 | PoseVar: 0.9646 | Status: OK / OK
+[2026-01-09 14:01:46] [RUNNING] Timestep: 5620 | Ep: 123 | Rew: -5.5 | PoseVar: 1.0574 | Status: OK / OK
+[2026-01-09 14:02:16] [RUNNING] Timestep: 5770 | Ep: 126 | Rew: -5.5 | PoseVar: 1.5349 | Status: OK / OK
+[2026-01-09 14:02:46] [RUNNING] Timestep: 5920 | Ep: 129 | Rew: -16.8 | PoseVar: 1.2279 | Status: OK / OK
+[2026-01-09 14:03:16] [RUNNING] Timestep: 6030 | Ep: 132 | Rew: -7.5 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 14:03:46] [RUNNING] Timestep: 6030 | Ep: 132 | Rew: -7.5 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 14:04:16] [RUNNING] Timestep: 6130 | Ep: 135 | Rew: 3.9 | PoseVar: 0.5370 | Status: OK / OK
+[2026-01-09 14:04:46] [RUNNING] Timestep: 6280 | Ep: 139 | Rew: -17.1 | PoseVar: 0.2567 | Status: OK / OK
+[2026-01-09 14:05:16] [RUNNING] Timestep: 6440 | Ep: 142 | Rew: -106.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 14:05:46] [RUNNING] Timestep: 6540 | Ep: 144 | Rew: -2.4 | PoseVar: 0.6797 | Status: OK / OK
+[2026-01-09 14:06:16] [RUNNING] Timestep: 6540 | Ep: 144 | Rew: -2.4 | PoseVar: 0.6797 | Status: OK / OK
+[2026-01-09 14:06:46] [RUNNING] Timestep: 6690 | Ep: 147 | Rew: -37.2 | PoseVar: 2.8429 | Status: OK / OK
+[2026-01-09 14:07:16] [RUNNING] Timestep: 6840 | Ep: 150 | Rew: -21.4 | PoseVar: 1.4828 | Status: OK / OK
+[2026-01-09 14:07:46] [RUNNING] Timestep: 7000 | Ep: 154 | Rew: -1.4 | PoseVar: 1.2005 | Status: OK / OK
+[2026-01-09 14:08:20] [RUNNING] Timestep: 7000 | Ep: 154 | Rew: -1.4 | PoseVar: 1.2005 | Status: OK / OK
+[2026-01-09 14:08:50] [RUNNING] Timestep: 7030 | Ep: 155 | Rew: -54.8 | PoseVar: 2.1636 | Status: OK / OK
+[2026-01-09 14:09:20] [RUNNING] Timestep: 7160 | Ep: 160 | Rew: -15.0 | PoseVar: 0.1640 | Status: OK / OK
+[2026-01-09 14:09:50] [RUNNING] Timestep: 7340 | Ep: 163 | Rew: -0.3 | PoseVar: 2.5685 | Status: OK / OK
+[2026-01-09 14:10:20] [RUNNING] Timestep: 7510 | Ep: 166 | Rew: -90.7 | PoseVar: 0.7639 | Status: OK / OK
+[2026-01-09 14:10:50] [RUNNING] Timestep: 7510 | Ep: 166 | Rew: -90.7 | PoseVar: 0.7639 | Status: OK / OK
+[2026-01-09 14:11:20] [RUNNING] Timestep: 7510 | Ep: 166 | Rew: -90.7 | PoseVar: 0.7639 | Status: OK / OK
+[2026-01-09 14:11:50] [RUNNING] Timestep: 7660 | Ep: 170 | Rew: -18.9 | PoseVar: 2.0971 | Status: OK / OK
+[2026-01-09 14:12:20] [RUNNING] Timestep: 7800 | Ep: 173 | Rew: -55.7 | PoseVar: 1.8293 | Status: OK / OK
+[2026-01-09 14:12:51] [RUNNING] Timestep: 7950 | Ep: 177 | Rew: -0.2 | PoseVar: 2.0705 | Status: OK / OK
+[2026-01-09 14:13:21] [RUNNING] Timestep: 8020 | Ep: 178 | Rew: -17.5 | PoseVar: 2.1010 | Status: OK / OK
+[2026-01-09 14:13:51] [RUNNING] Timestep: 8020 | Ep: 178 | Rew: -17.5 | PoseVar: 2.1010 | Status: OK / OK
+[2026-01-09 14:14:21] [RUNNING] Timestep: 8180 | Ep: 182 | Rew: -0.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 14:14:51] [RUNNING] Timestep: 8330 | Ep: 186 | Rew: -2.0 | PoseVar: 2.6988 | Status: OK / OK
+[2026-01-09 14:15:21] [RUNNING] Timestep: 8490 | Ep: 190 | Rew: -37.4 | PoseVar: 0.4565 | Status: OK / OK
+[2026-01-09 14:15:51] [RUNNING] Timestep: 8530 | Ep: 190 | Rew: -86.2 | PoseVar: 0.8540 | Status: OK / OK
+[2026-01-09 14:16:21] [RUNNING] Timestep: 8590 | Ep: 191 | Rew: 3.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 14:16:51] [RUNNING] Timestep: 8740 | Ep: 195 | Rew: -3.0 | PoseVar: 2.1440 | Status: OK / OK
+[2026-01-09 14:17:21] [RUNNING] Timestep: 8910 | Ep: 199 | Rew: -12.8 | PoseVar: 2.1514 | Status: OK / OK
+[2026-01-09 14:17:51] [RUNNING] Timestep: 8990 | Ep: 200 | Rew: -41.2 | PoseVar: 1.2943 | Status: OK / OK
+[2026-01-09 14:18:21] [RUNNING] Timestep: 9050 | Ep: 201 | Rew: -105.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 14:18:51] [RUNNING] Timestep: 9200 | Ep: 205 | Rew: 3.8 | PoseVar: 0.9061 | Status: OK / OK
+[2026-01-09 14:19:21] [RUNNING] Timestep: 9350 | Ep: 209 | Rew: -103.9 | PoseVar: 3.3815 | Status: OK / OK
+[2026-01-09 14:19:51] [RUNNING] Timestep: 9510 | Ep: 212 | Rew: -1.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 14:20:21] [RUNNING] Timestep: 9510 | Ep: 212 | Rew: -1.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 14:20:51] [RUNNING] Timestep: 9610 | Ep: 214 | Rew: -26.9 | PoseVar: 0.8586 | Status: OK / OK
+[2026-01-09 14:21:21] [RUNNING] Timestep: 9760 | Ep: 217 | Rew: -28.6 | PoseVar: 2.5799 | Status: OK / OK
+[2026-01-09 14:21:51] [RUNNING] Timestep: 9940 | Ep: 221 | Rew: 4.7 | PoseVar: 2.4233 | Status: OK / OK
+[2026-01-09 14:22:22] [RUNNING] Timestep: 10020 | Ep: 222 | Rew: 4.6 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 14:22:52] [RUNNING] Timestep: 10020 | Ep: 222 | Rew: 4.6 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 14:23:22] [RUNNING] Timestep: 10150 | Ep: 225 | Rew: -3.8 | PoseVar: 1.6881 | Status: OK / OK
+[2026-01-09 14:23:52] [RUNNING] Timestep: 10320 | Ep: 228 | Rew: -22.2 | PoseVar: 1.1284 | Status: OK / OK
+[2026-01-09 14:24:22] [RUNNING] Timestep: 10480 | Ep: 231 | Rew: 3.8 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 14:24:52] [RUNNING] Timestep: 10530 | Ep: 232 | Rew: -6.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 14:25:23] [RUNNING] Timestep: 10530 | Ep: 232 | Rew: -6.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 14:25:53] [RUNNING] Timestep: 10680 | Ep: 235 | Rew: 3.8 | PoseVar: 1.0121 | Status: OK / OK
+[2026-01-09 14:26:23] [RUNNING] Timestep: 10790 | Ep: 238 | Rew: -4.8 | PoseVar: 3.1231 | Status: OK / OK
+[2026-01-09 14:26:53] [RUNNING] Timestep: 10960 | Ep: 241 | Rew: -3.4 | PoseVar: 0.2282 | Status: OK / OK
+[2026-01-09 14:27:23] [RUNNING] Timestep: 11040 | Ep: 242 | Rew: -97.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 14:27:53] [RUNNING] Timestep: 11110 | Ep: 244 | Rew: -38.5 | PoseVar: 1.7392 | Status: OK / OK
+[2026-01-09 14:28:23] [RUNNING] Timestep: 11280 | Ep: 247 | Rew: -2.8 | PoseVar: 1.7869 | Status: OK / OK
+[2026-01-09 14:28:53] [RUNNING] Timestep: 11440 | Ep: 250 | Rew: -2.7 | PoseVar: 1.9762 | Status: OK / OK
+[2026-01-09 14:29:23] [RUNNING] Timestep: 11500 | Ep: 251 | Rew: -101.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 14:29:53] [RUNNING] Timestep: 11500 | Ep: 251 | Rew: -101.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 14:30:24] [RUNNING] Timestep: 11630 | Ep: 254 | Rew: -25.1 | PoseVar: 4.8766 | Status: OK / OK
+[2026-01-09 14:30:54] [RUNNING] Timestep: 11790 | Ep: 257 | Rew: 4.6 | PoseVar: 3.5587 | Status: OK / OK
+[2026-01-09 14:31:24] [RUNNING] Timestep: 11960 | Ep: 261 | Rew: -0.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 14:31:54] [RUNNING] Timestep: 12010 | Ep: 262 | Rew: 5.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 14:32:24] [RUNNING] Timestep: 12010 | Ep: 262 | Rew: 5.7 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 14:32:54] [RUNNING] Timestep: 12160 | Ep: 265 | Rew: 0.2 | PoseVar: 1.6018 | Status: OK / OK
+[2026-01-09 14:33:24] [RUNNING] Timestep: 12330 | Ep: 269 | Rew: 2.9 | PoseVar: 3.2492 | Status: OK / OK
+[2026-01-09 14:33:54] [RUNNING] Timestep: 12490 | Ep: 272 | Rew: -4.8 | PoseVar: 1.7566 | Status: OK / OK
+[2026-01-09 14:34:24] [RUNNING] Timestep: 12520 | Ep: 272 | Rew: -4.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 14:34:54] [RUNNING] Timestep: 12520 | Ep: 272 | Rew: -4.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 14:35:24] [RUNNING] Timestep: 12700 | Ep: 277 | Rew: 2.3 | PoseVar: 3.9279 | Status: OK / OK
+[2026-01-09 14:35:54] [RUNNING] Timestep: 12870 | Ep: 281 | Rew: -85.3 | PoseVar: 0.4633 | Status: OK / OK
+[2026-01-09 14:36:24] [RUNNING] Timestep: 13030 | Ep: 286 | Rew: -3.2 | PoseVar: 2.6173 | Status: OK / OK
+[2026-01-09 14:36:55] [RUNNING] Timestep: 13030 | Ep: 286 | Rew: -3.2 | PoseVar: 2.6173 | Status: OK / OK
+[2026-01-09 14:37:25] [RUNNING] Timestep: 13060 | Ep: 288 | Rew: -26.1 | PoseVar: 4.4087 | Status: OK / OK
+[2026-01-09 14:37:55] [RUNNING] Timestep: 13240 | Ep: 291 | Rew: -0.8 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 14:38:25] [RUNNING] Timestep: 13390 | Ep: 295 | Rew: -6.3 | PoseVar: 1.9780 | Status: OK / OK
+[2026-01-09 14:38:55] [RUNNING] Timestep: 13540 | Ep: 298 | Rew: -55.1 | PoseVar: 2.9794 | Status: OK / OK
+[2026-01-09 14:39:25] [RUNNING] Timestep: 13540 | Ep: 298 | Rew: -55.1 | PoseVar: 2.9794 | Status: OK / OK
+[2026-01-09 14:39:55] [RUNNING] Timestep: 13600 | Ep: 300 | Rew: -1.3 | PoseVar: 1.2141 | Status: OK / OK
+[2026-01-09 14:40:25] [RUNNING] Timestep: 13760 | Ep: 303 | Rew: 3.3 | PoseVar: 2.5571 | Status: OK / OK
+[2026-01-09 14:40:55] [RUNNING] Timestep: 13920 | Ep: 307 | Rew: -14.8 | PoseVar: 3.9787 | Status: OK / OK
+[2026-01-09 14:41:25] [RUNNING] Timestep: 14000 | Ep: 308 | Rew: -34.0 | PoseVar: 1.9194 | Status: OK / OK
+[2026-01-09 14:41:56] [RUNNING] Timestep: 14000 | Ep: 308 | Rew: -34.0 | PoseVar: 1.9194 | Status: OK / OK
+[2026-01-09 14:42:26] [RUNNING] Timestep: 14150 | Ep: 311 | Rew: -86.3 | PoseVar: 2.0826 | Status: OK / OK
+[2026-01-09 14:42:56] [RUNNING] Timestep: 14310 | Ep: 314 | Rew: -17.0 | PoseVar: 0.6874 | Status: OK / OK
+[2026-01-09 14:43:26] [RUNNING] Timestep: 14460 | Ep: 318 | Rew: -5.9 | PoseVar: 0.4917 | Status: OK / OK
+[2026-01-09 14:43:56] [RUNNING] Timestep: 14510 | Ep: 319 | Rew: -3.6 | PoseVar: 1.1367 | Status: OK / OK
+[2026-01-09 14:44:26] [RUNNING] Timestep: 14510 | Ep: 319 | Rew: -3.6 | PoseVar: 1.1367 | Status: OK / OK
+[2026-01-09 14:44:56] [RUNNING] Timestep: 14680 | Ep: 323 | Rew: -4.7 | PoseVar: 3.4576 | Status: OK / OK
+[2026-01-09 14:45:26] [RUNNING] Timestep: 14840 | Ep: 327 | Rew: -28.4 | PoseVar: 1.6330 | Status: OK / OK
+[2026-01-09 14:45:56] [RUNNING] Timestep: 15010 | Ep: 330 | Rew: -5.6 | PoseVar: 2.1415 | Status: OK / OK
+[2026-01-09 14:46:26] [RUNNING] Timestep: 15020 | Ep: 330 | Rew: -5.3 | PoseVar: 1.6356 | Status: OK / OK
+[2026-01-09 14:46:57] [RUNNING] Timestep: 15020 | Ep: 330 | Rew: -5.3 | PoseVar: 1.6356 | Status: OK / OK
+[2026-01-09 14:56:31] [RUNNING] Timestep: 15160 | Ep: 333 | Rew: -4.6 | PoseVar: 3.2773 | Status: OK / OK
+[2026-01-09 14:57:01] [RUNNING] Timestep: 15310 | Ep: 336 | Rew: -3.1 | PoseVar: 2.7876 | Status: OK / OK
+[2026-01-09 14:57:31] [RUNNING] Timestep: 15440 | Ep: 339 | Rew: -75.8 | PoseVar: 1.9618 | Status: OK / OK
+[2026-01-09 14:58:01] [RUNNING] Timestep: 15530 | Ep: 340 | Rew: -17.4 | PoseVar: 3.4483 | Status: OK / OK
+[2026-01-09 14:58:31] [RUNNING] Timestep: 15530 | Ep: 340 | Rew: -17.4 | PoseVar: 3.4483 | Status: OK / OK
+[2026-01-09 14:59:01] [RUNNING] Timestep: 15690 | Ep: 344 | Rew: -92.5 | PoseVar: 1.0711 | Status: OK / OK
+[2026-01-09 14:59:32] [RUNNING] Timestep: 15850 | Ep: 348 | Rew: -13.3 | PoseVar: 2.6061 | Status: OK / OK
+[2026-01-09 15:00:02] [RUNNING] Timestep: 16000 | Ep: 352 | Rew: 3.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 15:00:32] [RUNNING] Timestep: 16000 | Ep: 352 | Rew: 3.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 15:01:02] [RUNNING] Timestep: 16100 | Ep: 354 | Rew: -3.9 | PoseVar: 1.2177 | Status: OK / OK
+[2026-01-09 15:01:32] [RUNNING] Timestep: 16260 | Ep: 361 | Rew: -2.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 15:02:02] [RUNNING] Timestep: 16430 | Ep: 365 | Rew: -13.7 | PoseVar: 4.9357 | Status: OK / OK
+[2026-01-09 15:02:32] [RUNNING] Timestep: 16510 | Ep: 366 | Rew: 1.4 | PoseVar: 0.7937 | Status: OK / OK
+[2026-01-09 15:03:02] [RUNNING] Timestep: 16510 | Ep: 366 | Rew: 1.4 | PoseVar: 0.7937 | Status: OK / OK
+[2026-01-09 15:03:33] [RUNNING] Timestep: 16610 | Ep: 368 | Rew: -31.1 | PoseVar: 3.1089 | Status: OK / OK
+[2026-01-09 15:04:03] [RUNNING] Timestep: 16710 | Ep: 370 | Rew: 1.8 | PoseVar: 2.0208 | Status: OK / OK
+[2026-01-09 15:04:33] [RUNNING] Timestep: 16820 | Ep: 374 | Rew: -100.4 | PoseVar: 1.8437 | Status: OK / OK
+[2026-01-09 15:05:03] [RUNNING] Timestep: 16970 | Ep: 378 | Rew: -3.7 | PoseVar: 1.8310 | Status: OK / OK
+[2026-01-09 15:05:33] [RUNNING] Timestep: 17020 | Ep: 379 | Rew: -0.2 | PoseVar: 0.3662 | Status: OK / OK
+[2026-01-09 15:06:03] [RUNNING] Timestep: 17020 | Ep: 379 | Rew: -0.2 | PoseVar: 0.3662 | Status: OK / OK
+[2026-01-09 15:06:34] [RUNNING] Timestep: 17130 | Ep: 381 | Rew: -98.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 15:07:04] [RUNNING] Timestep: 17230 | Ep: 383 | Rew: -3.7 | PoseVar: 1.0678 | Status: OK / OK
+[2026-01-09 15:07:34] [RUNNING] Timestep: 17380 | Ep: 386 | Rew: -1.4 | PoseVar: 1.6601 | Status: OK / OK
+[2026-01-09 15:08:04] [RUNNING] Timestep: 17480 | Ep: 388 | Rew: -0.9 | PoseVar: 1.0011 | Status: OK / OK
+[2026-01-09 15:08:34] [RUNNING] Timestep: 17530 | Ep: 389 | Rew: 2.4 | PoseVar: 1.1372 | Status: OK / OK
+[2026-01-09 15:09:05] [RUNNING] Timestep: 17530 | Ep: 389 | Rew: 2.4 | PoseVar: 1.1372 | Status: OK / OK
+[2026-01-09 15:09:35] [RUNNING] Timestep: 17580 | Ep: 390 | Rew: -3.3 | PoseVar: 3.0063 | Status: OK / OK
+[2026-01-09 15:10:05] [RUNNING] Timestep: 17690 | Ep: 392 | Rew: -63.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 15:10:35] [RUNNING] Timestep: 17790 | Ep: 394 | Rew: -98.7 | PoseVar: 2.6527 | Status: OK / OK
+[2026-01-09 15:11:06] [RUNNING] Timestep: 17890 | Ep: 396 | Rew: -34.5 | PoseVar: 0.9704 | Status: OK / OK
+[2026-01-09 15:11:36] [RUNNING] Timestep: 17940 | Ep: 397 | Rew: -34.4 | PoseVar: 1.7530 | Status: OK / OK
+[2026-01-09 15:12:06] [RUNNING] Timestep: 18040 | Ep: 399 | Rew: 1.7 | PoseVar: 1.5721 | Status: OK / OK
+[2026-01-09 15:12:37] [RUNNING] Timestep: 18040 | Ep: 399 | Rew: 1.7 | PoseVar: 1.5721 | Status: OK / OK
+[2026-01-09 15:13:07] [RUNNING] Timestep: 18040 | Ep: 399 | Rew: 1.7 | PoseVar: 1.5721 | Status: OK / OK
+[2026-01-09 15:13:37] [RUNNING] Timestep: 18150 | Ep: 401 | Rew: -95.1 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 15:14:07] [RUNNING] Timestep: 18250 | Ep: 403 | Rew: -101.2 | PoseVar: 0.7225 | Status: OK / OK
+[2026-01-09 15:14:38] [RUNNING] Timestep: 18350 | Ep: 405 | Rew: -4.5 | PoseVar: 1.8575 | Status: OK / OK
+[2026-01-09 15:15:08] [RUNNING] Timestep: 18450 | Ep: 407 | Rew: -14.2 | PoseVar: 3.2874 | Status: OK / OK
+[2026-01-09 15:15:38] [RUNNING] Timestep: 18500 | Ep: 409 | Rew: -6.5 | PoseVar: 3.8634 | Status: OK / OK
+[2026-01-09 15:16:08] [RUNNING] Timestep: 18500 | Ep: 409 | Rew: -6.5 | PoseVar: 3.8634 | Status: OK / OK
+[2026-01-09 15:16:39] [RUNNING] Timestep: 18560 | Ep: 411 | Rew: -4.7 | PoseVar: 0.1368 | Status: OK / OK
+[2026-01-09 15:17:09] [RUNNING] Timestep: 18660 | Ep: 413 | Rew: -0.5 | PoseVar: 0.3991 | Status: OK / OK
+[2026-01-09 15:17:39] [RUNNING] Timestep: 18760 | Ep: 415 | Rew: -31.8 | PoseVar: 1.4800 | Status: OK / OK
+[2026-01-09 15:18:09] [RUNNING] Timestep: 18860 | Ep: 418 | Rew: -0.9 | PoseVar: 2.3676 | Status: OK / OK
+[2026-01-09 15:18:40] [RUNNING] Timestep: 18960 | Ep: 420 | Rew: -43.7 | PoseVar: 7.3417 | Status: OK / OK
+[2026-01-09 15:19:10] [RUNNING] Timestep: 19020 | Ep: 421 | Rew: -89.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 15:19:40] [RUNNING] Timestep: 19020 | Ep: 421 | Rew: -89.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 15:20:11] [RUNNING] Timestep: 19120 | Ep: 423 | Rew: -14.4 | PoseVar: 0.1320 | Status: OK / OK
+[2026-01-09 15:20:41] [RUNNING] Timestep: 19220 | Ep: 425 | Rew: -2.3 | PoseVar: 1.5765 | Status: OK / OK
+[2026-01-09 15:21:11] [RUNNING] Timestep: 19320 | Ep: 427 | Rew: 0.2 | PoseVar: 1.8295 | Status: OK / OK
+[2026-01-09 15:21:41] [RUNNING] Timestep: 19420 | Ep: 429 | Rew: 0.2 | PoseVar: 1.4589 | Status: OK / OK
+[2026-01-09 15:22:12] [RUNNING] Timestep: 19510 | Ep: 432 | Rew: 0.8 | PoseVar: 1.7939 | Status: OK / OK
+[2026-01-09 15:22:42] [RUNNING] Timestep: 19530 | Ep: 432 | Rew: 4.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 15:23:12] [RUNNING] Timestep: 19530 | Ep: 432 | Rew: 4.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 15:23:43] [RUNNING] Timestep: 19630 | Ep: 434 | Rew: -5.3 | PoseVar: 2.0996 | Status: OK / OK
+[2026-01-09 15:24:13] [RUNNING] Timestep: 19710 | Ep: 437 | Rew: -0.2 | PoseVar: 3.6139 | Status: OK / OK
+[2026-01-09 15:24:43] [RUNNING] Timestep: 19800 | Ep: 439 | Rew: -34.1 | PoseVar: 3.4131 | Status: OK / OK
+[2026-01-09 15:25:13] [RUNNING] Timestep: 19940 | Ep: 442 | Rew: 3.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 15:25:44] [RUNNING] Timestep: 20040 | Ep: 444 | Rew: 5.5 | PoseVar: 2.4966 | Status: OK / OK
+[2026-01-09 15:26:14] [RUNNING] Timestep: 20040 | Ep: 444 | Rew: 5.5 | PoseVar: 2.4966 | Status: OK / OK
+[2026-01-09 15:26:44] [RUNNING] Timestep: 20060 | Ep: 445 | Rew: 1.6 | PoseVar: 2.5293 | Status: OK / OK
+[2026-01-09 15:27:14] [RUNNING] Timestep: 20190 | Ep: 448 | Rew: -6.9 | PoseVar: 1.1271 | Status: OK / OK
+[2026-01-09 15:27:44] [RUNNING] Timestep: 20330 | Ep: 451 | Rew: -4.0 | PoseVar: 0.5285 | Status: OK / OK
+[2026-01-09 15:28:14] [RUNNING] Timestep: 20460 | Ep: 455 | Rew: -4.4 | PoseVar: 1.5535 | Status: OK / OK
+[2026-01-09 15:28:45] [RUNNING] Timestep: 20500 | Ep: 455 | Rew: -0.7 | PoseVar: 1.0633 | Status: OK / OK
+[2026-01-09 15:29:15] [RUNNING] Timestep: 20500 | Ep: 455 | Rew: -0.7 | PoseVar: 1.0633 | Status: OK / OK
+[2026-01-09 15:29:45] [RUNNING] Timestep: 20600 | Ep: 457 | Rew: -2.0 | PoseVar: 3.5596 | Status: OK / OK
+[2026-01-09 15:30:15] [RUNNING] Timestep: 20750 | Ep: 460 | Rew: -88.9 | PoseVar: 2.3270 | Status: OK / OK
+[2026-01-09 15:30:45] [RUNNING] Timestep: 20910 | Ep: 463 | Rew: -93.6 | PoseVar: 0.5011 | Status: OK / OK
+[2026-01-09 15:31:15] [RUNNING] Timestep: 21010 | Ep: 465 | Rew: -5.0 | PoseVar: 1.5995 | Status: OK / OK
+[2026-01-09 15:31:45] [RUNNING] Timestep: 21010 | Ep: 465 | Rew: -5.0 | PoseVar: 1.5995 | Status: OK / OK
+[2026-01-09 15:32:16] [RUNNING] Timestep: 21060 | Ep: 466 | Rew: 3.9 | PoseVar: 1.2705 | Status: OK / OK
+[2026-01-09 15:32:46] [RUNNING] Timestep: 21180 | Ep: 469 | Rew: -31.0 | PoseVar: 1.0203 | Status: OK / OK
+[2026-01-09 15:33:16] [RUNNING] Timestep: 21320 | Ep: 472 | Rew: -6.2 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 15:33:46] [RUNNING] Timestep: 21470 | Ep: 475 | Rew: -95.0 | PoseVar: 3.6126 | Status: OK / OK
+[2026-01-09 15:34:16] [RUNNING] Timestep: 21520 | Ep: 477 | Rew: -7.3 | PoseVar: 3.7274 | Status: OK / OK
+[2026-01-09 15:34:46] [RUNNING] Timestep: 21520 | Ep: 477 | Rew: -7.3 | PoseVar: 3.7274 | Status: OK / OK
+[2026-01-09 15:35:17] [RUNNING] Timestep: 21660 | Ep: 481 | Rew: -39.2 | PoseVar: 5.8473 | Status: OK / OK
+[2026-01-09 15:35:47] [RUNNING] Timestep: 21780 | Ep: 483 | Rew: -2.7 | PoseVar: 0.4984 | Status: OK / OK
+[2026-01-09 15:36:17] [RUNNING] Timestep: 21930 | Ep: 487 | Rew: -30.8 | PoseVar: 1.8325 | Status: OK / OK
+[2026-01-09 15:36:48] [RUNNING] Timestep: 22030 | Ep: 489 | Rew: -6.1 | PoseVar: 1.5572 | Status: OK / OK
+[2026-01-09 15:37:18] [RUNNING] Timestep: 22030 | Ep: 489 | Rew: -6.1 | PoseVar: 1.5572 | Status: OK / OK
+[2026-01-09 15:37:48] [RUNNING] Timestep: 22040 | Ep: 490 | Rew: -9.9 | PoseVar: 0.8455 | Status: OK / OK
+[2026-01-09 15:38:18] [RUNNING] Timestep: 22190 | Ep: 492 | Rew: -2.5 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 15:38:48] [RUNNING] Timestep: 22320 | Ep: 498 | Rew: -2.5 | PoseVar: 2.5441 | Status: OK / OK
+[2026-01-09 15:39:18] [RUNNING] Timestep: 22440 | Ep: 500 | Rew: 0.6 | PoseVar: 3.6725 | Status: OK / OK
+[2026-01-09 15:39:49] [RUNNING] Timestep: 22500 | Ep: 502 | Rew: 1.6 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 15:40:19] [RUNNING] Timestep: 22510 | Ep: 503 | Rew: 2.1 | PoseVar: 3.0836 | Status: OK / OK
+[2026-01-09 15:40:49] [RUNNING] Timestep: 22650 | Ep: 506 | Rew: -32.9 | PoseVar: 1.8574 | Status: OK / OK
+[2026-01-09 15:41:19] [RUNNING] Timestep: 22780 | Ep: 509 | Rew: -23.2 | PoseVar: 1.7725 | Status: OK / OK
+[2026-01-09 15:41:49] [RUNNING] Timestep: 22930 | Ep: 512 | Rew: -3.2 | PoseVar: 2.5509 | Status: OK / OK
+[2026-01-09 15:42:20] [RUNNING] Timestep: 23010 | Ep: 513 | Rew: 2.0 | PoseVar: 0.9797 | Status: OK / OK
+[2026-01-09 15:42:50] [RUNNING] Timestep: 23010 | Ep: 513 | Rew: 2.0 | PoseVar: 0.9797 | Status: OK / OK
+[2026-01-09 15:43:20] [RUNNING] Timestep: 23130 | Ep: 516 | Rew: -2.8 | PoseVar: 3.1647 | Status: OK / OK
+[2026-01-09 15:43:50] [RUNNING] Timestep: 23260 | Ep: 519 | Rew: -18.9 | PoseVar: 3.1378 | Status: OK / OK
+[2026-01-09 15:44:20] [RUNNING] Timestep: 23410 | Ep: 523 | Rew: 2.1 | PoseVar: 0.9685 | Status: OK / OK
+[2026-01-09 15:44:50] [RUNNING] Timestep: 23520 | Ep: 525 | Rew: 1.9 | PoseVar: 1.9305 | Status: OK / OK
+[2026-01-09 15:45:20] [RUNNING] Timestep: 23520 | Ep: 525 | Rew: 1.9 | PoseVar: 1.9305 | Status: OK / OK
+[2026-01-09 15:45:51] [RUNNING] Timestep: 23570 | Ep: 526 | Rew: -4.3 | PoseVar: 0.7021 | Status: OK / OK
+[2026-01-09 15:46:21] [RUNNING] Timestep: 23720 | Ep: 530 | Rew: 0.3 | PoseVar: 2.4917 | Status: OK / OK
+[2026-01-09 15:46:51] [RUNNING] Timestep: 23830 | Ep: 532 | Rew: 4.6 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 15:47:21] [RUNNING] Timestep: 23980 | Ep: 535 | Rew: -13.8 | PoseVar: 1.3055 | Status: OK / OK
+[2026-01-09 15:47:51] [RUNNING] Timestep: 24030 | Ep: 536 | Rew: 0.3 | PoseVar: 0.9611 | Status: OK / OK
+[2026-01-09 15:48:22] [RUNNING] Timestep: 24030 | Ep: 536 | Rew: 0.3 | PoseVar: 0.9611 | Status: OK / OK
+[2026-01-09 15:48:52] [RUNNING] Timestep: 24130 | Ep: 538 | Rew: -81.4 | PoseVar: 1.7065 | Status: OK / OK
+[2026-01-09 15:49:22] [RUNNING] Timestep: 24260 | Ep: 542 | Rew: -3.9 | PoseVar: 3.6147 | Status: OK / OK
+[2026-01-09 15:49:52] [RUNNING] Timestep: 24400 | Ep: 545 | Rew: -17.0 | PoseVar: 0.5746 | Status: OK / OK
+[2026-01-09 15:50:22] [RUNNING] Timestep: 24540 | Ep: 547 | Rew: -10.4 | PoseVar: 1.2541 | Status: OK / OK
+[2026-01-09 15:50:52] [RUNNING] Timestep: 24540 | Ep: 547 | Rew: -10.4 | PoseVar: 1.2541 | Status: OK / OK
+[2026-01-09 15:51:22] [RUNNING] Timestep: 24590 | Ep: 548 | Rew: -65.1 | PoseVar: 2.8285 | Status: OK / OK
+[2026-01-09 15:51:53] [RUNNING] Timestep: 24750 | Ep: 551 | Rew: -102.8 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 15:52:23] [RUNNING] Timestep: 24860 | Ep: 555 | Rew: -3.3 | PoseVar: 3.4228 | Status: OK / OK
+[2026-01-09 15:52:53] [RUNNING] Timestep: 25000 | Ep: 557 | Rew: -13.0 | PoseVar: 1.7985 | Status: OK / OK
+[2026-01-09 15:53:23] [RUNNING] Timestep: 25000 | Ep: 557 | Rew: -13.0 | PoseVar: 1.7985 | Status: OK / OK
+[2026-01-09 15:53:53] [RUNNING] Timestep: 25000 | Ep: 557 | Rew: -13.0 | PoseVar: 1.7985 | Status: OK / OK
+[2026-01-09 15:54:23] [RUNNING] Timestep: 25150 | Ep: 560 | Rew: -15.4 | PoseVar: 5.9316 | Status: OK / OK
+[2026-01-09 15:54:54] [RUNNING] Timestep: 25280 | Ep: 566 | Rew: 4.1 | PoseVar: 1.1646 | Status: OK / OK
+[2026-01-09 15:55:24] [RUNNING] Timestep: 25430 | Ep: 569 | Rew: -28.4 | PoseVar: 1.6970 | Status: OK / OK
+[2026-01-09 15:55:54] [RUNNING] Timestep: 25510 | Ep: 570 | Rew: -83.6 | PoseVar: 1.4827 | Status: OK / OK
+[2026-01-09 15:56:24] [RUNNING] Timestep: 25510 | Ep: 570 | Rew: -83.6 | PoseVar: 1.4827 | Status: OK / OK
+[2026-01-09 15:56:54] [RUNNING] Timestep: 25620 | Ep: 572 | Rew: -2.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 15:57:24] [RUNNING] Timestep: 25770 | Ep: 576 | Rew: 0.5 | PoseVar: 2.9080 | Status: OK / OK
+[2026-01-09 15:57:55] [RUNNING] Timestep: 25900 | Ep: 579 | Rew: 4.1 | PoseVar: 5.8937 | Status: OK / OK
+[2026-01-09 15:58:25] [RUNNING] Timestep: 26030 | Ep: 581 | Rew: 0.8 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 15:58:55] [RUNNING] Timestep: 26030 | Ep: 581 | Rew: 0.8 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 15:59:25] [RUNNING] Timestep: 26030 | Ep: 581 | Rew: 0.8 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 15:59:56] [RUNNING] Timestep: 26170 | Ep: 584 | Rew: -4.1 | PoseVar: 3.3814 | Status: OK / OK
+[2026-01-09 16:00:26] [RUNNING] Timestep: 26280 | Ep: 586 | Rew: 6.4 | PoseVar: 3.2065 | Status: OK / OK
+[2026-01-09 16:00:56] [RUNNING] Timestep: 26430 | Ep: 589 | Rew: 4.7 | PoseVar: 1.1360 | Status: OK / OK
+[2026-01-09 16:01:26] [RUNNING] Timestep: 26540 | Ep: 591 | Rew: -35.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 16:01:57] [RUNNING] Timestep: 26540 | Ep: 591 | Rew: -35.9 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-09 16:02:27] [RUNNING] Timestep: 26600 | Ep: 593 | Rew: -21.6 | PoseVar: 3.0765 | Status: OK / OK
+[2026-01-09 16:02:57] [RUNNING] Timestep: 26740 | Ep: 595 | Rew: -72.7 | PoseVar: 3.0263 | Status: OK / OK
+[2026-01-09 16:03:27] [RUNNING] Timestep: 26890 | Ep: 598 | Rew: -13.8 | PoseVar: 1.4744 | Status: OK / OK
+[2026-01-09 16:03:57] [RUNNING] Timestep: 26990 | Ep: 600 | Rew: -17.1 | PoseVar: 4.2367 | Status: OK / OK
+[2026-01-09 16:04:27] [RUNNING] Timestep: 26990 | Ep: 600 | Rew: -17.1 | PoseVar: 4.2367 | Status: OK / OK
+                                                                                                           [2026-01-10 13:44:09] --- Monitor Agent Started ---
+[2026-01-10 13:44:09] Watching CSV: /home/dark/ros2_ws/src2/Project_PathBlazers/install/bots/lib/python3.12/site-packages/bots/td3_rl/results/training_log.csv
+[2026-01-10 13:44:09] [ERROR] cannot convert float NaN to integer
+[2026-01-10 13:44:39] [RUNNING] Timestep: 560 | Ep: 6 | Rew: 0.0 | PoseVar: 1.2185 | Status: OK / OK
+[2026-01-10 13:45:09] [RUNNING] Timestep: 700 | Ep: 8 | Rew: -15.3 | PoseVar: 0.2942 | Status: OK / OK
+[2026-01-10 13:45:39] [RUNNING] Timestep: 830 | Ep: 11 | Rew: -239.6 | PoseVar: 2.3718 | Status: OK / DEATH_SPIRAL
+[2026-01-10 13:46:09] [RUNNING] Timestep: 970 | Ep: 14 | Rew: -380.1 | PoseVar: 1.4683 | Status: OK / DEATH_SPIRAL
+[2026-01-10 13:46:39] [RUNNING] Timestep: 1000 | Ep: 14 | Rew: -1330.5 | PoseVar: 1.2604 | Status: OK / DEATH_SPIRAL
+[2026-01-10 13:47:09] [RUNNING] Timestep: 1000 | Ep: 14 | Rew: -1330.5 | PoseVar: 1.2604 | Status: OK / DEATH_SPIRAL
+[2026-01-10 13:47:39] [RUNNING] Timestep: 1110 | Ep: 17 | Rew: -40.0 | PoseVar: 0.6099 | Status: OK / OK
+[2026-01-10 13:48:09] [RUNNING] Timestep: 1220 | Ep: 20 | Rew: -240.0 | PoseVar: 2.3757 | Status: OK / DEATH_SPIRAL
+[2026-01-10 13:48:39] [RUNNING] Timestep: 1360 | Ep: 22 | Rew: -84.5 | PoseVar: 1.6383 | Status: OK / OK
+[2026-01-10 13:49:09] [RUNNING] Timestep: 1470 | Ep: 25 | Rew: -40.0 | PoseVar: 0.5100 | Status: OK / OK
+[2026-01-10 13:49:39] [RUNNING] Timestep: 1520 | Ep: 26 | Rew: 0.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-10 13:50:09] [RUNNING] Timestep: 1520 | Ep: 26 | Rew: 0.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-10 13:50:39] [RUNNING] Timestep: 1610 | Ep: 28 | Rew: 0.0 | PoseVar: 0.3651 | Status: OK / OK
+[2026-01-10 13:51:09] [RUNNING] Timestep: 1720 | Ep: 30 | Rew: -1840.0 | PoseVar: 1.9926 | Status: OK / DEATH_SPIRAL
+[2026-01-10 13:51:39] [RUNNING] Timestep: 1820 | Ep: 32 | Rew: -467.8 | PoseVar: 1.8111 | Status: OK / DEATH_SPIRAL
+[2026-01-10 13:52:09] [RUNNING] Timestep: 1930 | Ep: 35 | Rew: -40.0 | PoseVar: 1.4288 | Status: OK / OK
+[2026-01-10 13:52:39] [RUNNING] Timestep: 2030 | Ep: 37 | Rew: 0.0 | PoseVar: 0.3945 | Status: OK / OK
+[2026-01-10 13:53:09] [RUNNING] Timestep: 2030 | Ep: 37 | Rew: 0.0 | PoseVar: 0.3945 | Status: OK / OK
+[2026-01-10 13:53:39] [RUNNING] Timestep: 2080 | Ep: 38 | Rew: -1327.3 | PoseVar: 1.0060 | Status: OK / DEATH_SPIRAL
+[2026-01-10 13:54:09] [RUNNING] Timestep: 2180 | Ep: 40 | Rew: -1840.0 | PoseVar: 2.1865 | Status: OK / DEATH_SPIRAL
+[2026-01-10 13:54:39] [RUNNING] Timestep: 2290 | Ep: 43 | Rew: 0.0 | PoseVar: 1.4558 | Status: OK / OK
+[2026-01-10 13:55:09] [RUNNING] Timestep: 2420 | Ep: 45 | Rew: -212.6 | PoseVar: 6.8759 | Status: OK / DEATH_SPIRAL
+[2026-01-10 13:55:39] [RUNNING] Timestep: 2540 | Ep: 47 | Rew: -668.5 | PoseVar: 1.0667 | Status: OK / DEATH_SPIRAL
+[2026-01-10 13:56:09] [RUNNING] Timestep: 2540 | Ep: 47 | Rew: -668.5 | PoseVar: 1.0667 | Status: OK / DEATH_SPIRAL
+[2026-01-10 13:56:39] [RUNNING] Timestep: 2570 | Ep: 48 | Rew: -300.1 | PoseVar: 4.1673 | Status: OK / DEATH_SPIRAL
+[2026-01-10 13:57:10] [RUNNING] Timestep: 2690 | Ep: 50 | Rew: -48.7 | PoseVar: 2.8086 | Status: OK / OK
+[2026-01-10 13:57:40] [RUNNING] Timestep: 2790 | Ep: 52 | Rew: -30.4 | PoseVar: 1.2111 | Status: OK / OK
+[2026-01-10 13:58:10] [RUNNING] Timestep: 2900 | Ep: 56 | Rew: 0.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-10 13:58:40] [RUNNING] Timestep: 3000 | Ep: 59 | Rew: -30.0 | PoseVar: 1.5583 | Status: OK / OK
+[2026-01-10 13:59:10] [RUNNING] Timestep: 3000 | Ep: 59 | Rew: -30.0 | PoseVar: 1.5583 | Status: OK / OK
+[2026-01-10 13:59:40] [RUNNING] Timestep: 3050 | Ep: 60 | Rew: -2.5 | PoseVar: 0.8048 | Status: OK / OK
+[2026-01-10 14:02:15] [RUNNING] Timestep: 3150 | Ep: 62 | Rew: 0.0 | PoseVar: 2.2636 | Status: OK / OK
+[2026-01-10 14:02:45] [RUNNING] Timestep: 3240 | Ep: 65 | Rew: -1513.5 | PoseVar: 1.0511 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:03:15] [RUNNING] Timestep: 3360 | Ep: 67 | Rew: -374.2 | PoseVar: 0.6671 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:03:45] [RUNNING] Timestep: 3510 | Ep: 70 | Rew: -43.4 | PoseVar: 1.4487 | Status: OK / OK
+[2026-01-10 14:04:15] [RUNNING] Timestep: 3510 | Ep: 70 | Rew: -43.4 | PoseVar: 1.4487 | Status: OK / OK
+[2026-01-10 14:04:45] [RUNNING] Timestep: 3620 | Ep: 73 | Rew: -58.2 | PoseVar: 2.0265 | Status: OK / OK
+[2026-01-10 14:05:15] [RUNNING] Timestep: 3820 | Ep: 76 | Rew: 0.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-10 14:05:45] [RUNNING] Timestep: 4010 | Ep: 81 | Rew: -40.0 | PoseVar: 2.0349 | Status: OK / OK
+[2026-01-10 14:06:15] [RUNNING] Timestep: 4020 | Ep: 81 | Rew: -40.0 | PoseVar: 1.4956 | Status: OK / OK
+[2026-01-10 14:06:46] [RUNNING] Timestep: 4070 | Ep: 82 | Rew: 0.0 | PoseVar: 1.4356 | Status: OK / OK
+[2026-01-10 14:07:16] [RUNNING] Timestep: 4250 | Ep: 89 | Rew: -324.0 | PoseVar: 3.7675 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:07:46] [RUNNING] Timestep: 4440 | Ep: 93 | Rew: -692.3 | PoseVar: 2.6653 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:08:16] [RUNNING] Timestep: 4530 | Ep: 94 | Rew: -1680.0 | PoseVar: 2.3813 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:08:46] [RUNNING] Timestep: 4530 | Ep: 94 | Rew: -1680.0 | PoseVar: 2.3813 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:09:16] [RUNNING] Timestep: 4610 | Ep: 96 | Rew: -1344.7 | PoseVar: 1.3492 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:09:46] [RUNNING] Timestep: 4770 | Ep: 100 | Rew: -328.9 | PoseVar: 0.4485 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:10:16] [RUNNING] Timestep: 4910 | Ep: 103 | Rew: -354.0 | PoseVar: 1.4330 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:10:47] [RUNNING] Timestep: 4990 | Ep: 104 | Rew: -217.9 | PoseVar: 2.8597 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:18:44] --- Monitor Agent Started ---
+[2026-01-10 14:18:44] Watching CSV: /home/dark/ros2_ws/src2/Project_PathBlazers/install/bots/lib/python3.12/site-packages/bots/td3_rl/results/training_log.csv
+[2026-01-10 14:18:44] [RUNNING] Timestep: 1460 | Ep: 24 | Rew: -2000.0 | PoseVar: 0.0117 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:19:14] [RUNNING] Timestep: 550 | Ep: 5 | Rew: 0.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-10 14:19:43] [RUNNING] Timestep: 600 | Ep: 6 | Rew: 32.4 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-10 14:20:13] [RUNNING] Timestep: 650 | Ep: 7 | Rew: 49.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-10 14:28:58] --- Monitor Agent Started ---
+[2026-01-10 14:28:58] Watching CSV: /home/dark/ros2_ws/src2/Project_PathBlazers/install/bots/lib/python3.12/site-packages/bots/td3_rl/results/training_log.csv
+[2026-01-10 14:28:58] [RUNNING] Timestep: 610 | Ep: 8 | Rew: -2000.0 | PoseVar: 2.7784 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:29:28] [initializing] Only 1 rows.
+[2026-01-10 14:29:58] [RUNNING] Timestep: 530 | Ep: 5 | Rew: -2000.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / DEATH_SPIRAL
+[2026-01-10 14:30:28] [RUNNING] Timestep: 550 | Ep: 5 | Rew: -2000.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / DEATH_SPIRAL
+[2026-01-10 14:30:58] [RUNNING] Timestep: 570 | Ep: 6 | Rew: -1964.6 | PoseVar: 1.7049 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:31:28] [RUNNING] Timestep: 600 | Ep: 6 | Rew: -1911.5 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / DEATH_SPIRAL
+[2026-01-10 14:31:58] [RUNNING] Timestep: 620 | Ep: 7 | Rew: -1294.1 | PoseVar: 0.0704 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:33:34] --- Monitor Agent Started ---
+[2026-01-10 14:33:34] Watching CSV: /home/dark/ros2_ws/src2/Project_PathBlazers/install/bots/lib/python3.12/site-packages/bots/td3_rl/results/training_log.csv
+[2026-01-10 14:33:34] [RUNNING] Timestep: 650 | Ep: 7 | Rew: -319.2 | PoseVar: 0.0203 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:34:04] [RUNNING] Timestep: 510 | Ep: 5 | Rew: -2000.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / DEATH_SPIRAL
+[2026-01-10 14:34:34] [RUNNING] Timestep: 530 | Ep: 5 | Rew: -2000.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / DEATH_SPIRAL
+[2026-01-10 14:35:04] [RUNNING] Timestep: 560 | Ep: 6 | Rew: -2000.0 | PoseVar: 7.2108 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:35:34] [RUNNING] Timestep: 580 | Ep: 6 | Rew: -2000.0 | PoseVar: 8.8314 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:36:04] [RUNNING] Timestep: 600 | Ep: 6 | Rew: -2000.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / DEATH_SPIRAL
+[2026-01-10 14:36:34] [RUNNING] Timestep: 630 | Ep: 7 | Rew: -1112.4 | PoseVar: 4.6914 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:37:04] [RUNNING] Timestep: 650 | Ep: 7 | Rew: -500.3 | PoseVar: 1.3307 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:37:34] [RUNNING] Timestep: 680 | Ep: 8 | Rew: -580.6 | PoseVar: 1.7836 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:38:04] [RUNNING] Timestep: 700 | Ep: 8 | Rew: -659.7 | PoseVar: 0.7041 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:38:34] [RUNNING] Timestep: 730 | Ep: 9 | Rew: -677.0 | PoseVar: 4.0544 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:39:04] [RUNNING] Timestep: 750 | Ep: 9 | Rew: -684.0 | PoseVar: 1.9319 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:39:34] [RUNNING] Timestep: 780 | Ep: 10 | Rew: -1368.8 | PoseVar: 4.7236 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:40:04] [RUNNING] Timestep: 800 | Ep: 10 | Rew: -1894.8 | PoseVar: 2.5650 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:40:34] [RUNNING] Timestep: 820 | Ep: 11 | Rew: -1623.1 | PoseVar: 5.7456 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:41:04] [RUNNING] Timestep: 850 | Ep: 11 | Rew: -869.4 | PoseVar: 3.7614 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:42:27] --- Monitor Agent Started ---
+[2026-01-10 14:42:27] Watching CSV: /home/dark/ros2_ws/src2/Project_PathBlazers/install/bots/lib/python3.12/site-packages/bots/td3_rl/results/training_log.csv
+[2026-01-10 14:42:27] [RUNNING] Timestep: 870 | Ep: 17 | Rew: -1095.6 | PoseVar: 4.7624 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:42:57] [RUNNING] Timestep: 510 | Ep: 5 | Rew: -2000.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / DEATH_SPIRAL
+[2026-01-10 14:43:27] [RUNNING] Timestep: 530 | Ep: 5 | Rew: -2000.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / DEATH_SPIRAL
+[2026-01-10 14:43:57] [RUNNING] Timestep: 550 | Ep: 5 | Rew: -2000.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / DEATH_SPIRAL
+[2026-01-10 14:44:27] [RUNNING] Timestep: 580 | Ep: 6 | Rew: -2000.0 | PoseVar: 4.3487 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:44:57] [RUNNING] Timestep: 600 | Ep: 6 | Rew: -2000.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / DEATH_SPIRAL
+[2026-01-10 14:45:27] [RUNNING] Timestep: 630 | Ep: 7 | Rew: -1249.8 | PoseVar: 1.2855 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:45:57] [RUNNING] Timestep: 650 | Ep: 7 | Rew: -732.4 | PoseVar: 0.3646 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:46:27] [RUNNING] Timestep: 670 | Ep: 8 | Rew: -1172.2 | PoseVar: 4.4891 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:46:57] [RUNNING] Timestep: 700 | Ep: 8 | Rew: -1948.3 | PoseVar: 1.8327 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:47:27] [RUNNING] Timestep: 720 | Ep: 9 | Rew: -1569.6 | PoseVar: 6.1829 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:47:57] [RUNNING] Timestep: 750 | Ep: 9 | Rew: -810.0 | PoseVar: 3.0997 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:48:27] [RUNNING] Timestep: 770 | Ep: 10 | Rew: -499.2 | PoseVar: 6.7708 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:48:57] [RUNNING] Timestep: 800 | Ep: 10 | Rew: -58.7 | PoseVar: 3.9378 | Status: OK / OK
+[2026-01-10 14:49:27] [RUNNING] Timestep: 820 | Ep: 11 | Rew: -359.5 | PoseVar: 5.1043 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:49:57] [RUNNING] Timestep: 840 | Ep: 11 | Rew: -838.7 | PoseVar: 5.1043 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:50:27] [RUNNING] Timestep: 860 | Ep: 15 | Rew: -1262.3 | PoseVar: 3.3465 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:50:57] [RUNNING] Timestep: 890 | Ep: 15 | Rew: -1743.4 | PoseVar: 6.2052 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:51:27] [RUNNING] Timestep: 910 | Ep: 15 | Rew: -2000.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / DEATH_SPIRAL
+[2026-01-10 14:51:57] [RUNNING] Timestep: 930 | Ep: 19 | Rew: -2000.0 | PoseVar: 2.2395 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:52:27] [RUNNING] Timestep: 960 | Ep: 19 | Rew: -2000.0 | PoseVar: 0.9416 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:52:57] [RUNNING] Timestep: 980 | Ep: 21 | Rew: -2000.0 | PoseVar: 1.2464 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:53:27] [RUNNING] Timestep: 1010 | Ep: 21 | Rew: -2000.0 | PoseVar: 1.1558 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:53:57] [RUNNING] Timestep: 1010 | Ep: 21 | Rew: -2000.0 | PoseVar: 1.1558 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:54:27] [RUNNING] Timestep: 1010 | Ep: 21 | Rew: -2000.0 | PoseVar: 1.1558 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:54:57] [RUNNING] Timestep: 1010 | Ep: 21 | Rew: -2000.0 | PoseVar: 1.1558 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:55:27] [RUNNING] Timestep: 1010 | Ep: 21 | Rew: -2000.0 | PoseVar: 1.1558 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:55:57] [RUNNING] Timestep: 1010 | Ep: 21 | Rew: -2000.0 | PoseVar: 1.1558 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:56:27] [RUNNING] Timestep: 1010 | Ep: 21 | Rew: -2000.0 | PoseVar: 1.1558 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:56:57] [RUNNING] Timestep: 1010 | Ep: 21 | Rew: -2000.0 | PoseVar: 1.1558 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:57:27] [RUNNING] Timestep: 1010 | Ep: 21 | Rew: -2000.0 | PoseVar: 1.1558 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:57:57] [RUNNING] Timestep: 1010 | Ep: 21 | Rew: -2000.0 | PoseVar: 1.1558 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:58:27] [RUNNING] Timestep: 1010 | Ep: 21 | Rew: -2000.0 | PoseVar: 1.1558 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:58:57] [RUNNING] Timestep: 1010 | Ep: 21 | Rew: -2000.0 | PoseVar: 1.1558 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:59:27] [RUNNING] Timestep: 1010 | Ep: 21 | Rew: -2000.0 | PoseVar: 1.1558 | Status: OK / DEATH_SPIRAL
+[2026-01-10 14:59:57] [RUNNING] Timestep: 1010 | Ep: 21 | Rew: -2000.0 | PoseVar: 1.1558 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:00:27] [RUNNING] Timestep: 1010 | Ep: 21 | Rew: -2000.0 | PoseVar: 1.1558 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:00:57] [RUNNING] Timestep: 1010 | Ep: 21 | Rew: -2000.0 | PoseVar: 1.1558 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:01:27] [RUNNING] Timestep: 1010 | Ep: 21 | Rew: -2000.0 | PoseVar: 1.1558 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:01:57] [RUNNING] Timestep: 1010 | Ep: 21 | Rew: -2000.0 | PoseVar: 1.1558 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:02:27] [RUNNING] Timestep: 1010 | Ep: 21 | Rew: -2000.0 | PoseVar: 1.1558 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:02:57] [RUNNING] Timestep: 1010 | Ep: 21 | Rew: -2000.0 | PoseVar: 1.1558 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:03:27] [RUNNING] Timestep: 1020 | Ep: 22 | Rew: -1840.0 | PoseVar: 3.1244 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:03:57] [RUNNING] Timestep: 1050 | Ep: 22 | Rew: -640.0 | PoseVar: 5.3722 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:04:27] [RUNNING] Timestep: 1070 | Ep: 23 | Rew: 0.0 | PoseVar: 1.3502 | Status: OK / OK
+[2026-01-10 15:04:57] [RUNNING] Timestep: 1090 | Ep: 23 | Rew: 0.0 | PoseVar: 2.8336 | Status: OK / OK
+[2026-01-10 15:05:27] [RUNNING] Timestep: 1110 | Ep: 23 | Rew: 0.0 | PoseVar: 1.9728 | Status: OK / OK
+[2026-01-10 15:05:57] [RUNNING] Timestep: 1140 | Ep: 24 | Rew: -318.2 | PoseVar: 2.9090 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:06:27] [RUNNING] Timestep: 1160 | Ep: 24 | Rew: -607.4 | PoseVar: 2.1484 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:06:57] [RUNNING] Timestep: 1190 | Ep: 25 | Rew: -723.6 | PoseVar: 5.7444 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:07:27] [RUNNING] Timestep: 1210 | Ep: 25 | Rew: -724.1 | PoseVar: 4.4715 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:07:57] [RUNNING] Timestep: 1230 | Ep: 26 | Rew: -741.8 | PoseVar: 3.9789 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:08:27] [RUNNING] Timestep: 1250 | Ep: 26 | Rew: -776.6 | PoseVar: 4.8731 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:08:57] [RUNNING] Timestep: 1270 | Ep: 26 | Rew: -811.3 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / DEATH_SPIRAL
+[2026-01-10 15:09:27] [RUNNING] Timestep: 1300 | Ep: 27 | Rew: -1500.8 | PoseVar: 2.7751 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:09:58] [RUNNING] Timestep: 1320 | Ep: 27 | Rew: -1976.2 | PoseVar: 0.7872 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:10:28] [RUNNING] Timestep: 1340 | Ep: 28 | Rew: -2000.0 | PoseVar: 8.2685 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:10:58] [RUNNING] Timestep: 1370 | Ep: 28 | Rew: -2000.0 | PoseVar: 3.3756 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:11:28] [RUNNING] Timestep: 1380 | Ep: 29 | Rew: -1720.0 | PoseVar: 2.7534 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:11:58] [RUNNING] Timestep: 1410 | Ep: 29 | Rew: -520.0 | PoseVar: 3.4807 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:12:28] [RUNNING] Timestep: 1430 | Ep: 30 | Rew: -46.0 | PoseVar: 0.5343 | Status: OK / OK
+[2026-01-10 15:12:58] [RUNNING] Timestep: 1450 | Ep: 30 | Rew: -199.5 | PoseVar: 0.8214 | Status: OK / OK
+[2026-01-10 15:13:28] [RUNNING] Timestep: 1470 | Ep: 30 | Rew: -352.9 | PoseVar: 0.4460 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:13:58] [RUNNING] Timestep: 1500 | Ep: 31 | Rew: -191.8 | PoseVar: 3.5749 | Status: OK / OK
+[2026-01-10 15:14:28] [RUNNING] Timestep: 1520 | Ep: 31 | Rew: -38.4 | PoseVar: 2.1449 | Status: OK / OK
+[2026-01-10 15:14:58] [RUNNING] Timestep: 1520 | Ep: 31 | Rew: -38.4 | PoseVar: 2.1449 | Status: OK / OK
+[2026-01-10 15:15:28] [RUNNING] Timestep: 1520 | Ep: 31 | Rew: -38.4 | PoseVar: 2.1449 | Status: OK / OK
+[2026-01-10 15:15:58] [RUNNING] Timestep: 1520 | Ep: 31 | Rew: -38.4 | PoseVar: 2.1449 | Status: OK / OK
+[2026-01-10 15:16:28] [RUNNING] Timestep: 1520 | Ep: 31 | Rew: -38.4 | PoseVar: 2.1449 | Status: OK / OK
+[2026-01-10 15:16:58] [RUNNING] Timestep: 1520 | Ep: 31 | Rew: -38.4 | PoseVar: 2.1449 | Status: OK / OK
+[2026-01-10 15:17:28] [RUNNING] Timestep: 1520 | Ep: 31 | Rew: -38.4 | PoseVar: 2.1449 | Status: OK / OK
+[2026-01-10 15:17:58] [RUNNING] Timestep: 1520 | Ep: 31 | Rew: -38.4 | PoseVar: 2.1449 | Status: OK / OK
+[2026-01-10 15:18:28] [RUNNING] Timestep: 1520 | Ep: 31 | Rew: -38.4 | PoseVar: 2.1449 | Status: OK / OK
+[2026-01-10 15:18:58] [RUNNING] Timestep: 1520 | Ep: 31 | Rew: -38.4 | PoseVar: 2.1449 | Status: OK / OK
+[2026-01-10 15:19:28] [RUNNING] Timestep: 1520 | Ep: 31 | Rew: -38.4 | PoseVar: 2.1449 | Status: OK / OK
+[2026-01-10 15:19:58] [RUNNING] Timestep: 1520 | Ep: 31 | Rew: -38.4 | PoseVar: 2.1449 | Status: OK / OK
+[2026-01-10 15:20:28] [RUNNING] Timestep: 1520 | Ep: 31 | Rew: -38.4 | PoseVar: 2.1449 | Status: OK / OK
+[2026-01-10 15:20:58] [RUNNING] Timestep: 1520 | Ep: 31 | Rew: -38.4 | PoseVar: 2.1449 | Status: OK / OK
+[2026-01-10 15:21:28] [RUNNING] Timestep: 1520 | Ep: 31 | Rew: -38.4 | PoseVar: 2.1449 | Status: OK / OK
+[2026-01-10 15:21:58] [RUNNING] Timestep: 1520 | Ep: 31 | Rew: -38.4 | PoseVar: 2.1449 | Status: OK / OK
+[2026-01-10 15:22:28] [RUNNING] Timestep: 1520 | Ep: 31 | Rew: -38.4 | PoseVar: 2.1449 | Status: OK / OK
+[2026-01-10 15:22:58] [RUNNING] Timestep: 1520 | Ep: 31 | Rew: -38.4 | PoseVar: 2.1449 | Status: OK / OK
+[2026-01-10 15:23:28] [RUNNING] Timestep: 1530 | Ep: 32 | Rew: -57.2 | PoseVar: 2.6754 | Status: OK / OK
+[2026-01-10 15:23:58] [RUNNING] Timestep: 1560 | Ep: 32 | Rew: -486.1 | PoseVar: 4.6003 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:24:28] [RUNNING] Timestep: 1570 | Ep: 32 | Rew: -629.1 | PoseVar: 3.2047 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:24:58] [RUNNING] Timestep: 1600 | Ep: 33 | Rew: -582.4 | PoseVar: 8.9311 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:25:28] [RUNNING] Timestep: 1620 | Ep: 33 | Rew: -467.2 | PoseVar: 6.2179 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:25:58] [RUNNING] Timestep: 1650 | Ep: 34 | Rew: -547.5 | PoseVar: 3.0713 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:26:29] [RUNNING] Timestep: 1670 | Ep: 34 | Rew: -657.1 | PoseVar: 2.2683 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:26:59] [RUNNING] Timestep: 1690 | Ep: 35 | Rew: -986.7 | PoseVar: 2.4780 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:27:29] [RUNNING] Timestep: 1710 | Ep: 35 | Rew: -1506.3 | PoseVar: 2.9036 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:27:59] [RUNNING] Timestep: 1730 | Ep: 35 | Rew: -2000.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / DEATH_SPIRAL
+[2026-01-10 15:28:29] [RUNNING] Timestep: 1760 | Ep: 36 | Rew: -800.0 | PoseVar: 2.8305 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:28:59] [RUNNING] Timestep: 1780 | Ep: 36 | Rew: 0.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-10 15:29:29] [RUNNING] Timestep: 1800 | Ep: 37 | Rew: -479.0 | PoseVar: 4.6240 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:29:59] [RUNNING] Timestep: 1830 | Ep: 37 | Rew: -1235.3 | PoseVar: 1.3337 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:30:29] [RUNNING] Timestep: 1850 | Ep: 38 | Rew: -806.7 | PoseVar: 7.9167 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:30:59] [RUNNING] Timestep: 1870 | Ep: 38 | Rew: -302.5 | PoseVar: 7.0439 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:31:29] [RUNNING] Timestep: 1900 | Ep: 40 | Rew: -224.3 | PoseVar: 7.2792 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:31:59] [RUNNING] Timestep: 1920 | Ep: 40 | Rew: -454.7 | PoseVar: 6.9767 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:32:29] [RUNNING] Timestep: 1940 | Ep: 42 | Rew: -618.2 | PoseVar: 2.0338 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:32:59] [RUNNING] Timestep: 1970 | Ep: 42 | Rew: -720.9 | PoseVar: 3.5087 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:33:29] [RUNNING] Timestep: 1990 | Ep: 43 | Rew: -822.4 | PoseVar: 1.7460 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:33:59] [RUNNING] Timestep: 2020 | Ep: 43 | Rew: -1574.1 | PoseVar: 3.4827 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:34:29] [RUNNING] Timestep: 2030 | Ep: 43 | Rew: -1824.6 | PoseVar: 2.5511 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:34:59] [RUNNING] Timestep: 2030 | Ep: 43 | Rew: -1824.6 | PoseVar: 2.5511 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:35:29] [RUNNING] Timestep: 2030 | Ep: 43 | Rew: -1824.6 | PoseVar: 2.5511 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:35:59] [RUNNING] Timestep: 2030 | Ep: 43 | Rew: -1824.6 | PoseVar: 2.5511 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:36:29] [RUNNING] Timestep: 2030 | Ep: 43 | Rew: -1824.6 | PoseVar: 2.5511 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:36:59] [RUNNING] Timestep: 2030 | Ep: 43 | Rew: -1824.6 | PoseVar: 2.5511 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:37:29] [RUNNING] Timestep: 2030 | Ep: 43 | Rew: -1824.6 | PoseVar: 2.5511 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:37:59] [RUNNING] Timestep: 2030 | Ep: 43 | Rew: -1824.6 | PoseVar: 2.5511 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:38:29] [RUNNING] Timestep: 2030 | Ep: 43 | Rew: -1824.6 | PoseVar: 2.5511 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:38:59] [RUNNING] Timestep: 2030 | Ep: 43 | Rew: -1824.6 | PoseVar: 2.5511 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:39:29] [RUNNING] Timestep: 2030 | Ep: 43 | Rew: -1824.6 | PoseVar: 2.5511 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:39:59] [RUNNING] Timestep: 2030 | Ep: 43 | Rew: -1824.6 | PoseVar: 2.5511 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:40:29] [RUNNING] Timestep: 2030 | Ep: 43 | Rew: -1824.6 | PoseVar: 2.5511 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:40:59] [RUNNING] Timestep: 2030 | Ep: 43 | Rew: -1824.6 | PoseVar: 2.5511 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:41:29] [RUNNING] Timestep: 2030 | Ep: 43 | Rew: -1824.6 | PoseVar: 2.5511 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:41:59] [RUNNING] Timestep: 2030 | Ep: 43 | Rew: -1824.6 | PoseVar: 2.5511 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:42:29] [RUNNING] Timestep: 2060 | Ep: 44 | Rew: -2000.0 | PoseVar: 0.0634 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:42:59] [RUNNING] Timestep: 2080 | Ep: 44 | Rew: -2000.0 | PoseVar: 0.0468 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:43:29] [RUNNING] Timestep: 2100 | Ep: 45 | Rew: -1721.5 | PoseVar: 0.1113 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:43:59] [RUNNING] Timestep: 2130 | Ep: 45 | Rew: -961.8 | PoseVar: 0.1032 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:44:29] [RUNNING] Timestep: 2150 | Ep: 47 | Rew: -627.1 | PoseVar: 1.0472 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:44:59] [RUNNING] Timestep: 2180 | Ep: 47 | Rew: -186.8 | PoseVar: 1.0454 | Status: OK / OK
+[2026-01-10 15:45:29] [RUNNING] Timestep: 2200 | Ep: 48 | Rew: 0.0 | PoseVar: 0.0247 | Status: OK / OK
+[2026-01-10 15:45:59] [RUNNING] Timestep: 2230 | Ep: 48 | Rew: 0.0 | PoseVar: 0.0288 | Status: OK / OK
+[2026-01-10 15:46:30] [RUNNING] Timestep: 2250 | Ep: 49 | Rew: -22.2 | PoseVar: 0.0050 | Status: OK / OK
+[2026-01-10 15:47:00] [RUNNING] Timestep: 2270 | Ep: 49 | Rew: -85.5 | PoseVar: 0.0072 | Status: OK / OK
+[2026-01-10 15:47:30] [RUNNING] Timestep: 2300 | Ep: 51 | Rew: -379.3 | PoseVar: 1.7439 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:48:00] [RUNNING] Timestep: 2320 | Ep: 51 | Rew: -1116.0 | PoseVar: 2.9042 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:48:30] [RUNNING] Timestep: 2340 | Ep: 51 | Rew: -1852.7 | PoseVar: 1.7330 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:49:00] [RUNNING] Timestep: 2370 | Ep: 52 | Rew: -1040.0 | PoseVar: 0.6481 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:49:30] [RUNNING] Timestep: 2390 | Ep: 52 | Rew: -240.0 | PoseVar: 0.4216 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:50:00] [RUNNING] Timestep: 2420 | Ep: 55 | Rew: -80.0 | PoseVar: 3.4814 | Status: OK / OK
+[2026-01-10 15:50:30] [RUNNING] Timestep: 2440 | Ep: 55 | Rew: -80.0 | PoseVar: 3.0415 | Status: OK / OK
+[2026-01-10 15:51:00] [RUNNING] Timestep: 2470 | Ep: 58 | Rew: -800.0 | PoseVar: 5.6468 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:51:30] [RUNNING] Timestep: 2490 | Ep: 58 | Rew: -1600.0 | PoseVar: 4.7553 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:52:00] [RUNNING] Timestep: 2500 | Ep: 58 | Rew: -2000.0 | PoseVar: 1.1565 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:52:30] [RUNNING] Timestep: 2500 | Ep: 58 | Rew: -2000.0 | PoseVar: 1.1565 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:53:00] [RUNNING] Timestep: 2500 | Ep: 58 | Rew: -2000.0 | PoseVar: 1.1565 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:53:30] [RUNNING] Timestep: 2500 | Ep: 58 | Rew: -2000.0 | PoseVar: 1.1565 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:54:00] [RUNNING] Timestep: 2500 | Ep: 58 | Rew: -2000.0 | PoseVar: 1.1565 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:54:30] [RUNNING] Timestep: 2500 | Ep: 58 | Rew: -2000.0 | PoseVar: 1.1565 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:55:00] [RUNNING] Timestep: 2500 | Ep: 58 | Rew: -2000.0 | PoseVar: 1.1565 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:55:30] [RUNNING] Timestep: 2500 | Ep: 58 | Rew: -2000.0 | PoseVar: 1.1565 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:56:00] [RUNNING] Timestep: 2500 | Ep: 58 | Rew: -2000.0 | PoseVar: 1.1565 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:56:30] [RUNNING] Timestep: 2500 | Ep: 58 | Rew: -2000.0 | PoseVar: 1.1565 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:57:00] [RUNNING] Timestep: 2500 | Ep: 58 | Rew: -2000.0 | PoseVar: 1.1565 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:57:30] [RUNNING] Timestep: 2500 | Ep: 58 | Rew: -2000.0 | PoseVar: 1.1565 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:58:00] [RUNNING] Timestep: 2520 | Ep: 59 | Rew: -2000.0 | PoseVar: 4.3038 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:58:30] [RUNNING] Timestep: 2550 | Ep: 59 | Rew: -2000.0 | PoseVar: 2.1577 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:59:00] [RUNNING] Timestep: 2570 | Ep: 60 | Rew: -2000.0 | PoseVar: 9.5971 | Status: OK / DEATH_SPIRAL
+[2026-01-10 15:59:30] [RUNNING] Timestep: 2600 | Ep: 60 | Rew: -2000.0 | PoseVar: 5.5815 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:00:00] [RUNNING] Timestep: 2620 | Ep: 62 | Rew: -2000.0 | PoseVar: 4.6445 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:00:30] [RUNNING] Timestep: 2650 | Ep: 62 | Rew: -2000.0 | PoseVar: 3.0405 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:01:00] [RUNNING] Timestep: 2670 | Ep: 63 | Rew: -1668.7 | PoseVar: 5.3179 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:01:30] [RUNNING] Timestep: 2690 | Ep: 63 | Rew: -1159.1 | PoseVar: 5.7432 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:02:00] [RUNNING] Timestep: 2710 | Ep: 64 | Rew: -721.4 | PoseVar: 2.3758 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:02:30] [RUNNING] Timestep: 2740 | Ep: 64 | Rew: -653.0 | PoseVar: 5.8194 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:03:00] [RUNNING] Timestep: 2760 | Ep: 65 | Rew: -617.6 | PoseVar: 2.2048 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:03:30] [RUNNING] Timestep: 2790 | Ep: 65 | Rew: -785.3 | PoseVar: 7.6440 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:04:01] [RUNNING] Timestep: 2810 | Ep: 65 | Rew: -891.6 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / DEATH_SPIRAL
+[2026-01-10 16:04:31] [RUNNING] Timestep: 2830 | Ep: 69 | Rew: -957.0 | PoseVar: 3.4115 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:05:01] [RUNNING] Timestep: 2860 | Ep: 69 | Rew: -955.1 | PoseVar: 2.6376 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:05:31] [RUNNING] Timestep: 2880 | Ep: 70 | Rew: -604.1 | PoseVar: 3.5415 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:06:01] [RUNNING] Timestep: 2910 | Ep: 70 | Rew: -71.1 | PoseVar: 2.0597 | Status: OK / OK
+[2026-01-10 16:06:31] [RUNNING] Timestep: 2930 | Ep: 71 | Rew: 0.0 | PoseVar: 4.6806 | Status: OK / OK
+[2026-01-10 16:07:01] [RUNNING] Timestep: 2950 | Ep: 71 | Rew: 0.0 | PoseVar: 4.6806 | Status: OK / OK
+[2026-01-10 16:07:31] [RUNNING] Timestep: 2980 | Ep: 73 | Rew: -548.4 | PoseVar: 0.2463 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:08:01] [RUNNING] Timestep: 3000 | Ep: 73 | Rew: -1330.6 | PoseVar: 0.2463 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:08:31] [RUNNING] Timestep: 3010 | Ep: 73 | Rew: -1721.7 | PoseVar: 0.2463 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:09:01] [RUNNING] Timestep: 3010 | Ep: 73 | Rew: -1721.7 | PoseVar: 0.2463 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:09:31] [RUNNING] Timestep: 3010 | Ep: 73 | Rew: -1721.7 | PoseVar: 0.2463 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:10:01] [RUNNING] Timestep: 3010 | Ep: 73 | Rew: -1721.7 | PoseVar: 0.2463 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:10:31] [RUNNING] Timestep: 3010 | Ep: 73 | Rew: -1721.7 | PoseVar: 0.2463 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:11:01] [RUNNING] Timestep: 3010 | Ep: 73 | Rew: -1721.7 | PoseVar: 0.2463 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:11:31] [RUNNING] Timestep: 3010 | Ep: 73 | Rew: -1721.7 | PoseVar: 0.2463 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:12:01] [RUNNING] Timestep: 3010 | Ep: 73 | Rew: -1721.7 | PoseVar: 0.2463 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:12:31] [RUNNING] Timestep: 3010 | Ep: 73 | Rew: -1721.7 | PoseVar: 0.2463 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:13:02] [RUNNING] Timestep: 3010 | Ep: 73 | Rew: -1721.7 | PoseVar: 0.2463 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:13:32] [RUNNING] Timestep: 3010 | Ep: 73 | Rew: -1721.7 | PoseVar: 0.2463 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:14:02] [RUNNING] Timestep: 3010 | Ep: 73 | Rew: -1721.7 | PoseVar: 0.2463 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:14:32] [RUNNING] Timestep: 3010 | Ep: 73 | Rew: -1721.7 | PoseVar: 0.2463 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:15:02] [RUNNING] Timestep: 3010 | Ep: 73 | Rew: -1721.7 | PoseVar: 0.2463 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:15:32] [RUNNING] Timestep: 3010 | Ep: 73 | Rew: -1721.7 | PoseVar: 0.2463 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:16:02] [RUNNING] Timestep: 3010 | Ep: 73 | Rew: -1721.7 | PoseVar: 0.2463 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:16:32] [RUNNING] Timestep: 3010 | Ep: 73 | Rew: -1721.7 | PoseVar: 0.2463 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:17:02] [RUNNING] Timestep: 3010 | Ep: 73 | Rew: -1721.7 | PoseVar: 0.2463 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:17:32] [RUNNING] Timestep: 3010 | Ep: 73 | Rew: -1721.7 | PoseVar: 0.2463 | Status: OK / DEATH_SPIRAL
+[2026-01-10 16:18:12] [RUNNING] Timestep: 3010 | Ep: 73 | Rew: -1721.7 | PoseVar: 0.2463 | Status: OK / DEATH_SPIRAL
+[2026-01-10 17:13:33] --- Monitor Agent Started ---
+[2026-01-10 17:13:33] Watching CSV: /home/dark/ros2_ws/src2/Project_PathBlazers/install/bots/lib/python3.12/site-packages/bots/td3_rl/results/training_log.csv
+[2026-01-10 17:13:33] [RUNNING] Timestep: 3010 | Ep: 73 | Rew: -1721.7 | PoseVar: 0.2463 | Status: OK / DEATH_SPIRAL
+[2026-01-10 17:14:03] [RUNNING] Timestep: 510 | Ep: 5 | Rew: 0.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-10 17:14:33] [RUNNING] Timestep: 540 | Ep: 5 | Rew: 0.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-10 17:15:03] [RUNNING] Timestep: 560 | Ep: 6 | Rew: -400.0 | PoseVar: 2.8300 | Status: OK / DEATH_SPIRAL
+[2026-01-10 17:15:33] [RUNNING] Timestep: 590 | Ep: 6 | Rew: -1600.0 | PoseVar: 2.8300 | Status: OK / DEATH_SPIRAL
+[2026-01-10 17:16:03] [RUNNING] Timestep: 610 | Ep: 7 | Rew: -1759.7 | PoseVar: 2.9239 | Status: OK / DEATH_SPIRAL
+[2026-01-10 17:16:33] [RUNNING] Timestep: 640 | Ep: 7 | Rew: -958.9 | PoseVar: 3.1527 | Status: OK / DEATH_SPIRAL
+[2026-01-10 17:17:03] [RUNNING] Timestep: 670 | Ep: 8 | Rew: -708.3 | PoseVar: 1.8063 | Status: OK / DEATH_SPIRAL
+[2026-01-10 17:17:33] [RUNNING] Timestep: 690 | Ep: 8 | Rew: -756.2 | PoseVar: 1.6071 | Status: OK / DEATH_SPIRAL
+[2026-01-10 17:18:03] [RUNNING] Timestep: 720 | Ep: 9 | Rew: -736.0 | PoseVar: 3.0500 | Status: OK / DEATH_SPIRAL
+[2026-01-10 17:18:33] [RUNNING] Timestep: 740 | Ep: 9 | Rew: -678.5 | PoseVar: 2.8242 | Status: OK / DEATH_SPIRAL
+[2026-01-10 17:19:03] [RUNNING] Timestep: 770 | Ep: 10 | Rew: -435.9 | PoseVar: 4.4562 | Status: OK / DEATH_SPIRAL
+[2026-01-10 17:19:33] [RUNNING] Timestep: 800 | Ep: 10 | Rew: -51.3 | PoseVar: 2.5916 | Status: OK / OK
+[2026-01-10 17:20:03] [RUNNING] Timestep: 820 | Ep: 11 | Rew: -226.5 | PoseVar: 0.7387 | Status: OK / DEATH_SPIRAL
+[2026-01-10 17:20:33] [RUNNING] Timestep: 850 | Ep: 11 | Rew: -679.6 | PoseVar: 0.4836 | Status: OK / DEATH_SPIRAL
+[2026-01-10 17:21:03] [RUNNING] Timestep: 870 | Ep: 13 | Rew: -583.7 | PoseVar: 4.1742 | Status: OK / DEATH_SPIRAL
+[2026-01-10 17:21:33] [RUNNING] Timestep: 900 | Ep: 13 | Rew: -130.6 | PoseVar: 3.2440 | Status: OK / OK
+[2026-01-10 17:22:03] [RUNNING] Timestep: 930 | Ep: 14 | Rew: 0.0 | PoseVar: 4.9837 | Status: OK / OK
+[2026-01-10 17:22:33] [RUNNING] Timestep: 950 | Ep: 14 | Rew: 0.0 | PoseVar: 3.6807 | Status: OK / OK
+[2026-01-10 17:23:03] [RUNNING] Timestep: 980 | Ep: 15 | Rew: 0.0 | PoseVar: 3.6050 | Status: OK / OK
+[2026-01-10 17:23:33] [RUNNING] Timestep: 1010 | Ep: 15 | Rew: 0.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-10 17:24:03] [RUNNING] Timestep: 1010 | Ep: 15 | Rew: 0.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-10 17:24:33] [RUNNING] Timestep: 1010 | Ep: 15 | Rew: 0.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-10 17:25:03] [RUNNING] Timestep: 1010 | Ep: 15 | Rew: 0.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-10 17:25:33] [RUNNING] Timestep: 1010 | Ep: 15 | Rew: 0.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-10 17:26:03] [RUNNING] Timestep: 1010 | Ep: 15 | Rew: 0.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-10 17:26:33] [RUNNING] Timestep: 1010 | Ep: 15 | Rew: 0.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-10 17:27:03] [RUNNING] Timestep: 1010 | Ep: 15 | Rew: 0.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-10 17:27:33] [RUNNING] Timestep: 1010 | Ep: 15 | Rew: 0.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-10 17:28:03] [RUNNING] Timestep: 1010 | Ep: 15 | Rew: 0.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-10 17:28:33] [RUNNING] Timestep: 1010 | Ep: 15 | Rew: 0.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-10 17:29:03] [RUNNING] Timestep: 1010 | Ep: 15 | Rew: 0.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-10 17:29:33] [RUNNING] Timestep: 1010 | Ep: 15 | Rew: 0.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-10 17:30:03] [RUNNING] Timestep: 1010 | Ep: 15 | Rew: 0.0 | PoseVar: 0.0000 | Status: STUCK/BROKEN_SUB / OK
+[2026-01-10 19:44:39] --- WATCHDOG STARTED ---
+[2026-01-10 19:44:39] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-10 19:44:39] Watchdog stopped by user.
+[2026-01-10 19:44:39] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-10 20:10:02] --- WATCHDOG STARTED ---
+[2026-01-10 20:10:02] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-10 20:10:03] Watchdog stopped by user.
+[2026-01-10 20:10:03] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-10 20:12:45] --- WATCHDOG STARTED ---
+[2026-01-10 20:12:45] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-10 20:12:45] Watchdog stopped by user.
+[2026-01-10 20:12:45] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-10 20:13:54] --- WATCHDOG STARTED ---
+[2026-01-10 20:13:54] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-10 20:13:55] Watchdog stopped by user.
+[2026-01-10 20:13:55] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-10 20:23:39] --- WATCHDOG STARTED ---
+[2026-01-10 20:23:39] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-10 20:23:39] Watchdog stopped by user.
+[2026-01-10 20:23:39] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-10 20:31:23] --- WATCHDOG STARTED ---
+[2026-01-10 20:31:23] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-10 20:31:24] Watchdog stopped by user.
+[2026-01-10 20:31:24] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-10 20:50:03] --- WATCHDOG STARTED ---
+[2026-01-10 20:50:03] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-10 20:50:04] Watchdog stopped by user.
+[2026-01-10 20:50:04] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-11 14:02:56] --- WATCHDOG STARTED ---
+[2026-01-11 14:02:56] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-11 14:02:57] Watchdog stopped by user.
+[2026-01-11 14:02:57] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-11 14:12:51] --- WATCHDOG STARTED ---
+[2026-01-11 14:12:51] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-11 14:12:51] Watchdog stopped by user.
+[2026-01-11 14:12:51] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-11 14:32:29] --- WATCHDOG STARTED ---
+[2026-01-11 14:32:29] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-11 14:32:29] Watchdog stopped by user.
+[2026-01-11 14:32:29] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-11 14:40:39] --- WATCHDOG STARTED ---
+[2026-01-11 14:40:39] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-11 14:40:39] Watchdog stopped by user.
+[2026-01-11 14:40:39] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-12 16:42:19] --- WATCHDOG STARTED ---
+[2026-01-12 16:42:19] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-12 16:42:25] 🚀 Launching Training Stack...
+[2026-01-12 16:42:25] Process PID: 38095. Waiting 30s for startup...
+[2026-01-12 16:42:55] 👀 Monitoring logs for errors...
+[2026-01-12 16:43:01] 🚨 CRITICAL: Physics Frozen detected (5 warnings). TRIGGERING RESTART.
+[2026-01-12 16:43:01] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-12 16:43:06] 🚀 Launching Training Stack...
+[2026-01-12 16:43:06] Process PID: 38529. Waiting 30s for startup...
+[2026-01-12 16:43:36] 👀 Monitoring logs for errors...
+[2026-01-12 16:43:41] 🚨 CRITICAL: Physics Frozen detected (5 warnings). TRIGGERING RESTART.
+[2026-01-12 16:43:41] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-12 16:43:46] 🚀 Launching Training Stack...
+[2026-01-12 16:43:46] Process PID: 38989. Waiting 30s for startup...
+[2026-01-12 16:44:16] 👀 Monitoring logs for errors...
+[2026-01-12 16:44:21] 🚨 CRITICAL: Physics Frozen detected (5 warnings). TRIGGERING RESTART.
+[2026-01-12 16:44:21] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-12 16:44:27] 🚀 Launching Training Stack...
+[2026-01-12 16:44:27] Process PID: 39494. Waiting 30s for startup...
+[2026-01-12 16:44:57] 👀 Monitoring logs for errors...
+[2026-01-12 16:45:02] 🚨 CRITICAL: Physics Frozen detected (5 warnings). TRIGGERING RESTART.
+[2026-01-12 16:45:02] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-12 16:45:07] 🚀 Launching Training Stack...
+[2026-01-12 16:45:07] Process PID: 39943. Waiting 30s for startup...
+[2026-01-12 16:45:37] 👀 Monitoring logs for errors...
+[2026-01-12 16:45:45] 🚨 CRITICAL: Physics Frozen detected (5 warnings). TRIGGERING RESTART.
+[2026-01-12 16:45:45] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-12 16:45:50] 🚀 Launching Training Stack...
+[2026-01-12 16:45:50] Process PID: 40384. Waiting 30s for startup...
+[2026-01-12 16:46:20] 👀 Monitoring logs for errors...
+[2026-01-12 16:46:27] 🚨 CRITICAL: Physics Frozen detected (5 warnings). TRIGGERING RESTART.
+[2026-01-12 16:46:27] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-12 16:46:33] 🚀 Launching Training Stack...
+[2026-01-12 16:46:33] Process PID: 40834. Waiting 30s for startup...
+[2026-01-12 16:47:03] 👀 Monitoring logs for errors...
+[2026-01-12 16:47:09] 🚨 CRITICAL: Physics Frozen detected (5 warnings). TRIGGERING RESTART.
+[2026-01-12 16:47:09] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...
+[2026-01-12 16:47:11] Watchdog stopped by user.
+[2026-01-12 16:47:11] ⚠️ KILLING ALL ROS/GAZEBO PROCESSES...

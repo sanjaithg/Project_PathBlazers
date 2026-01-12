@@ -99,11 +99,14 @@ class Actor(nn.Module):
         self.layer_1 = nn.Linear(state_dim, 800)
         self.layer_2 = nn.Linear(800, 600)
         self.layer_3 = nn.Linear(600, action_dim)
+        
+        self.ln1 = nn.LayerNorm(800)
+        self.ln2 = nn.LayerNorm(600)
         self.tanh = nn.Tanh()
 
     def forward(self, s):
-        s = F.relu(self.layer_1(s))
-        s = F.relu(self.layer_2(s))
+        s = F.relu(self.ln1(self.layer_1(s)))
+        s = F.relu(self.ln2(self.layer_2(s)))
         a = self.tanh(self.layer_3(s))
         return a
 
@@ -117,20 +120,26 @@ class Critic(nn.Module):
         self.layer_2_a = nn.Linear(action_dim, 600)
         self.layer_3 = nn.Linear(600, 1)
 
+        self.ln1 = nn.LayerNorm(800)
+        self.ln2 = nn.LayerNorm(600)
+
         self.layer_4 = nn.Linear(state_dim, 800)
         self.layer_5_s = nn.Linear(800, 600)
         self.layer_5_a = nn.Linear(action_dim, 600)
         self.layer_6 = nn.Linear(600, 1)
+        
+        self.ln4 = nn.LayerNorm(800)
+        self.ln5 = nn.LayerNorm(600)
 
     def forward(self, s, a):
         # NOTE: Using the original complex layer implementation based on user request.
 
-        s1 = F.relu(self.layer_1(s))
-        s1 = F.relu(self.layer_2_s(s1) + self.layer_2_a(a))
+        s1 = F.relu(self.ln1(self.layer_1(s)))
+        s1 = F.relu(self.ln2(self.layer_2_s(s1) + self.layer_2_a(a)))
         q1 = self.layer_3(s1)
 
-        s2 = F.relu(self.layer_4(s))
-        s2 = F.relu(self.layer_5_s(s2) + self.layer_5_a(a))
+        s2 = F.relu(self.ln4(self.layer_4(s)))
+        s2 = F.relu(self.ln5(self.layer_5_s(s2) + self.layer_5_a(a)))
         q2 = self.layer_6(s2)
         return q1, q2
 
@@ -471,9 +480,9 @@ class TD3Trainer(BaseNode):
         
         # --- CRITICAL CHANGES FOR MECANUM ACTION/STATE DIMENSIONS ---
         self.action_dim = 3  
-        # State: 20 LIDAR rays + 9 robot states (distance, sin(theta), cos(theta), 
-        #        vx, vy, omega, front_danger, left_danger, right_danger)
-        self.state_dim = self.environment_dim + 9
+        # State: 20 LIDAR rays + 14 robot states (target_x_local, target_y_local, 
+        #        vx, vy, omega, front_danger, left_danger, right_danger, action_history (6))
+        self.state_dim = self.environment_dim + 14
         self.max_action = 1 
         # -----------------------------------------------------------
 

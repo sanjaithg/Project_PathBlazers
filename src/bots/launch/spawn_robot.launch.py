@@ -69,9 +69,17 @@ def generate_launch_description():
         remappings=[('/tf', 'tf'), ('/tf_static', 'tf_static')]
     )
 
+    # Static transform from map to odom (identity) for stable marker visualization
+    # This ensures goal markers published in 'map' frame are properly displayed
+    static_map_odom_tf = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='map_to_odom_tf',
+        output='screen',
+        arguments=['0','0','0','0','0','0','map','odom'],
+    )
+
     # Static transform to map Gazebo's scoped lidar frame to the URDF link frame
-    # Gazebo sometimes publishes scan header frame as 'my_robot/base_footprint/gpu_lidar'.
-    # We publish an identity static transform so RViz and other TF lookups succeed.
     static_tf_node = Node(
         package='tf2_ros',
         executable='static_transform_publisher',
@@ -79,6 +87,7 @@ def generate_launch_description():
         output='screen',
         arguments=['0','0','0','0','0','0','scan_link','my_robot/base_footprint/gpu_lidar'],
     )
+     
      
     # Node to bridge /cmd_vel and /odom
     gz_bridge_node = Node(
@@ -100,6 +109,8 @@ def generate_launch_description():
             "/camera/points@sensor_msgs/msg/PointCloud2@gz.msgs.PointCloudPacked",
             # Ground Truth Odometry (GZ to ROS2 only - use '[' not '@')
             "/model/my_robot/odometry_with_covariance@nav_msgs/msg/Odometry[gz.msgs.OdometryWithCovariance",
+            # Set Entity Pose Service (ROS2 to GZ - use ']' for service)
+            "/world/default/set_pose@ros_gz_interfaces/srv/SetEntityPose",
         ],
         output="screen",
         parameters=[
@@ -180,6 +191,7 @@ def generate_launch_description():
     launchDescriptionObject.add_action(relay_camera_info_node)
     launchDescriptionObject.add_action(robot_state_publisher_node)
     launchDescriptionObject.add_action(static_tf_node)
+    launchDescriptionObject.add_action(static_map_odom_tf)  # For goal marker in 'map' frame
     # launchDescriptionObject.add_action(trajectory_node)
     launchDescriptionObject.add_action(ekf_node)
     # launchDescriptionObject.add_action(trajectory_odom_topic_node)

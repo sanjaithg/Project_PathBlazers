@@ -19,29 +19,25 @@ COLLISION_DIST = 0.22
 TIME_DELTA = 0.1
 
 
-def check_pos(x, y):
-    obstacles = [
-        (-3.8, -6.2, 6.2, 3.8), (-1.3, -2.7, 4.7, -0.2), (-0.3, -4.2, 2.7, 1.3),
-        (-0.8, -4.2, -2.3, -4.2), (-1.3, -3.7, -0.8, -2.7), (4.2, 0.8, -1.8, -3.2),
-        (4, 2.5, 0.7, -3.2), (6.2, 3.8, -3.3, -4.2), (4.2, 1.3, 3.7, 1.5), (-3.0, -7.2, 0.5, -1.5)
-    ]
-    # Strict boundary check: Robot must stay within the main arena
-    # Arena is roughly 10x10, so +/- 4.5 is a safe internal margin.
-    x_min, x_max = -4.5, 4.5
-    y_min, y_max = -4.5, 4.5
-    
-    if x < x_min or x > x_max or y < y_min or y > y_max:
-        return False
+# def check_pos(x, y):
+#     obstacles = [
+#         (-3.8, -6.2, 6.2, 3.8), (-1.3, -2.7, 4.7, -0.2), (-0.3, -4.2, 2.7, 1.3),
+#         (-0.8, -4.2, -2.3, -4.2), (-1.3, -3.7, -0.8, -2.7), (4.2, 0.8, -1.8, -3.2),
+#         (4, 2.5, 0.7, -3.2), (6.2, 3.8, -3.3, -4.2), (4.2, 1.3, 3.7, 1.5), (-3.0, -7.2, 0.5, -1.5)
+#     ]
+#     if any(x1 > x > x2 and y1 > y > y2 for x1, x2, y1, y2 in obstacles) or not (-4.5 <= x <= 4.5 and -4.5 <= y <= 4.5):
+#         return False
+#     return True
 
-    # Check against internal obstacles
-    if any(x1 > x > x2 and y1 > y > y2 for x1, x2, y1, y2 in obstacles):
+def check_pos_simplified(x, y):
+    # Simplified bounds check for empty arena (10x10)
+    if not (-4.5 <= x <= 4.5 and -4.5 <= y <= 4.5):
         return False
-        
     return True
 
 
 class GazeboEnv(Node):
-    def __init__(self, environment_dim, use_ground_truth=False, pose_topic='/model/my_robot/odometry_with_covariance', odom_topic='/odometry/filtered', ground_truth_noise_std=0.0):
+    def __init__(self, environment_dim, use_ground_truth=False, pose_topic='/model/my_robot/pose', odom_topic='/odometry/filtered', ground_truth_noise_std=0.0):
         super().__init__('gazebo_env')
         self.environment_dim = environment_dim
         
@@ -70,6 +66,9 @@ class GazeboEnv(Node):
         self.goal_is_fixed = False 
         self.last_distance = 0.0
         self.deviation_counter = 0 
+        
+        # Action history for jitter reduction (last 2 actions)
+        self.action_history = np.zeros(6) 
 
         self.max_distance = 3.5
 
@@ -79,61 +78,19 @@ class GazeboEnv(Node):
         self.last_odom = None
         self.last_pose = None
         self._fallback_logged = False
-        self._startup_time = time.time()
-        self._pose_grace_period = 3.0  # seconds to wait before warning about missing pose
 
         self.vel_pub = self.create_publisher(Twist, "/cmd_vel", 1)
         self.goal_point_publisher = self.create_publisher(MarkerArray, "goal_point", 3)
 
         self.scan_sub = self.create_subscription(LaserScan, "/scan", self.scan_callback, 10)
-        # Subscription to both sources (both are now Odometry messages)
+        # Subscription to both sources
         self.odom_sub = self.create_subscription(Odometry, self.odom_topic, self.odom_callback, 10)
-        self.gt_odom_sub = self.create_subscription(Odometry, self.pose_topic, self.gt_odom_callback, 10)
+        self.pose_sub = self.create_subscription(Odometry, self.pose_topic, self.pose_callback, 10)
 
-        self.set_entity_state = self.create_client(SetEntityPose, "/world/default/set_entity_state")
+        self.set_entity_state = self.create_client(SetEntityPose, "/world/default/set_pose")
         self.unpause = self.create_client(Empty, "/world/default/unpause_physics")
         self.pause = self.create_client(Empty, "/world/default/pause_physics")
         self.reset_proxy = self.create_client(Empty, "/world/default/reset")
-
-        # Wait for initial pose data if using ground truth
-        if self.use_ground_truth:
-            self.get_logger().info(f'Waiting for ground-truth pose on {self.pose_topic}...')
-            
-            # First check if topic exists and has publishers
-            max_topic_wait = 30.0  # Wait up to 30s for topic/publisher
-            topic_wait_start = time.time()
-            topic_found = False
-            
-            while not topic_found and (time.time() - topic_wait_start) < max_topic_wait:
-                topic_names_and_types = self.get_topic_names_and_types()
-                topic_exists = any(topic_name == self.pose_topic for topic_name, _ in topic_names_and_types)
-                
-                if topic_exists:
-                    # Topic exists, check for publishers
-                    pub_count = self.count_publishers(self.pose_topic)
-                    if pub_count > 0:
-                        self.get_logger().info(f'Topic {self.pose_topic} found with {pub_count} publisher(s)!')
-                        topic_found = True
-                        break
-                    else:
-                        self.get_logger().info(f'Topic exists but no publishers yet, waiting...')
-                else:
-                    self.get_logger().info(f'Topic {self.pose_topic} not found yet, waiting for bridge/spawn...')
-                
-                time.sleep(1.0)
-            
-            if not topic_found:
-                self.get_logger().error(f'Topic {self.pose_topic} not available after {max_topic_wait}s! Is Gazebo/bridge running?')
-            
-            # Now wait for actual pose data
-            wait_start = time.time()
-            while self.last_pose is None and (time.time() - wait_start) < 10.0:
-                rclpy.spin_once(self, timeout_sec=0.1)
-            
-            if self.last_pose is not None:
-                self.get_logger().info('Ground-truth pose received!')
-            else:
-                self.get_logger().warn(f'No ground-truth pose data after waiting. Will use fallback if available.')
 
     def scan_callback(self, scan):
         # Store FULL scan data for collision detection (all 360 or more points)
@@ -150,13 +107,13 @@ class GazeboEnv(Node):
 
     def odom_callback(self, msg):
         self.last_odom = msg
+        self.last_odom_time = self.get_clock().now().nanoseconds
 
-    def gt_odom_callback(self, msg):
-        """Callback for ground truth odometry from Gazebo."""
-        # Store the pose part from the Odometry message
+    def pose_callback(self, msg):
+        # Extract Pose from Odometry message
+        self.get_logger().info("CB")
         self.last_pose = msg.pose.pose
-        # DEBUG: Uncomment to verify callback is firing
-        # self.get_logger().info(f'[GT_CALLBACK] x={msg.pose.pose.position.x:.2f}, y={msg.pose.pose.position.y:.2f}')
+        self.last_pose_time = self.get_clock().now().nanoseconds
 
     def get_current_pose(self):
         """Returns (x, y, yaw) with preference/fallback/noise logic."""
@@ -169,16 +126,10 @@ class GazeboEnv(Node):
                 pose_to_parse = self.last_pose
                 source_name = "ground-truth"
             else:
-                # Check if we're still in grace period
-                elapsed = time.time() - self._startup_time
-                if elapsed < self._pose_grace_period:
-                    # Still in grace period, don't warn yet
-                    use_fallback = True
-                else:
-                    use_fallback = True
-                    if not self._fallback_logged:
-                        self.get_logger().warn(f'Ground-truth pose ({self.pose_topic}) missing after {self._pose_grace_period}s! Falling back to odom.')
-                        self._fallback_logged = True
+                use_fallback = True
+                if not self._fallback_logged:
+                    self.get_logger().warn(f'Ground-truth pose ({self.pose_topic}) missing! Falling back to odom.')
+                    self._fallback_logged = True
         
         if not self.use_ground_truth or use_fallback:
             if self.last_odom is not None:
@@ -220,11 +171,12 @@ class GazeboEnv(Node):
             self.get_logger().info('Goal reached! New random goal.')
             self.change_goal()
             self.goal_is_fixed = False
-            self.deviation_counter = 0
+            self.deviation_counter = 0  # Reset deviation counter for new goal
         elif is_timeout:
             self.get_logger().info('Timeout. Skipping to new goal.')
             self.change_goal()
             self.goal_is_fixed = False
+            self.deviation_counter = 0  # Reset deviation counter for new goal
         else:
             self.get_logger().info('Collision. Keeping goal (Persistence).')
             self.goal_is_fixed = True
@@ -245,20 +197,44 @@ class GazeboEnv(Node):
         self.vel_pub.publish(vel_cmd)
         self.publish_markers(action)
 
-        self.unpause.call_async(Empty.Request())
+        # self.unpause.call_async(Empty.Request())
         
-        # Wait for physics to run and for new sensor data to arrive
+        # Wait for valid NEW pose data
+        # We expect a position update to happen during this window.
+        # Instead of fixed sleep, we wait for a timestamp update.
+        
+        # 1. Minimum sleep for physics to run
         self.get_clock().sleep_for(rclpy.duration.Duration(seconds=TIME_DELTA))
         
-        # Process pending callbacks to get fresh LIDAR and pose data
-        for _ in range(5):
-            rclpy.spin_once(self, timeout_sec=0.01)
+        # 2. Wait for callback to fire (max 0.2s extra)
+        # Note: If topic is dead, this will timeout and use OLD pose (0 move)
+        # This prevents infinite hanging.
+        wait_start = self.get_clock().now()
+        got_new_pose = False
+        while (self.get_clock().now() - wait_start).nanoseconds < 1e9: # 1.0s max wait
+             if self.use_ground_truth and hasattr(self, 'last_pose_time'):
+                 if (self.get_clock().now().nanoseconds - self.last_pose_time) < 3e8: # New within 0.3s
+                     got_new_pose = True
+                     break
+             elif hasattr(self, 'last_odom_time'):
+                 if (self.get_clock().now().nanoseconds - self.last_odom_time) < 3e8:
+                     got_new_pose = True
+                     break
+             time.sleep(0.005) # Yield
         
-        self.pause.call_async(Empty.Request())
+        if not got_new_pose:
+             self.get_logger().warn("[STEP] Pose update TIMEOUT! Physics likely stuck.")
 
-        min_laser = self.observe_collision(self.full_scan)
+        # self.pause.call_async(Empty.Request())
+
+        min_laser = self.observe_collision(self.full_scan)  # Use FULL scan!
+        collision = False
+        
+        if min_laser < COLLISION_DIST:
+            self.get_logger().info("Collision detected!")
+            collision = True
+
         done = False
-
         
         pose_info = self.get_current_pose()
         if pose_info is None:
@@ -303,41 +279,42 @@ class GazeboEnv(Node):
         else:
             done = False
             
-        done = done or target
-
+        done = done or target or collision
         
         # ===== ENHANCED STATE SPACE =====
         # Add sector-based obstacle proximity for better local awareness
         scan_array = np.array(self.full_scan)
         
-        # Calculate danger levels in different sectors (assuming 360-degree scan)
-        scan_len = len(scan_array)
-        front_start = int(scan_len * 350 / 360)  # -10 to +10 degrees
+        # Calculate danger levels in different sectors with wraparound safety
+        scan_len = len(scan_array) if len(scan_array) > 0 else 1
+        
+        # Front sector: -10 to +10 degrees (wraparound)
+        front_start = int(scan_len * 350 / 360)
         front_end = int(scan_len * 10 / 360)
-        front_danger = min(np.concatenate([scan_array[front_start:], scan_array[:front_end]]))
+        front_indices = list(range(front_start, scan_len)) + list(range(0, front_end))
+        front_danger = float(np.min([scan_array[i] for i in front_indices])) if front_indices else self.max_distance
         
-        left_start = int(scan_len * 70 / 360)   # 70 to 110 degrees
+        # Left sector: 70 to 110 degrees
+        left_start = int(scan_len * 70 / 360)
         left_end = int(scan_len * 110 / 360)
-        left_indices = range(left_start, left_end) if left_end > left_start else []
-        if left_indices:
-            left_danger = np.min(scan_array[left_start:left_end])
-        else:
-            left_danger = self.max_distance
+        left_danger = float(np.min(scan_array[left_start:left_end])) if left_end > left_start else self.max_distance
         
-        right_start = int(scan_len * 250 / 360)  # 250 to 290 degrees
+        # Right sector: 250 to 290 degrees
+        right_start = int(scan_len * 250 / 360)
         right_end = int(scan_len * 290 / 360)
-        right_danger = np.min(scan_array[right_start:right_end]) if right_end > right_start else self.max_distance
+        right_danger = float(np.min(scan_array[right_start:right_end])) if right_end > right_start else self.max_distance
         
-        # Encode heading as sin/cos for circular continuity
-        sin_theta = np.sin(theta)
-        cos_theta = np.cos(theta)
+        # Encode goal in local coordinates instead of distance/heading
+        # target_x_local = distance * cos_theta
+        # target_y_local = distance * sin_theta
+        target_x_local = distance * np.cos(theta)
+        target_y_local = distance * np.sin(theta)
         
-        # Enhanced robot state: [distance, sin_heading, cos_heading, vx, vy, omega, 
-        #                        front_min, left_min, right_min]
+        # Enhanced robot state: [target_x_local, target_y_local, vx, vy, omega, 
+        #                        front_danger, left_min, right_min, action_history (6)]
         robot_state = [
-            distance, 
-            sin_theta, 
-            cos_theta, 
+            target_x_local,
+            target_y_local,
             action[0], 
             action[1], 
             action[2],
@@ -346,33 +323,47 @@ class GazeboEnv(Node):
             right_danger / self.max_distance
         ]
         
+        # Add action history to state
+        robot_state.extend(self.action_history.tolist())
+        
+        # Update action history for NEXT step
+        self.action_history = np.append(action, self.action_history[:3])
+        
         state = np.append(self.scan_data, robot_state) 
 
-        # Check for collision based on COLLISION_DIST
-        collision = min_laser < COLLISION_DIST
-        if collision:
+        reward, step_info = self.get_reward(target, collision, action, min_laser, old_distance, distance, theta)
+        
+        # STUCK DETECTION
+        is_stuck = self.check_stuck(self.odom_x, self.odom_y)
+        if is_stuck and not done:
+            self.get_logger().warn("Robot is STUCK! Ending Episode to reset.")
             done = True
+            reward = -500.0  # Penalty for getting stuck
+            
+        # Add pose and goal info to step_info for CSV logging
+        step_info.update({
+            'pose_x': self.odom_x,
+            'pose_y': self.odom_y,
+            'pose_yaw': angle,
+            'goal_x': self.goal_x,
+            'goal_y': self.goal_y,
+            'min_laser': min_laser,
+            'distance_to_goal': distance,
+            'cmd_vel_x': action[0],
+            'cmd_vel_y': action[1],
+            'cmd_vel_z': action[2]
+        })
         
-        reward, reward_info = self.get_reward(target, collision, action, min_laser, old_distance, distance, theta)
-        
-        # Add robot state info for logging
-        reward_info['cmd_vel_x'] = action[0]
-        reward_info['cmd_vel_y'] = action[1]
-        reward_info['cmd_vel_z'] = action[2]
-        reward_info['pose_x'] = self.odom_x
-        reward_info['pose_y'] = self.odom_y
-        reward_info['pose_yaw'] = angle
-        reward_info['goal_x'] = self.goal_x
-        reward_info['goal_y'] = self.goal_y
-        
-        return state, reward, done, target, reward_info
+        return state, reward, done, target, step_info
 
     def reset(self):
         self.deviation_counter = 0
+        # Initialize reward tracking variables to prevent cross-episode contamination
+        self.prev_theta = 0.0
+        self.prev_action = np.array([0.0, 0.0, 0.0])
         self.reset_proxy.call_async(Empty.Request())
         
-        commanded_angle = np.random.uniform(-np.pi, np.pi)
-        angle = commanded_angle
+        angle = np.random.uniform(-np.pi, np.pi)
 
         x = 0.0
         y = 0.0
@@ -380,30 +371,32 @@ class GazeboEnv(Node):
         while not position_ok:
             x = np.random.uniform(-4.5, 4.5)
             y = np.random.uniform(-4.5, 4.5)
-            position_ok = check_pos(x, y)
+            position_ok = check_pos_simplified(x, y)
 
-        self.change_object_position("my_robot", x, y, commanded_angle)
+        commanded_angle = angle  # Save commanded angle as fallback
+        self.change_object_position("my_robot", x, y, angle)
         
-        self.unpause.call_async(Empty.Request())
+        # self.unpause.call_async(Empty.Request())
         
         # Wait for a valid pose update after teleporting
         wait_start = time.time()
         pose_info = None
-        max_wait = 5.0 if self.use_ground_truth else 2.0
-        while pose_info is None and (time.time() - wait_start) < max_wait:
-            rclpy.spin_once(self, timeout_sec=0.1)
+        while pose_info is None and (time.time() - wait_start) < 2.0:
+            # DO NOT SPIN HERE! Executor handles it.
+            time.sleep(0.1)
             pose_info = self.get_current_pose()
             
         if pose_info is not None:
             self.odom_x, self.odom_y, angle = pose_info
         else:
-            self.get_logger().warn(f"Reset: Failed to get pose after {max_wait}s, using commanded position.")
+            self.get_logger().warn("Reset: Failed to get pose after 2s, using commanded position.")
             self.odom_x = float(x)
             self.odom_y = float(y)
-            angle = commanded_angle
+            angle = commanded_angle  # Use saved commanded angle as fallback
         
-        self.get_clock().sleep_for(rclpy.duration.Duration(seconds=TIME_DELTA))
-        self.pause.call_async(Empty.Request())
+        # self.get_clock().sleep_for(rclpy.duration.Duration(seconds=TIME_DELTA))
+        
+        # self.pause.call_async(Empty.Request())
 
         distance = np.linalg.norm([self.odom_x - self.goal_x, self.odom_y - self.goal_y])
         skew_x = self.goal_x - self.odom_x
@@ -417,39 +410,45 @@ class GazeboEnv(Node):
         if theta < -np.pi:
             theta += 2 * np.pi
 
-        self.prev_action = np.array([0.0, 0.0, 0.0])
-        self.prev_theta = theta
-
         self.last_distance = distance
+        
+        # Stuck Detection Init
+        self.stuck_buffer = []  # History of positions
+        self.stuck_threshold = 0.05  # m
+        self.stuck_window = 50       # steps ~ 5 seconds
         
         # ===== ENHANCED STATE SPACE (matching step function) =====
         scan_array = np.array(self.full_scan)
-        scan_len = len(scan_array)
+        scan_len = len(scan_array) if len(scan_array) > 0 else 1
         
-        # Calculate danger levels in different sectors
+        # Calculate danger levels in different sectors with wraparound safety
+        
+        # Front sector: -10 to +10 degrees (wraparound)
         front_start = int(scan_len * 350 / 360)
         front_end = int(scan_len * 10 / 360)
-        front_danger = min(np.concatenate([scan_array[front_start:], scan_array[:front_end]]))
+        front_indices = list(range(front_start, scan_len)) + list(range(0, front_end))
+        front_danger = float(np.min([scan_array[i] for i in front_indices])) if front_indices else self.max_distance
         
+        # Left sector: 70 to 110 degrees
         left_start = int(scan_len * 70 / 360)
         left_end = int(scan_len * 110 / 360)
-        left_indices = range(left_start, left_end) if left_end > left_start else []
-        if left_indices:
-            left_danger = np.min(scan_array[left_start:left_end])
-        else:
-            left_danger = self.max_distance
+        left_danger = float(np.min(scan_array[left_start:left_end])) if left_end > left_start else self.max_distance
         
+        # Right sector: 250 to 290 degrees
         right_start = int(scan_len * 250 / 360)
         right_end = int(scan_len * 290 / 360)
-        right_danger = np.min(scan_array[right_start:right_end]) if right_end > right_start else self.max_distance
+        right_danger = float(np.min(scan_array[right_start:right_end])) if right_end > right_start else self.max_distance
         
-        sin_theta = np.sin(theta)
-        cos_theta = np.cos(theta)
+        # Initialize action history on reset
+        self.action_history = np.zeros(6)
+        
+        # Encode goal in local coordinates
+        target_x_local = distance * np.cos(theta)
+        target_y_local = distance * np.sin(theta)
         
         robot_state = [
-            distance, 
-            sin_theta, 
-            cos_theta, 
+            target_x_local,
+            target_y_local,
             0.0,  # vx starts at 0
             0.0,  # vy starts at 0
             0.0,  # omega starts at 0
@@ -457,6 +456,8 @@ class GazeboEnv(Node):
             left_danger / self.max_distance,
             right_danger / self.max_distance
         ]
+        # Initialize with zeros for action history in first state
+        robot_state.extend(self.action_history.tolist())
         
         state = np.append(self.scan_data, robot_state)
         return state
@@ -468,7 +469,7 @@ class GazeboEnv(Node):
         pose = Pose()
         pose.position.x = float(x)
         pose.position.y = float(y)
-        pose.position.z = 0.0
+        pose.position.z = 0.05  # Slight lift to avoid ground collision
         pose.orientation.x = float(quat[0])
         pose.orientation.y = float(quat[1])
         pose.orientation.z = float(quat[2])
@@ -481,7 +482,27 @@ class GazeboEnv(Node):
         request.entity = entity_msg
         request.pose = pose
 
-        self.set_entity_state.call_async(request)
+        # Check if service is available
+        if not self.set_entity_state.service_is_ready():
+            self.get_logger().warn(f'[TELEPORT] Service /world/default/set_pose NOT ready!')
+            self.set_entity_state.wait_for_service(timeout_sec=2.0)
+        
+        self.get_logger().info(f'[TELEPORT] Moving {name} to ({x:.2f}, {y:.2f}, yaw={angle:.2f})')
+        future = self.set_entity_state.call_async(request)
+        
+        # Wait for service response
+        rclpy.spin_until_future_complete(self, future, timeout_sec=1.0)
+        if future.done():
+            result = future.result()
+            if result is not None:
+                self.get_logger().info(f'[TELEPORT] Success: {result.success}')
+            else:
+                self.get_logger().warn('[TELEPORT] Service returned None!')
+        else:
+            self.get_logger().warn('[TELEPORT] Service call timed out!')
+        
+        # Give Gazebo time to settle after teleport
+        time.sleep(0.2)
 
     def change_goal(self):
         old_goal_x, old_goal_y = self.goal_x, self.goal_y
@@ -495,12 +516,12 @@ class GazeboEnv(Node):
         attempts = 0
         while not goal_ok and attempts < 100:
             attempts += 1
-            # Generate new goal within arena
-            self.goal_x = random.uniform(-4.0, 4.0)
-            self.goal_y = random.uniform(-4.0, 4.0)
-            goal_ok = check_pos(self.goal_x, self.goal_y)
+            # Generate new goal within arena (conservative bounds for safety)
+            self.goal_x = random.uniform(-3.5, 3.5)
+            self.goal_y = random.uniform(-3.5, 3.5)
+            goal_ok = check_pos_simplified(self.goal_x, self.goal_y)
         
-        self.get_logger().info(f'Goal changed: ({old_goal_x:.2f}, {old_goal_y:.2f}) -> ({self.goal_x:.2f}, {self.goal_y:.2f})')
+        self.get_logger().info(f'[GOAL] Changed: ({old_goal_x:.2f}, {old_goal_y:.2f}) -> ({self.goal_x:.2f}, {self.goal_y:.2f})')
 
     def random_box(self):
         for i in range(4):
@@ -510,7 +531,7 @@ class GazeboEnv(Node):
             while not box_ok:
                 x = np.random.uniform(-6, 6)
                 y = np.random.uniform(-6, 6)
-                box_ok = check_pos(x, y)
+                box_ok = check_pos_simplified(x, y)
                 distance_to_robot = np.linalg.norm([x - self.odom_x, y - self.odom_y])
                 distance_to_goal = np.linalg.norm([x - self.goal_x, y - self.goal_y])
                 if distance_to_robot < 1.5 or distance_to_goal < 1.5:
@@ -520,27 +541,34 @@ class GazeboEnv(Node):
     def publish_markers(self, action):
         markerArray = MarkerArray()
         marker = Marker()
-        marker.header.frame_id = "odom"
+        # Use 'map' frame for stable visualization (not 'odom' which drifts)
+        marker.header.frame_id = "map"
+        marker.header.stamp = self.get_clock().now().to_msg()
+        marker.ns = "goal"
+        marker.id = 0  # Fixed ID for proper marker updates
         marker.type = marker.CYLINDER
         marker.action = marker.ADD
-        marker.scale.x = 0.3
-        marker.scale.y = 0.3
-        marker.scale.z = 0.01
+        marker.scale.x = 0.5  # Larger for visibility
+        marker.scale.y = 0.5
+        marker.scale.z = 0.1
         marker.color.a = 1.0
         marker.color.r = 0.0
         marker.color.g = 1.0
         marker.color.b = 0.0
         marker.pose.orientation.w = 1.0
+        marker.lifetime.sec = 0  # Persistent marker
         
         marker.pose.position.x = float(self.goal_x)
         marker.pose.position.y = float(self.goal_y)
-        marker.pose.position.z = 0.0
+        marker.pose.position.z = 0.05  # Slightly above ground
 
         markerArray.markers.append(marker)
         self.goal_point_publisher.publish(markerArray)
 
     def observe_collision(self, laser_data):
-        """Returns minimum laser distance for reward calculation."""
+        """Extract minimum laser distance for reward calculation.
+        Collision avoidance is handled by the CBF-inspired barrier in get_reward().
+        """
         return float(min(laser_data))
 
     def get_barrier_reward(self, laser_ranges):
@@ -589,14 +617,28 @@ class GazeboEnv(Node):
             if dist < phys_limit:
                 return -2000.0  # Hard collision cap
             elif dist < safe_thresh:
-                # Reciprocal penalty
+                # Reciprocal penalty with immediate clamping
                 # As dist approaches phys_limit, (dist - phys_limit) -> 0, penalty -> -inf
-                # We add small epsilon to denominator for stability
-                penalty = -1.0 / max(dist - phys_limit, 1e-3)
-                penalty = max(penalty, -2000.0)
+                # We clamp denominator to prevent overflow
+                denom = max(dist - phys_limit, 1e-3)  # Enforce minimum denominator
+                penalty = -1.0 / denom
+                penalty = max(penalty, -2000.0)  # Clamp immediately
                 total_barrier += penalty
                 
         return total_barrier
+
+    def check_stuck(self, current_x, current_y):
+        self.stuck_buffer.append((current_x, current_y))
+        if len(self.stuck_buffer) > self.stuck_window:
+            self.stuck_buffer.pop(0)
+            
+            # Check displacement over the window
+            start_x, start_y = self.stuck_buffer[0]
+            dist_moved = math.hypot(current_x - start_x, current_y - start_y)
+            
+            if dist_moved < self.stuck_threshold:
+                return True
+        return False
 
     def get_reward(self, target, collision, action, min_laser, old_distance, new_distance, theta):
         """
@@ -606,89 +648,55 @@ class GazeboEnv(Node):
         - Adaptive barrier scaling with floor and weight compensation
         - Enhanced heading reward (alignment + improvement)
         - Smoothness, angular, existence penalties
-        
-        Returns:
-            tuple: (total_reward, reward_info_dict)
         """
         # Terminal reward for reaching the goal
         if target:
-            return 500.0, {'total': 500.0, 'goal': 500.0}
+            # Return tuple to match unpack signature in step()
+            return 2500.0, {
+                'total': 2500.0,
+                'progress': 0.0,
+                'velocity': 0.0,
+                'barrier': 0.0,
+                'heading': 0.0,
+                'smoothness': 0.0,
+                'angular': 0.0,
+                'existence': 0.0
+            }
 
         # ----- 1. POTENTIAL-BASED PROGRESS REWARD -----
         phi_old = -old_distance  # potential = -distance
         phi_new = -new_distance
-        # REBALANCED: Increased to 2500 to account for TIME_DELTA=0.1
-        # (0.1m progress * 2500 = 250 reward, comparable to 500 velocity reward)
-        R_progress_pbrs = (phi_new - phi_old) * 2500.0
+        
+        
+        # Reward V3: Filtered & Focused
+        R_progress_pbrs = (phi_new - phi_old) * 1000.0
 
-        # ----- 2. VELOCITY TOWARD GOAL REWARD -----
-        # Compute unit vector from robot to goal
-        if new_distance > 1e-6:
-            goal_dir_x = (self.goal_x - self.odom_x) / new_distance
-            goal_dir_y = (self.goal_y - self.odom_y) / new_distance
-        else:
-            goal_dir_x = 0.0
-            goal_dir_y = 0.0
-        v_toward_goal = action[0] * goal_dir_x + action[1] * goal_dir_y
-        # REBALANCED: Increased to 500 to make velocity competitive with barrier penalties
-        R_velocity = v_toward_goal * 500.0
-
-        # ----- 3. ADAPTIVE BARRIER SCALING & COMPENSATION -----
-        # CRITICAL: Use full_scan (360 rays) not scan_data (20 rays) for correct angle geometry
+        # ----- 2. BARRIER (SAFETY) -----
         R_barrier = self.get_barrier_reward(self.full_scan)
         R_barrier = max(R_barrier, -2000.0)  # safety cap
-        distance_factor = max(0.33, min(1.0, new_distance / 3.0))  # floor at 1/3
-        R_barrier_adaptive = R_barrier * distance_factor
-        # Compensation: reallocate saved barrier weight to progress and velocity
-        compensation = 1.0 - distance_factor
-        R_progress_pbrs *= (1.0 + compensation * 0.5)
-        R_velocity *= (1.0 + compensation * 0.5)
-
-        # ----- 4. ENHANCED HEADING REWARD -----
-        R_heading = math.cos(theta) * 5.0
-        if not hasattr(self, 'prev_theta'):
-            self.prev_theta = theta
-        theta_improvement = abs(self.prev_theta) - abs(theta)
-        R_heading_enhanced = R_heading + theta_improvement * 10.0
-        self.prev_theta = theta
-
-        # ----- 5. SMOOTHNESS PENALTY -----
-        action_arr = np.array(action)
-        if not hasattr(self, 'prev_action'):
-            self.prev_action = np.array([0.0, 0.0, 0.0])
-        action_change = np.linalg.norm(action_arr - self.prev_action)
-        R_smoothness = -action_change
-        self.prev_action = action_arr.copy()
-
-        # ----- 6. ANGULAR PENALTY -----
-        R_angular = -abs(action[2])
-
-        # ----- 7. EXISTENCE REWARD -----
-        R_existence = 0.1
-
-        # ----- 8. WEIGHTED SUM -----
+        
+        # ----- 3. WEIGHTED SUM -----
+        # Only Progress and Barrier matter. Goal is handled in return statement above.
         total_reward = (
-            0.30 * R_progress_pbrs +
-            0.20 * R_velocity +
-            0.20 * R_barrier_adaptive +
-            0.15 * R_heading_enhanced +
-            0.05 * (R_smoothness * 5.0) +
-            0.05 * (R_angular * 3.0) +
-            0.05 * (R_existence * 1.0)
+            1.0 * R_progress_pbrs +
+            1.0 * R_barrier
         )
         
-        # Build info dict for logging
-        reward_info = {
+        # Update prev state vars just in case we need them later (though removed from reward)
+        if not hasattr(self, 'prev_theta'): self.prev_theta = theta
+        self.prev_theta = theta
+        if not hasattr(self, 'prev_action'): self.prev_action = np.zeros(3)
+        self.prev_action = np.array(action)
+
+        info_dict = {
             'total': total_reward,
             'progress': R_progress_pbrs,
-            'velocity': R_velocity,
-            'barrier': R_barrier_adaptive,
-            'heading': R_heading_enhanced,
-            'smoothness': R_smoothness,
-            'angular': R_angular,
-            'existence': R_existence,
-            'min_laser': min_laser,
-            'distance_to_goal': new_distance
+            'velocity': 0.0,
+            'barrier': R_barrier,
+            'heading': 0.0,
+            'smoothness': 0.0,
+            'angular': 0.0,
+            'existence': 0.0
         }
         
-        return total_reward, reward_info
+        return total_reward, info_dict
