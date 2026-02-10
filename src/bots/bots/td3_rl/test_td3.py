@@ -16,6 +16,9 @@ from bots.td3_rl.gazebo_env import GazeboEnv
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(device)
 
+
+pkg_share = get_package_share_directory('bots')
+
 class Actor(nn.Module):
     def __init__(self, state_dim, action_dim):
         super(Actor, self).__init__()
@@ -42,7 +45,11 @@ class TD3:
         return action
 
     def load(self, filename, directory):
-        self.actor.load_state_dict(torch.load(os.path.join(directory, f"{filename}_actor.pth")))
+        path = os.path.join(directory, f"{filename}_actor.pth")
+        self.actor.load_state_dict(torch.load(path, map_location=device))
+        self.actor.to(device)
+        self.actor.eval()
+
 
 class TD3Tester(Node):
     def __init__(self):
@@ -128,7 +135,7 @@ class TD3Tester(Node):
             return explicit_path
         
         # 2. Source directory (when running from source)
-        source_path = "/home/hillman/ROS2_NEW/pathblazers/src/bots/bots/td3_rl/pytorch_models"
+        source_path = os.path.join(pkg_share, 'td3_rl', 'pytorch_models')
         if os.path.isdir(source_path):
             self.get_logger().info(f"Found models in source: {source_path}")
             return source_path

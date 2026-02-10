@@ -13,6 +13,8 @@ from scipy.spatial.transform import Rotation as R
 from std_srvs.srv import Empty
 from ros_gz_interfaces.msg import Entity
 from visualization_msgs.msg import Marker, MarkerArray
+from geometry_msgs.msg import PoseStamped
+
 
 GOAL_REACHED_DIST = 0.4 
 COLLISION_DIST = 0.50 
@@ -39,7 +41,8 @@ class GazeboEnv(Node):
 
         self.goal_x = 1.0
         self.goal_y = 0.0
-        
+        self.goal_sub = self.create_subscription(PoseStamped, "/goal_pose", self.goal_callback,10)
+
         self.goal_is_fixed = False 
         self.last_distance = 0.0
         self.deviation_counter = 0 
@@ -56,12 +59,23 @@ class GazeboEnv(Node):
 
         self.scan_sub = self.create_subscription(LaserScan, "/scan", self.scan_callback, 10)
         # Use EKF filtered odometry (fuses wheel odom + IMU for better yaw)
-        self.odom_sub = self.create_subscription(Odometry, "/odometry/filtered", self.odom_callback, 10)
+        self.odom_sub = self.create_subscription(Odometry, "/odom", self.odom_callback, 10)
 
         self.set_entity_state = self.create_client(SetEntityPose, "/world/default/set_entity_state")
         self.unpause = self.create_client(Empty, "/world/default/unpause_physics")
         self.pause = self.create_client(Empty, "/world/default/pause_physics")
         self.reset_proxy = self.create_client(Empty, "/world/default/reset")
+
+
+    def goal_callback(self, msg):
+         self.goal_x = float(msg.pose.position.x)
+         self.goal_y = float(msg.pose.position.y)
+         self.goal_is_fixed = True   # prevents random change
+
+         self.get_logger().info(
+        f"New RViz goal: {self.goal_x:.2f}, {self.goal_y:.2f}"
+    )
+
 
     def scan_callback(self, scan):
         # Store scan parameters for collision detection
