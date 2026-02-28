@@ -56,7 +56,7 @@ class GazeboEnv(Node):
 
         self.scan_sub = self.create_subscription(LaserScan, "/scan", self.scan_callback, 10)
         # Use EKF filtered odometry (fuses wheel odom + IMU for better yaw)
-        self.odom_sub = self.create_subscription(Odometry, "/odometry/filtered", self.odom_callback, 10)
+        self.odom_sub = self.create_subscription(Odometry, "/odom", self.odom_callback, 10)
 
         self.set_entity_state = self.create_client(SetEntityPose, "/world/default/set_entity_state")
         self.unpause = self.create_client(Empty, "/world/default/unpause_physics")
