@@ -11,7 +11,7 @@ import torch.nn.functional as F
 from ament_index_python.packages import get_package_share_directory
 from rclpy.executors import MultiThreadedExecutor
 from rclpy.node import Node
-from bots.td3_rl.gazebo_env import GazeboEnv
+from bots.td3_rl.real_env import RealEnv
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(device)
@@ -19,9 +19,9 @@ print(device)
 class Actor(nn.Module):
     def __init__(self, state_dim, action_dim):
         super(Actor, self).__init__()
-        self.layer_1 = nn.Linear(state_dim, 800)
-        self.layer_2 = nn.Linear(800, 600)
-        self.layer_3 = nn.Linear(600, action_dim)
+        self.layer_1 = nn.Linear(state_dim, 512)
+        self.layer_2 = nn.Linear(512, 256)
+        self.layer_3 = nn.Linear(256, action_dim)
         self.tanh = nn.Tanh()
 
     def forward(self, s):
@@ -51,20 +51,23 @@ class TD3Tester(Node):
         self.get_logger().info("Initializing TD3 Tester Node")
         self.get_logger().info("=" * 50)
 
+        # ========================================================
+        # USER CONFIGURABLE HARDWARE PARAMETERS
+        # ========================================================
+        # Define the exact (x, y) coordinates the real robot should drive to.
+        # It will navigate to these points in order.
+        self.custom_goals = [
+            (1.0, 0.0),   # Goal 1: 1 meter forward
+            (0.0, 1.0)    # Goal 2: 1 meter left
+        ]
+        # ========================================================
+
         # --- PARAMETERS ---
         self.declare_parameter("seed", 0)
         self.declare_parameter("max_ep", 1000)  # Max steps per goal
         self.declare_parameter("file_name", "TD3_Mecanum")
-        self.declare_parameter("environment_dim", 20)
+        self.declare_parameter("environment_dim", 40)
         self.declare_parameter("model_path", "")  
-        
-        # --- CUSTOM GOAL SET ---
-        self.custom_goals = [
-            (0.0, 1.0),
-            (1.0, 1.0),
-            (1.0, 0.0),
-            (0.0, 0.0),
-        ]
         
         # Try to find the models directory
         models_path = self._find_models_path()
@@ -80,7 +83,7 @@ class TD3Tester(Node):
         self.get_logger().info(f"Loading model: {self.file_name}")
 
         # Create environment
-        env = GazeboEnv(environment_dim=self.environment_dim)
+        env = RealEnv(environment_dim=self.environment_dim)
         
         executor = MultiThreadedExecutor()
         executor.add_node(env)
@@ -117,7 +120,7 @@ class TD3Tester(Node):
 
         # Initialize first custom goal
         self._set_custom_goal()
-        self.state = self.env.reset()
+        self.state = self.env.reset_state_to_current()
         
         # --- MODIFIED: Reduced frequency to 10Hz (0.1s) ---
         self.timer = self.create_timer(0.1, self._timer_callback)
@@ -127,13 +130,6 @@ class TD3Tester(Node):
         gx, gy = self.custom_goals[self.current_goal_idx]
         self.env.goal_x = gx
         self.env.goal_y = gy
-        
-        try:
-            self.env.change_goal() 
-            self.env.goal_x = gx
-            self.env.goal_y = gy
-        except:
-            pass
 
         self.get_logger().info("=" * 50)
         self.get_logger().info(f"Goal {self.current_goal_idx + 1}/{self.num_goals}: ({gx:.2f}, {gy:.2f})")
@@ -201,7 +197,7 @@ class TD3Tester(Node):
                 return
 
             self._set_custom_goal()
-            self.state = self.env.reset()
+            self.state = self.env.reset_state_to_current()
             self.episode_timesteps = 0
             self.goal_start_time = time.time()
         else:

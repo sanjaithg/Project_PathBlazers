@@ -19,9 +19,9 @@ print(device)
 class Actor(nn.Module):
     def __init__(self, state_dim, action_dim):
         super(Actor, self).__init__()
-        self.layer_1 = nn.Linear(state_dim, 800)
-        self.layer_2 = nn.Linear(800, 600)
-        self.layer_3 = nn.Linear(600, action_dim)
+        self.layer_1 = nn.Linear(state_dim, 512)
+        self.layer_2 = nn.Linear(512, 256)
+        self.layer_3 = nn.Linear(256, action_dim)
         self.tanh = nn.Tanh()
 
     def forward(self, s):
@@ -54,8 +54,8 @@ class TD3Tester(Node):
         # --- PARAMETERS ---
         self.declare_parameter("seed", 0)
         self.declare_parameter("max_ep", 1000)  # Max steps per goal
-        self.declare_parameter("file_name", "TD3_Mecanum")
-        self.declare_parameter("environment_dim", 20)
+        self.declare_parameter("file_name", "TD3_Model_Hardware")
+        self.declare_parameter("environment_dim", 40)
         self.declare_parameter("num_goals", 10)  # Number of goals to test
         self.declare_parameter("model_path", "")  # Optional: explicit path to models folder
         
@@ -73,7 +73,7 @@ class TD3Tester(Node):
         self.get_logger().info(f"Loading model: {self.file_name}")
 
         # Create environment
-        env = GazeboEnv(environment_dim=self.environment_dim)
+        env = GazeboEnv(environment_dim=self.environment_dim, is_testing=True)
         
         executor = MultiThreadedExecutor()
         executor.add_node(env)
@@ -153,6 +153,12 @@ class TD3Tester(Node):
 
         next_state, reward, done, target_reached = self.env.step(a_in)
 
+        # Fix: Native environment no longer registers `done=True` on
+        # collision for continuous driving. We manual trigger failure!
+        if reward <= -45.0:
+            done = True
+            target_reached = False
+
         # Check max episode length
         if self.episode_timesteps + 1 >= self.max_ep:
             done = True
@@ -166,7 +172,7 @@ class TD3Tester(Node):
                 self.goals_reached += 1
                 self.goal_times.append(steps_taken)
                 self.get_logger().info(f"✓ GOAL {self.current_goal_num} REACHED in {steps_taken} steps ({time_taken:.1f}s)")
-            elif reward < -100:  # Collision
+            elif reward <= -45.0:  # Collision Threshold
                 self.collisions += 1
                 self.get_logger().warn(f"✗ COLLISION on goal {self.current_goal_num} after {steps_taken} steps")
             else:
@@ -181,6 +187,7 @@ class TD3Tester(Node):
 
             # Move to next goal
             self.current_goal_num += 1
+            # Real hardware cannot teleport! Ensure continuous evaluation.
             self.env.change_goal()  # Generate new random goal
             self.state = self.env.reset()
             self.episode_timesteps = 0

@@ -42,6 +42,7 @@ setup(
             "train_td3 = bots.td3_rl.train_td3:main",
             "test_td3_raspi = bots.td3_rl.test_td3_raspi:main",
             "FakeOdomPublisher = bots.td3_rl.FakeOdomPublisher:main",
+            "tune_td3 = bots.td3_rl.analysis.tune_td3:main"
         ],
     },
 )

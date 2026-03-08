@@ -197,11 +197,11 @@ Visualization Manager:
         Value: /camera/image/compressed
       Value: false
       Visibility:
-        "": true
         DepthCloud: true
         Grid: true
         Image: true
         LaserScan: true
+        MarkerArray: true
         Odometry: true
         Odometry raw: true
         PointCloud2 camera: true
@@ -319,6 +319,7 @@ Visualization Manager:
         Min Value: -10
         Value: true
       Axis: Z
+      CameraInfo Topic: ""
       Channel Name: intensity
       Class: rviz_default_plugins/DepthCloud
       Color: 255; 255; 255
@@ -420,7 +421,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 20.719572067260742
+      Distance: 4.638729572296143
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -435,10 +436,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.7903976440429688
+      Pitch: 0.6803977489471436
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 2.240400791168213
+      Yaw: 3.0754034519195557
     Saved: ~
 Window Geometry:
   Camera:

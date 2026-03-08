@@ -13,7 +13,7 @@ from ament_index_python.packages import get_package_share_directory
 from rclpy.executors import MultiThreadedExecutor
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
-from bots.td3_rl.gazebo_env import GazeboEnv
+from bots.td3_rl.real_env import RealEnv
 from bots.td3_rl.replay_buffer import ReplayBuffer
 
 
@@ -199,9 +199,23 @@ class TD3(object):
 class TD3Trainer(Node):
     def __init__(self):
         super().__init__('td3_trainer')
+        
+        # ========================================================
+        # USER CONFIGURABLE HARDWARE PARAMETERS
+        # ========================================================
+        # Define the exact (x, y) coordinates the real robot should drive to.
+        # It will continuously loop between these points during training.
+        self.training_waypoints = [
+            (1.0, 0.0),   # Waypoint 1: 1m forward
+            (0.0, 1.0),   # Waypoint 2: 1m left
+            (-1.0, 0.0),  # Waypoint 3: 1m backward
+            (0.0, -1.0)   # Waypoint 4: 1m right
+        ]
+        # ========================================================
+
         self.declare_params()
         # The executor is now saved to self.executor for later use
-        self.executor = self.initialize_environment() 
+        self.executor = self.initialize_environment()
         self.train_loop()
 
     def declare_params(self):
@@ -209,21 +223,21 @@ class TD3Trainer(Node):
         self.declare_parameter('eval_freq', 500)
         self.declare_parameter('max_ep', 150)
         self.declare_parameter('eval_ep', 10)
-        self.declare_parameter('max_timesteps', 18000) # ~2 Hours mapping (~150 ticks/min)
+        self.declare_parameter('max_timesteps', 500000)
         self.declare_parameter('expl_noise', 1.0)
-        self.declare_parameter('expl_decay_steps', 15000) # Decay ends near the 1hr45min mark
+        self.declare_parameter('expl_decay_steps', 500000)
         self.declare_parameter('expl_min', 0.1)
         self.declare_parameter('batch_size', 256)
-        self.declare_parameter('discount', 0.99)       # Shorter horizon — less fantasy about far goals
-        self.declare_parameter('tau', 0.005)           # Faster target network updates
+        self.declare_parameter('discount', 0.995)
+        self.declare_parameter('tau', 0.001)
         self.declare_parameter('policy_noise', 0.2)
         self.declare_parameter('noise_clip', 0.5)
         self.declare_parameter('policy_freq', 2)
         self.declare_parameter('buffer_size', 1000000)
-        self.declare_parameter('file_name', 'TD3_Model_Hardware')
+        self.declare_parameter('file_name', 'TD3_Mecanum_Real')
         self.declare_parameter('save_model', True)
         self.declare_parameter('load_model', False)
-        self.declare_parameter('random_near_obstacle', True)  # Forces random exploration near walls
+        self.declare_parameter('random_near_obstacle', True)
         self.declare_parameter('environment_dim', 40)
     
     def print_parameters(self):
@@ -264,7 +278,12 @@ class TD3Trainer(Node):
         os.makedirs(self.results_path, exist_ok=True)
         os.makedirs(self.models_path, exist_ok=True)
 
-        self.env = GazeboEnv(self.environment_dim)
+        self.env = RealEnv(self.environment_dim)
+
+        # Set real-world training waypoints (Looping back and forth)
+        self.env.custom_goals = self.training_waypoints
+        self.env.current_goal_idx = 0
+        self.env.goal_x, self.env.goal_y = self.env.custom_goals[self.env.current_goal_idx]
         
         # --- MODIFICATION: Create one MultiThreadedExecutor for both nodes ---
         executor = MultiThreadedExecutor()
@@ -371,8 +390,14 @@ class TD3Trainer(Node):
                     if hasattr(self.env, 'update_goal_status'):
                         self.env.update_goal_status(goal_reached_last_step, is_timeout)
                     goal_reached_last_step = False 
+
+                    # Proceed to next goal if reached, otherwise keep same for retry
+                    if episode_reached_goal or is_timeout:
+                        self.env.current_goal_idx = (self.env.current_goal_idx + 1) % len(self.env.custom_goals)
+                        self.env.goal_x, self.env.goal_y = self.env.custom_goals[self.env.current_goal_idx]
+                        self.get_logger().info(f"Setting new training waypoint: ({self.env.goal_x}, {self.env.goal_y})")
                     
-                    state = self.env.reset()
+                    state = self.env.reset_state_to_current()
                     # --------------------------------------------------------
                     
                     # --- LOG EPISODE METRICS ---
@@ -424,12 +449,11 @@ class TD3Trainer(Node):
                         # No more forced reverse action[0] = -1
                 # ---------------------------------------------
                 
-                # --- ACTION SCALING FIX: CAP SPEEDS FOR HARDWARE COMPATIBILITY ---
-                # Hardware max linear and angular mapped identically to 0.5
+                # --- ACTION SCALING FIX: FULL RANGE [-1, 1] FOR LIN X ---
                 a_in = [
-                    action[0] * 0.5,            # Lin X
-                    action[1] * 0.5,            # Lin Y
-                    action[2] * 0.5             # Ang Z 
+                    action[0],            # Lin X: Full range [-1, 1] (Forward and Backward)
+                    action[1],            # Lin Y: Keep [-1, 1] (Strafe left/right)
+                    action[2]             # Ang Z: Keep [-1, 1] (Rotate CW/CCW)
                 ]
                 # --------------------------------------------------------
                 
@@ -496,16 +520,16 @@ class TD3Trainer(Node):
         col = 0
         for _ in range(eval_episodes):
             count = 0
-            state = self.env.reset()
+            state = self.env.reset_state_to_current()
             done = False
             while not done and count < self.max_ep:
                 action = network.get_action(np.array(state))
                 
-                # --- ACTION SCALING FIX IN EVALUATION: CAP SPEEDS FOR HARDWARE COMPATIBILITY ---
+                # --- ACTION SCALING FIX IN EVALUATION: FULL RANGE [-1, 1] FOR LIN X ---
                 a_in = [
-                    action[0] * 0.5,           
-                    action[1] * 0.5,           
-                    action[2] * 0.5            
+                    action[0],           # Lin X: Full range [-1, 1]
+                    action[1],           # Lin Y: Keep [-1, 1]
+                    action[2]            # Ang Z: Keep [-1, 1]
                 ]
                 # -----------------------------------------------------
 
