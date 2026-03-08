@@ -26,9 +26,9 @@ class Actor(nn.Module):
     def __init__(self, state_dim, action_dim):
         super(Actor, self).__init__()
 
-        self.layer_1 = nn.Linear(state_dim, 800)
-        self.layer_2 = nn.Linear(800, 600)
-        self.layer_3 = nn.Linear(600, action_dim)
+        self.layer_1 = nn.Linear(state_dim, 512)
+        self.layer_2 = nn.Linear(512, 256)
+        self.layer_3 = nn.Linear(256, action_dim)
         self.tanh = nn.Tanh()
 
     def forward(self, s):
@@ -42,15 +42,15 @@ class Critic(nn.Module):
     def __init__(self, state_dim, action_dim):
         super(Critic, self).__init__()
 
-        self.layer_1 = nn.Linear(state_dim, 800)
-        self.layer_2_s = nn.Linear(800, 600)
-        self.layer_2_a = nn.Linear(action_dim, 600)
-        self.layer_3 = nn.Linear(600, 1)
+        self.layer_1 = nn.Linear(state_dim, 512)
+        self.layer_2_s = nn.Linear(512, 256)
+        self.layer_2_a = nn.Linear(action_dim, 256)
+        self.layer_3 = nn.Linear(256, 1)
 
-        self.layer_4 = nn.Linear(state_dim, 800)
-        self.layer_5_s = nn.Linear(800, 600)
-        self.layer_5_a = nn.Linear(action_dim, 600)
-        self.layer_6 = nn.Linear(600, 1)
+        self.layer_4 = nn.Linear(state_dim, 512)
+        self.layer_5_s = nn.Linear(512, 256)
+        self.layer_5_a = nn.Linear(action_dim, 256)
+        self.layer_6 = nn.Linear(256, 1)
 
     def forward(self, s, a):
         # NOTE: Using the original complex layer implementation based on user request.
@@ -72,7 +72,7 @@ class Critic(nn.Module):
 # TD3 network
 class TD3(object):
     def __init__(self, state_dim, action_dim, max_action):
-        td3_rl_path = os.path.dirname(os.path.abspath(__file__))
+        td3_rl_path = "/home/hillman/ROS2_NEW/pathblazers/src/bots/bots/td3_rl"
         
         # Initialize the Actor network
         self.actor = Actor(state_dim, action_dim).to(device)
@@ -209,22 +209,22 @@ class TD3Trainer(Node):
         self.declare_parameter('eval_freq', 500)
         self.declare_parameter('max_ep', 150)
         self.declare_parameter('eval_ep', 10)
-        self.declare_parameter('max_timesteps', 500000)
+        self.declare_parameter('max_timesteps', 18000) # ~2 Hours mapping (~150 ticks/min)
         self.declare_parameter('expl_noise', 1.0)
-        self.declare_parameter('expl_decay_steps', 500000)
+        self.declare_parameter('expl_decay_steps', 15000) # Decay ends near the 1hr45min mark
         self.declare_parameter('expl_min', 0.1)
-        self.declare_parameter('batch_size', 128)
-        self.declare_parameter('discount', 0.99)
-        self.declare_parameter('tau', 0.005)
+        self.declare_parameter('batch_size', 256)
+        self.declare_parameter('discount', 0.99)       # Shorter horizon — less fantasy about far goals
+        self.declare_parameter('tau', 0.005)           # Faster target network updates
         self.declare_parameter('policy_noise', 0.2)
         self.declare_parameter('noise_clip', 0.5)
         self.declare_parameter('policy_freq', 2)
         self.declare_parameter('buffer_size', 1000000)
-        self.declare_parameter('file_name', 'TD3_Mecanum')
+        self.declare_parameter('file_name', 'TD3_Model_Hardware')
         self.declare_parameter('save_model', True)
         self.declare_parameter('load_model', False)
-        self.declare_parameter('random_near_obstacle', True)
-        self.declare_parameter('environment_dim', 20)
+        self.declare_parameter('random_near_obstacle', True)  # Forces random exploration near walls
+        self.declare_parameter('environment_dim', 40)
     
     def print_parameters(self):
         self.get_logger().info("Loaded Parameters:")
@@ -257,7 +257,7 @@ class TD3Trainer(Node):
         self.print_parameters()
 
         # NOTE: Using a placeholder path here. Replace with your actual path if needed.
-        td3_rl_path = os.path.dirname(os.path.abspath(__file__)) 
+        td3_rl_path = "/home/hillman/ROS2_NEW/pathblazers/src/bots/bots/td3_rl" 
         
         self.results_path = os.path.join(td3_rl_path, "results")
         self.models_path = os.path.join(td3_rl_path, "pytorch_models")
@@ -424,11 +424,12 @@ class TD3Trainer(Node):
                         # No more forced reverse action[0] = -1
                 # ---------------------------------------------
                 
-                # --- ACTION SCALING FIX: FULL RANGE [-1, 1] FOR LIN X ---
+                # --- ACTION SCALING FIX: CAP SPEEDS FOR HARDWARE COMPATIBILITY ---
+                # Hardware max linear and angular mapped identically to 0.5
                 a_in = [
-                    action[0],            # Lin X: Full range [-1, 1] (Forward and Backward)
-                    action[1],            # Lin Y: Keep [-1, 1] (Strafe left/right)
-                    action[2]             # Ang Z: Keep [-1, 1] (Rotate CW/CCW)
+                    action[0] * 0.5,            # Lin X
+                    action[1] * 0.5,            # Lin Y
+                    action[2] * 0.5             # Ang Z 
                 ]
                 # --------------------------------------------------------
                 
@@ -500,11 +501,11 @@ class TD3Trainer(Node):
             while not done and count < self.max_ep:
                 action = network.get_action(np.array(state))
                 
-                # --- ACTION SCALING FIX IN EVALUATION: FULL RANGE [-1, 1] FOR LIN X ---
+                # --- ACTION SCALING FIX IN EVALUATION: CAP SPEEDS FOR HARDWARE COMPATIBILITY ---
                 a_in = [
-                    action[0],           # Lin X: Full range [-1, 1]
-                    action[1],           # Lin Y: Keep [-1, 1]
-                    action[2]            # Ang Z: Keep [-1, 1]
+                    action[0] * 0.5,           
+                    action[1] * 0.5,           
+                    action[2] * 0.5            
                 ]
                 # -----------------------------------------------------
 

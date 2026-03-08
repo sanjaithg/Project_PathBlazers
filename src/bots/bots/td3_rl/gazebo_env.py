@@ -15,17 +15,14 @@ from ros_gz_interfaces.msg import Entity
 from visualization_msgs.msg import Marker, MarkerArray
 
 GOAL_REACHED_DIST = 0.4 
-COLLISION_DIST = 0.50 
+COLLISION_DIST = 0.3
 TIME_DELTA = 0.1
 
 
 def check_pos(x, y):
-    obstacles = [
-        (-3.8, -6.2, 6.2, 3.8), (-1.3, -2.7, 4.7, -0.2), (-0.3, -4.2, 2.7, 1.3),
-        (-0.8, -4.2, -2.3, -4.2), (-1.3, -3.7, -0.8, -2.7), (4.2, 0.8, -1.8, -3.2),
-        (4, 2.5, 0.7, -3.2), (6.2, 3.8, -3.3, -4.2), (4.2, 1.3, 3.7, 1.5), (-3.0, -7.2, 0.5, -1.5)
-    ]
-    if any(x1 > x > x2 and y1 > y > y2 for x1, x2, y1, y2 in obstacles) or not (-4.5 <= x <= 4.5 and -4.5 <= y <= 4.5):
+    # Obstacle check removed for Sim-To-Real hardware compatibility training
+    # Only bounds checking is necessary
+    if not (-4.5 <= x <= 4.5 and -4.5 <= y <= 4.5):
         return False
     return True
 
@@ -56,7 +53,7 @@ class GazeboEnv(Node):
 
         self.scan_sub = self.create_subscription(LaserScan, "/scan", self.scan_callback, 10)
         # Use EKF filtered odometry (fuses wheel odom + IMU for better yaw)
-        self.odom_sub = self.create_subscription(Odometry, "/odometry/filtered", self.odom_callback, 10)
+        self.odom_sub = self.create_subscription(Odometry, "/odom", self.odom_callback, 10)
 
         self.set_entity_state = self.create_client(SetEntityPose, "/world/default/set_entity_state")
         self.unpause = self.create_client(Empty, "/world/default/unpause_physics")
@@ -64,6 +61,10 @@ class GazeboEnv(Node):
         self.reset_proxy = self.create_client(Empty, "/world/default/reset")
 
     def scan_callback(self, scan):
+        # Store scan parameters for collision detection
+        self.scan_angle_min = scan.angle_min
+        self.scan_angle_increment = scan.angle_increment
+        
         # Store FULL scan data for collision detection (all 360 or more points)
         ranges = np.nan_to_num(scan.ranges, nan=self.max_distance, posinf=self.max_distance)
         self.full_scan = np.clip(ranges, 1e-6, self.max_distance)
@@ -108,9 +109,12 @@ class GazeboEnv(Node):
         self.vel_pub.publish(vel_cmd)
         self.publish_markers(action)
 
-        self.unpause.call_async(Empty.Request())
-        self.get_clock().sleep_for(rclpy.duration.Duration(seconds=TIME_DELTA))
-        self.pause.call_async(Empty.Request())
+        try:
+            self.unpause.call_async(Empty.Request())
+            self.get_clock().sleep_for(rclpy.duration.Duration(seconds=TIME_DELTA))
+            self.pause.call_async(Empty.Request())
+        except Exception:
+            pass
 
         done, collision, min_laser = self.observe_collision(self.full_scan)  # Use FULL scan!
         
@@ -156,14 +160,16 @@ class GazeboEnv(Node):
         else:
             self.deviation_counter = 0
             
-        if self.deviation_counter > 200:
+        if self.deviation_counter > 60:
             self.get_logger().info("Stuck/deviating. Skipping goal.")
             done = True
             self.goal_is_fixed = False
         else:
             done = False
             
-        done = done or target or collision
+        # ANTI-STUCK FIX: Collisions no longer end the episode. 
+        # The robot must figure out how to back up and continue driving.
+        done = done or target
         
         robot_state = [distance, theta, action[0], action[1], action[2]]
         state = np.append(self.scan_data, robot_state) 
@@ -172,27 +178,24 @@ class GazeboEnv(Node):
         
         return state, reward, done, target
 
-    def reset(self):
+    def reset(self, random_spawn=True):
         self.deviation_counter = 0
-        self.reset_proxy.call_async(Empty.Request())
+        # self.reset_proxy.call_async(Empty.Request())
         
-        angle = np.random.uniform(-np.pi, np.pi)
-
-        x = 0.0
-        y = 0.0
-        position_ok = False
-        while not position_ok:
-            x = np.random.uniform(-4.5, 4.5)
-            y = np.random.uniform(-4.5, 4.5)
-            position_ok = check_pos(x, y)
-
-        self.change_object_position("my_robot", x, y, angle)
+        # CONTINUOUS ENVIRONMENT FIX:
+        # Instead of teleporting the robot upon reset, we just generate a new goal 
+        # relative to where the robot currently sits.
+        #x, y, angle = 0.0, 0.0, 0.0
         
-        self.odom_x = float(x)
-        self.odom_y = float(y)
+        #self.change_object_position("my_robot", x, y, angle)
+        
+        # Keep the robot's real odometry
+        # self.odom_x = float(x)
+        # self.odom_y = float(y)
 
         if not self.goal_is_fixed:
-            self.random_box() 
+            pass # self.random_box() disabled for continuous env
+
 
         self.publish_markers([0.0, 0.0, 0.0]) 
 
@@ -205,7 +208,15 @@ class GazeboEnv(Node):
         skew_y = self.goal_y - self.odom_y
         
         target_angle = math.atan2(skew_y, skew_x)
-        theta = target_angle - angle
+        
+        # Calculate theta based on the bot's TRUE yaw from EKF/Odom
+        true_angle = 0.0
+        if self.last_odom is not None:
+             q = self.last_odom.pose.pose.orientation
+             yaw = math.atan2(2.0 * (q.w * q.z + q.x * q.y), 1.0 - 2.0 * (q.y * q.y + q.z * q.z))
+             true_angle = yaw
+             
+        theta = target_angle - true_angle
 
         if theta > np.pi:
             theta -= 2 * np.pi
@@ -252,9 +263,14 @@ class GazeboEnv(Node):
         attempts = 0
         while not goal_ok and attempts < 100:
             attempts += 1
-            # Generate new goal within arena
-            self.goal_x = random.uniform(-4.0, 4.0)
-            self.goal_y = random.uniform(-4.0, 4.0)
+            # Generate new goal within arena, 1 to 3 meters away from robot
+            rand_angle = random.uniform(-math.pi, math.pi)
+            rand_dist = random.uniform(1.0, 3.0)
+            
+            self.goal_x = self.odom_x + (rand_dist * math.cos(rand_angle))
+            self.goal_y = self.odom_y + (rand_dist * math.sin(rand_angle))
+            
+            # Ensure the goal is inside the global bounds
             goal_ok = check_pos(self.goal_x, self.goal_y)
         
         self.get_logger().info(f'Goal changed: ({old_goal_x:.2f}, {old_goal_y:.2f}) -> ({self.goal_x:.2f}, {self.goal_y:.2f})')
@@ -297,32 +313,66 @@ class GazeboEnv(Node):
         self.goal_point_publisher.publish(markerArray)
 
     def observe_collision(self, laser_data):
-        min_laser = min(laser_data)
-        if min_laser < COLLISION_DIST:
-            return True, True, min_laser
+        # Detect collision using Robot Bounding Box (0.4m x 0.2m)
+        # Half-dimensions with safety margin
+        ROBOT_HALF_LEN = 0.2 + 0.05  # 0.25m
+        ROBOT_HALF_WIDTH = 0.1 + 0.05 # 0.15m
+        
+        min_laser = self.max_distance
+        
+        # Ensure we have scan parameters
+        if not hasattr(self, 'scan_angle_min') or not hasattr(self, 'scan_angle_increment'):
+             # Fallback to simple distance check if no scan received yet
+             min_laser = min(laser_data)
+             if min_laser < 0.35: # Increased safety margin
+                 return True, True, min_laser
+             return False, False, min_laser
+
+        for i, r in enumerate(laser_data):
+            if r == float('inf') or r == float('nan'):
+                continue
+                
+            min_laser = min(min_laser, r)
+            
+            if r < 0.05: # Ignore self-hits or noise
+                continue
+            
+            # Calculate point in robot frame
+            angle = self.scan_angle_min + (i * self.scan_angle_increment)
+            
+            # Wrap angle to [-pi, pi] (optional but good practice)
+            # angle = (angle + np.pi) % (2 * np.pi) - np.pi
+            
+            px = r * np.cos(angle)
+            py = r * np.sin(angle)
+            
+            if abs(px) < ROBOT_HALF_LEN and abs(py) < ROBOT_HALF_WIDTH:
+                self.get_logger().info(f"Collision detected at x={px:.2f}, y={py:.2f} (r={r:.2f})")
+                return True, True, min_laser
+
         return False, False, min_laser
 
     def get_reward(self, target, collision, action, min_laser, old_distance, new_distance, theta):
         if target:
             return 500.0
-        elif collision:
-            return -200.0
         else:
             distance_change = old_distance - new_distance
-            
+
             # STRONG progress reward - this is the MAIN incentive
-            R_progress = distance_change * 400.0 
-            
-            # REMOVE heading reward - it encourages spinning to face goal
-            # R_heading = 0.0 
-            
+            R_progress = distance_change * 400.0
+
             # VERY HIGH angular penalty to STOP circling
-            penalty_angular = abs(action[2]) * 10.0 
-            
+            penalty_angular = abs(action[2]) * 10.0
+
+            # CONTINUOUS COLLISION PENALTY:
+            # Instead of ending the episode, just penalize the bump heavily enough to
+            # hurt, but not enough to explode the Q-table when stuck for a few ticks.
             r3 = lambda x: 1 - x if x < 1 else 0.0
-            penalty_collision = r3(min_laser) * 100.0 
-            
-            # Time penalty to encourage speed
-            R_time = -0.1
+            penalty_collision = r3(min_laser) * 50.0
+
+            # INCREASED TIME PENALTY:
+            # Force the robot to prioritize reaching the goal and discovering trajectories
+            # around obstacles instead of just sitting still or driving slowly to be safe!
+            R_time = -2.0
 
             return R_progress - penalty_angular - penalty_collision + R_time

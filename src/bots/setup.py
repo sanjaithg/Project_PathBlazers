@@ -19,6 +19,7 @@ setup(
         (os.path.join('share', package_name, 'meshes'), glob('meshes/*')),
         (os.path.join('share', package_name, 'rviz'), glob('rviz/*')),
         (os.path.join('share', package_name, 'world'), glob('world/*')),
+        (os.path.join('share', package_name, 'urdf'), glob('urdf/*')),
     ],
     install_requires=[
         'setuptools',
@@ -39,7 +40,9 @@ setup(
         'console_scripts': [
             "test_td3 = bots.td3_rl.test_td3:main",
             "train_td3 = bots.td3_rl.train_td3:main",
+            "test_td3_raspi = bots.td3_rl.test_td3_raspi:main",
             "FakeOdomPublisher = bots.td3_rl.FakeOdomPublisher:main",
+            "tune_td3 = bots.td3_rl.analysis.tune_td3:main"
         ],
     },
 )
