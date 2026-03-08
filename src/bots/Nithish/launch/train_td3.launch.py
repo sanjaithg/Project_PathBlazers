@@ -1,4 +1,4 @@
-#!/home/hillman/ROS2_NEW/pathblazers/.venv/bin/python3
+#!/usr/bin/env python3
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
@@ -8,7 +8,8 @@ from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
-    bots_path = "/home/hillman/ROS2_NEW/pathblazers/src/bots"
+    from ament_index_python.packages import get_package_share_directory
+    bots_path = get_package_share_directory('bots')
     
     return LaunchDescription([
         DeclareLaunchArgument('gui', default_value='true', description='Launch Gazebo with GUI'),

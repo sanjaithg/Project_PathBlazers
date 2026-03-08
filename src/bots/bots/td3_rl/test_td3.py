@@ -128,7 +128,7 @@ class TD3Tester(Node):
             return explicit_path
         
         # 2. Source directory (when running from source)
-        source_path = "/home/hillman/ROS2_NEW/pathblazers/src/bots/bots/td3_rl/pytorch_models"
+        source_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "pytorch_models")
         if os.path.isdir(source_path):
             self.get_logger().info(f"Found models in source: {source_path}")
             return source_path

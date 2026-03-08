@@ -355,24 +355,32 @@ class GazeboEnv(Node):
     def get_reward(self, target, collision, action, min_laser, old_distance, new_distance, theta):
         if target:
             return 500.0
+
+        distance_change = old_distance - new_distance
+
+        # STRONG progress reward
+        R_progress = distance_change * 300.0
+
+        # SOFT PROXIMITY PENALTY: robot "feels heat" from walls at 0.6m
+        # Discourages getting close BEFORE contact — avoids local minima wall-hugging
+        if min_laser < 0.6:
+            penalty_proximity = (0.6 - min_laser) / 0.6 * 80.0
         else:
-            distance_change = old_distance - new_distance
+            penalty_proximity = 0.0
 
-            # STRONG progress reward - this is the MAIN incentive
-            R_progress = distance_change * 400.0
+        # MODERATE HARD COLLISION: sweet spot between 50 (too weak) and 300 (too fearful)
+        r3 = lambda x: 1 - x if x < 1 else 0.0
+        penalty_collision = r3(min_laser) * 150.0
 
-            # VERY HIGH angular penalty to STOP circling
-            penalty_angular = abs(action[2]) * 10.0
+        # ADAPTIVE TIME PENALTY:
+        # Making progress toward goal → small penalty (reward purposeful motion)
+        # Stuck or moving away → large penalty (force new direction)
+        if distance_change > 0.01:
+            R_time = -0.5
+        else:
+            R_time = -3.0
 
-            # CONTINUOUS COLLISION PENALTY:
-            # Instead of ending the episode, just penalize the bump heavily enough to
-            # hurt, but not enough to explode the Q-table when stuck for a few ticks.
-            r3 = lambda x: 1 - x if x < 1 else 0.0
-            penalty_collision = r3(min_laser) * 50.0
+        # ANGULAR PENALTY: reduced to allow controlled turns near obstacles
+        penalty_angular = abs(action[2]) * 5.0
 
-            # INCREASED TIME PENALTY:
-            # Force the robot to prioritize reaching the goal and discovering trajectories
-            # around obstacles instead of just sitting still or driving slowly to be safe!
-            R_time = -2.0
-
-            return R_progress - penalty_angular - penalty_collision + R_time
+        return R_progress - penalty_proximity - penalty_collision - penalty_angular + R_time

@@ -8,9 +8,9 @@ from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 def generate_launch_description():
 
-    # Absolute paths
-    pkg_bots = "/home/hillman/ROS2_NEW/pathblazers/src/bots"
-    ros_gz_sim_path = "/opt/ros/jazzy/share/ros_gz_sim"
+    # Use package-relative paths for portability
+    pkg_bots = get_package_share_directory('bots')
+    ros_gz_sim_path = get_package_share_directory('ros_gz_sim')
 
     sim_time_arg = DeclareLaunchArgument(
         'use_sim_time', default_value='True',
@@ -18,8 +18,8 @@ def generate_launch_description():
     )
 
 
-    # Append gazebo models path to env var (adjust if needed)
-    gazebo_models_path = "/home/hillman/ROS2_NEW/gazebo_models"
+    home_dir = os.path.expanduser("~")
+    gazebo_models_path = os.path.join(home_dir, "ROS2_NEW/gazebo_models")
     os.environ["GZ_SIM_RESOURCE_PATH"] = os.environ.get("GZ_SIM_RESOURCE_PATH", "") + os.pathsep + gazebo_models_path
 
     # Launch arguments (simple defaults, no substitution)
@@ -121,7 +121,7 @@ def generate_launch_description():
         name='robot_state_publisher',
         output='screen',
         parameters=[
-            {'robot_description': Command(['xacro', ' ', "/home/hillman/ROS2_NEW/pathblazers/src/bots/urdf/mogi_bot_mecanum.urdf"]),
+            {'robot_description': Command(['xacro', ' ', os.path.join(pkg_bots, 'urdf', 'mogi_bot_mecanum.urdf')]),
              'use_sim_time': LaunchConfiguration('use_sim_time')},
         ],
         remappings=[

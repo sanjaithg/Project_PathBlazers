@@ -11,7 +11,7 @@ from rclpy.executors import MultiThreadedExecutor
 
 class HyperparameterTuner:
     def __init__(self):
-        self.td3_rl_path = "/home/hillman/ROS2_NEW/pathblazers/src/bots/bots/td3_rl"
+        self.td3_rl_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
         self.analysis_path = os.path.join(self.td3_rl_path, "analysis")
         os.makedirs(self.analysis_path, exist_ok=True)
         

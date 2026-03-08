@@ -9,7 +9,7 @@ from launch.substitutions import  LaunchConfiguration, PathJoinSubstitution, Tex
 
 def generate_launch_description():
 
-    # world_default = '/home/hillman/ROS2_NEW/pathblazers/src/bots/world/world.sdf'
+    # world_default = os.path.join(get_package_share_directory('bots'), 'world', 'world.sdf')
     world_arg = DeclareLaunchArgument(
         'world', default_value='world.sdf',
         description='Absolute path to the Gazebo world file to load'
@@ -21,7 +21,7 @@ def generate_launch_description():
     pkg_ros_gz_sim = get_package_share_directory('ros_gz_sim')
 
     # Add your own gazebo library path here
-    gazebo_models_path = "/home/hillman/ROS2_NEW/gazebo_models"
+    gazebo_models_path = os.path.join(os.path.expanduser("~"), "ROS2_NEW/gazebo_models")
     os.environ["GZ_SIM_RESOURCE_PATH"] += os.pathsep + gazebo_models_path
 
 

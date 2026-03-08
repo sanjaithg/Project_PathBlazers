@@ -45,7 +45,7 @@ class TD3Tester(Node):
         self.get_logger().info("Initializing TD3 Tester Node")
 
         # td3_rl_path = get_package_share_directory('td3_rl')
-        td3_rl_path = "/home/hillman/ROS2_NEW/pathblazers/src/bots/bots/td3_rl"
+        td3_rl_path = os.path.dirname(os.path.abspath(__file__))
         models_path = os.path.join(td3_rl_path, "pytorch_models")
 
         self.seed = self.declare_parameter("seed", 0).value

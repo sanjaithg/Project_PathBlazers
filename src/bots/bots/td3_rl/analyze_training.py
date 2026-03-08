@@ -5,7 +5,7 @@ import os
 import sys
 
 def analyze_results(file_name="TD3_Mecanum"):
-    results_path = "/home/hillman/ROS2_NEW/pathblazers/src/bots/bots/td3_rl/results"
+    results_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results")
     file_path = os.path.join(results_path, f"{file_name}.npy")
     
     if not os.path.exists(file_path):
