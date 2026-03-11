@@ -3,6 +3,7 @@ import os
 import threading
 import time
 import sys # Import sys for clean exit
+import datetime
 
 import numpy as np
 import rclpy
@@ -15,9 +16,7 @@ from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from bots.td3_rl.gazebo_env import GazeboEnv
 from bots.td3_rl.replay_buffer import ReplayBuffer
-
-
-from torch.utils.tensorboard import SummaryWriter
+import csv
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(device)
@@ -27,12 +26,13 @@ class Actor(nn.Module):
         super(Actor, self).__init__()
 
         self.layer_1 = nn.Linear(state_dim, 512)
+        self.ln1 = nn.LayerNorm(512)
         self.layer_2 = nn.Linear(512, 256)
         self.layer_3 = nn.Linear(256, action_dim)
         self.tanh = nn.Tanh()
 
     def forward(self, s):
-        s = F.relu(self.layer_1(s))
+        s = F.relu(self.ln1(self.layer_1(s)))
         s = F.relu(self.layer_2(s))
         a = self.tanh(self.layer_3(s))
         return a
@@ -43,25 +43,25 @@ class Critic(nn.Module):
         super(Critic, self).__init__()
 
         self.layer_1 = nn.Linear(state_dim, 512)
+        self.ln1 = nn.LayerNorm(512)
         self.layer_2_s = nn.Linear(512, 256)
         self.layer_2_a = nn.Linear(action_dim, 256)
         self.layer_3 = nn.Linear(256, 1)
 
         self.layer_4 = nn.Linear(state_dim, 512)
+        self.ln4 = nn.LayerNorm(512)
         self.layer_5_s = nn.Linear(512, 256)
         self.layer_5_a = nn.Linear(action_dim, 256)
         self.layer_6 = nn.Linear(256, 1)
 
     def forward(self, s, a):
-        # NOTE: Using the original complex layer implementation based on user request.
-
-        s1 = F.relu(self.layer_1(s))
+        s1 = F.relu(self.ln1(self.layer_1(s)))
         s11 = torch.mm(s1, self.layer_2_s.weight.data.t())
         s12 = torch.mm(a, self.layer_2_a.weight.data.t())
         s1 = F.relu(s11 + s12 + self.layer_2_a.bias.data)
         q1 = self.layer_3(s1)
 
-        s2 = F.relu(self.layer_4(s))
+        s2 = F.relu(self.ln4(self.layer_4(s)))
         s21 = torch.mm(s2, self.layer_5_s.weight.data.t())
         s22 = torch.mm(a, self.layer_5_a.weight.data.t())
         s2 = F.relu(s21 + s22 + self.layer_5_a.bias.data)
@@ -78,16 +78,29 @@ class TD3(object):
         self.actor = Actor(state_dim, action_dim).to(device)
         self.actor_target = Actor(state_dim, action_dim).to(device)
         self.actor_target.load_state_dict(self.actor.state_dict())
-        self.actor_optimizer = torch.optim.Adam(self.actor.parameters())
+        self.actor_optimizer = torch.optim.Adam(self.actor.parameters(), lr=3e-4)
 
         # Initialize the Critic networks
         self.critic = Critic(state_dim, action_dim).to(device)
         self.critic_target = Critic(state_dim, action_dim).to(device)
         self.critic_target.load_state_dict(self.critic.state_dict())
-        self.critic_optimizer = torch.optim.Adam(self.critic.parameters())
+        self.critic_optimizer = torch.optim.Adam(self.critic.parameters(), lr=3e-4)
 
         self.max_action = max_action
-        self.writer = SummaryWriter(log_dir=os.path.join(td3_rl_path, "runs"))
+        
+        # Setup CSV Logging instead of Tensorboard
+        log_dir = os.path.join(td3_rl_path, "logs")
+        os.makedirs(log_dir, exist_ok=True)
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        self.train_log_path = os.path.join(log_dir, f"train_log_{timestamp}.csv")
+        self.eval_log_path = os.path.join(log_dir, f"eval_log_{timestamp}.csv")
+        
+        with open(self.train_log_path, mode='w', newline='') as f:
+            csv.writer(f).writerow(["iter_count", "loss", "av_q", "max_q"])
+            
+        with open(self.eval_log_path, mode='w', newline='') as f:
+            csv.writer(f).writerow(["timestep", "avg_reward", "collision_rate"])
+            
         self.iter_count = 0
 
     def get_action(self, state):
@@ -152,6 +165,7 @@ class TD3(object):
             # Perform the gradient descent
             self.critic_optimizer.zero_grad()
             loss.backward()
+            nn.utils.clip_grad_norm_(self.critic.parameters(), max_norm=1.0)
             self.critic_optimizer.step()
 
             if it % policy_freq == 0:
@@ -161,6 +175,7 @@ class TD3(object):
                 actor_grad = -actor_grad.mean()
                 self.actor_optimizer.zero_grad()
                 actor_grad.backward()
+                nn.utils.clip_grad_norm_(self.actor.parameters(), max_norm=1.0)
                 self.actor_optimizer.step()
 
                 # Use soft update to update the actor-target network parameters by
@@ -182,10 +197,15 @@ class TD3(object):
 
             av_loss += loss
         self.iter_count += 1
-        # Write new values for tensorboard
-        self.writer.add_scalar("loss", av_loss / iterations, self.iter_count)
-        self.writer.add_scalar("Av. Q", av_Q / iterations, self.iter_count)
-        self.writer.add_scalar("Max. Q", max_Q, self.iter_count)
+        
+        # Write new values to CSV
+        with open(self.train_log_path, mode='a', newline='') as f:
+            csv.writer(f).writerow([
+                self.iter_count, 
+                (av_loss / iterations).item() if isinstance(av_loss, torch.Tensor) else (av_loss / iterations), 
+                (av_Q / iterations).item() if isinstance(av_Q, torch.Tensor) else (av_Q / iterations),
+                max_Q.item() if isinstance(max_Q, torch.Tensor) else max_Q
+            ])
 
     def save(self, filename, directory):
         torch.save(self.actor.state_dict(), os.path.join(directory, f"{filename}_actor.pth"))
@@ -210,8 +230,8 @@ class TD3Trainer(Node):
         self.declare_parameter('max_ep', 150)
         self.declare_parameter('eval_ep', 10)
         self.declare_parameter('max_timesteps', 18000) # ~2 Hours mapping (~150 ticks/min)
-        self.declare_parameter('expl_noise', 1.0)
-        self.declare_parameter('expl_decay_steps', 15000) # Decay ends near the 1hr45min mark
+        self.declare_parameter('expl_noise', 0.5)      # Reduced from 1.0 to prevent severe thrashing
+        self.declare_parameter('expl_decay_steps', 3000) # Decay ends quickly to help meet deadline
         self.declare_parameter('expl_min', 0.1)
         self.declare_parameter('batch_size', 256)
         self.declare_parameter('discount', 0.99)       # Shorter horizon — less fantasy about far goals
@@ -223,7 +243,7 @@ class TD3Trainer(Node):
         self.declare_parameter('file_name', 'TD3_Model_Hardware')
         self.declare_parameter('save_model', True)
         self.declare_parameter('load_model', False)
-        self.declare_parameter('random_near_obstacle', True)  # Forces random exploration near walls
+        self.declare_parameter('random_near_obstacle', False)  # Disabled to let neural network retain control
         self.declare_parameter('environment_dim', 40)
     
     def print_parameters(self):
@@ -342,10 +362,10 @@ class TD3Trainer(Node):
                         self.get_logger().info(f"Validating at timestep {timestep}")
                         timesteps_since_eval %= self.eval_freq
                         
-                        # LOGGING EVALUATION TO TENSORBOARD 
+                        # LOGGING EVALUATION TO CSV
                         avg_reward_eval, avg_col_eval = self.evaluate(network=self.network, epoch=epoch, eval_episodes=self.eval_ep)
-                        self.network.writer.add_scalar("Evaluation/Avg_Reward", avg_reward_eval, timestep)
-                        self.network.writer.add_scalar("Evaluation/Collision_Rate", avg_col_eval, timestep)
+                        with open(self.network.eval_log_path, mode='a', newline='') as f:
+                            csv.writer(f).writerow([timestep, avg_reward_eval, avg_col_eval])
                         
                         evaluations.append(avg_reward_eval)
                         
@@ -412,7 +432,7 @@ class TD3Trainer(Node):
                 if self.random_near_obstacle:
                     if (
                         np.random.uniform(0, 1) > 0.85
-                        and min(state[4:-8]) < 0.6 # Check for proximity to obstacles
+                        and min(state[:self.environment_dim]) < 0.6 # Check for proximity to obstacles
                         and count_rand_actions < 1
                     ):
                         count_rand_actions = np.random.randint(8, 15)
@@ -441,7 +461,14 @@ class TD3Trainer(Node):
                     self.get_logger().info('GOAL REACHED! Updating goal on next reset.')
                 # ---------------------------------------------------------------------
                 
-                done_bool = 0 if episode_timesteps + 1 == self.max_ep else int(done)
+                # Only target (goal reached) is a true environment termination.
+                # Max episodes and getting stuck are truncations.
+                done_bool = 1 if target else 0
+                
+                # Stuck penalty: compressed to match reward scale (/10)
+                if done and not target and episode_timesteps + 1 < self.max_ep:
+                    reward -= 20.0
+
                 done = 1 if episode_timesteps + 1 == self.max_ep else int(done)
                 episode_reward += reward
                 
@@ -457,11 +484,16 @@ class TD3Trainer(Node):
         except KeyboardInterrupt:
             self.get_logger().info("Caught CTRL+C. Shutting down gracefully and saving model...")
             self._stop_robot()  # Stop the robot
+            # Generate timestamp for continuous save resuming
+            timestamp = datetime.datetime.now().strftime('%Y%m%d_%H%M')
+            save_name = f"{self.file_name}_saved_{timestamp}"
+            
             # Save the evaluations array up to the point of interruption
-            np.save(os.path.join(self.results_path, f"{self.file_name}_interrupted.npy"), evaluations)
+            np.save(os.path.join(self.results_path, f"{save_name}.npy"), evaluations)
             if self.save_model:
-                self.network.save(f"{self.file_name}_interrupted", directory=self.models_path)
-                self.get_logger().info(f"Model and evaluation results saved at timestep {timestep}.")
+                self.network.save(save_name, directory=self.models_path)
+                self.get_logger().info(f"Model saved successfully at timestep {timestep}!")
+                self.get_logger().info(f"--> TO RESUME TRAINING RUN WITH: load_model:=True file_name:='{save_name}'")
             # Now, exit the loop and continue to final save block
         # --- END GRACEFUL SHUTDOWN ---
 

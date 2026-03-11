@@ -14,7 +14,7 @@ from std_srvs.srv import Empty
 from ros_gz_interfaces.msg import Entity
 from visualization_msgs.msg import Marker, MarkerArray
 
-GOAL_REACHED_DIST = 0.4 
+GOAL_REACHED_DIST = 0.55 
 COLLISION_DIST = 0.3
 TIME_DELTA = 0.1
 
@@ -176,6 +176,9 @@ class GazeboEnv(Node):
 
         reward = self.get_reward(target, collision, action, min_laser, old_distance, distance, theta)
         
+        # Save last action for smoothness penalty
+        self.last_action = action
+        
         return state, reward, done, target
 
     def reset(self, random_spawn=True):
@@ -224,6 +227,7 @@ class GazeboEnv(Node):
             theta += 2 * np.pi
 
         self.last_distance = distance
+        self.last_action = [0.0, 0.0, 0.0]
         
         robot_state = [distance, theta, 0.0, 0.0, 0.0] 
         state = np.append(self.scan_data, robot_state)
@@ -353,34 +357,56 @@ class GazeboEnv(Node):
         return False, False, min_laser
 
     def get_reward(self, target, collision, action, min_laser, old_distance, new_distance, theta):
+        # --- ALL REWARDS SCALED DOWN BY 10x TO PREVENT Q-VALUE EXPLOSION ---
+
+        # Goal Reward: compressed from 2000 → 200
         if target:
-            return 500.0
+            return 200.0
 
         distance_change = old_distance - new_distance
 
-        # STRONG progress reward
-        R_progress = distance_change * 300.0
+        # Progress reward: compressed from 300 → 30
+        R_progress = distance_change * 30.0
 
-        # SOFT PROXIMITY PENALTY: robot "feels heat" from walls at 0.6m
-        # Discourages getting close BEFORE contact — avoids local minima wall-hugging
+        # HEADING ALIGNMENT BONUS: acts as a compass toward the goal.
+        # cos(theta) = 1 when facing goal, -1 when facing away. Clamp to [0, 1].
+        R_heading = max(0.0, math.cos(theta)) * 0.3
+
+        # ADAPTIVE DISTANCE-BASED COLLISION PENALTY:
+        # Near goal (< 1.0m) = low penalty (tolerate bumps to reach goal)
+        # Far from goal (>= 1.0m) = higher penalty (discourage aimless wall-hugging)
+        r3 = lambda x: 1 - x if x < 1 else 0.0
+        if new_distance < 1.0:
+            penalty_collision = r3(min_laser) * 3.0    # Mild: push through near goal
+        else:
+            penalty_collision = r3(min_laser) * 12.0   # Firm: don't wall-hug far away
+
+        # ADAPTIVE PROXIMITY PENALTY: same distance-based logic
         if min_laser < 0.6:
-            penalty_proximity = (0.6 - min_laser) / 0.6 * 80.0
+            base_prox = (0.6 - min_laser) / 0.6
+            if new_distance < 1.0:
+                penalty_proximity = base_prox * 1.0    # Near goal: barely care about walls
+            else:
+                penalty_proximity = base_prox * 4.0    # Far: discourage approaching walls
         else:
             penalty_proximity = 0.0
 
-        # MODERATE HARD COLLISION: sweet spot between 50 (too weak) and 300 (too fearful)
-        r3 = lambda x: 1 - x if x < 1 else 0.0
-        penalty_collision = r3(min_laser) * 150.0
-
-        # ADAPTIVE TIME PENALTY:
-        # Making progress toward goal → small penalty (reward purposeful motion)
-        # Stuck or moving away → large penalty (force new direction)
+        # Time penalty: compressed from -0.5/-3.0 → -0.05/-0.3
         if distance_change > 0.01:
-            R_time = -0.5
+            R_time = -0.05
         else:
-            R_time = -3.0
+            R_time = -0.3
 
-        # ANGULAR PENALTY: reduced to allow controlled turns near obstacles
-        penalty_angular = abs(action[2]) * 5.0
+        # Angular penalty: compressed from 5.0 → 0.5
+        penalty_angular = abs(action[2]) * 0.5
+        
+        # --- NEW MINOR TWEAKS ---
+        # 1. Action Smoothness Penalty (prevent violent skidding)
+        penalty_smoothness = 0.0
+        if hasattr(self, 'last_action'):
+            penalty_smoothness = 0.2 * abs(action[0] - self.last_action[0])
+            
+        # 2. Dense Stuck Penalty (immediate feedback before termination)
+        penalty_stuck = 0.1 * getattr(self, 'deviation_counter', 0)
 
-        return R_progress - penalty_proximity - penalty_collision - penalty_angular + R_time
+        return R_progress + R_heading - penalty_proximity - penalty_collision - penalty_angular - penalty_smoothness - penalty_stuck + R_time
